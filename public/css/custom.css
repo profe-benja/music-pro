@@ -1,0 +1,100 @@
+/* Bemtorres 2022 */
+
+
+/* Edición para cliente personalizado */
+
+
+.color-personalizado {
+  color: #2A3F54;
+}
+
+.bg-personalizado {
+  background: #2A3F54;
+}
+
+
+.navbar.navbar-personalizado .navbar-menu-wrapper {
+  background: #2A3F54 !important;
+}
+
+
+.navbar .navbar-brand-wrapper {
+  background: #2A3F54 !important;
+  color: aliceblue;
+}
+.sidebar-dark .sidebar {
+  background: #2A3F54 !important;
+
+}
+
+.sidebar-dark.sidebar-icon-only .sidebar .nav .nav-item .nav-link i.menu-icon {
+  color: aliceblue;
+}
+
+@media (min-width: 992px) {
+  .sidebar-dark.sidebar-icon-only .sidebar .nav .nav-item .nav-link i.menu-icon {
+    color: aliceblue !important;
+  }
+}
+
+
+/* .navbar .navbar-brand-wrapper {
+  width: 180px;
+  height: 97px;
+  padding: 20px 35px;
+} */
+
+.navbar .navbar-brand-wrapper {
+  /* background: #F4F5F7;
+  transition: width 0.25s ease, background 0.25s ease;
+  -webkit-transition: width 0.25s ease, background 0.25s ease;
+  -moz-transition: width 0.25s ease, background 0.25s ease;
+  -ms-transition: width 0.25s ease, background 0.25s ease;
+  width: 220px; */
+  height: 55px !important;
+  /* padding: 20px 35px; */
+}
+
+.navbar .navbar-menu-wrapper {
+  /* background: #F4F5F7;
+  transition: width 0.25s ease;
+  -webkit-transition: width 0.25s ease;
+  -moz-transition: width 0.25s ease;
+  -ms-transition: width 0.25s ease;
+  color: #6C7383;
+  padding-left: 3.5rem;
+  padding-right: 2.187rem;
+  padding-top: 30px;
+  padding-bottom: 25px;
+  width: calc(100% - 220px); */
+  height: 47px !important;
+}
+.page-body-wrapper {
+  /* min-height: calc(100vh - 97px);
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  padding-left: 0;
+  padding-right: 0; */
+  padding-top: 55px !important;
+}
+
+footer {
+  /* background: #F4F5F7; */
+  /* color: color(dark); */
+  padding: 10px 2.45rem !important;
+  /* transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -webkit-transition: all 0.25s ease;
+  -ms-transition: all 0.25s ease;
+  font-size: calc(0.812rem - 0.05rem);
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  border-top: 1px solid rgba(0, 0, 0, 0.06); */
+}
+
+
+.handle {
+  cursor: pointer;
+}
