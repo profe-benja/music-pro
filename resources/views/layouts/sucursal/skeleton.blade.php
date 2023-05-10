@@ -4,9 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>@yield('title', 'MusicPro - Gestión de Inventario')</title>
+  <title>@yield('title', 'Music Pro - La mejor tienda de musica')</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="shortcut icon" href="{{ asset('assets/blogooo.svg') }}"/>
   <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -40,8 +38,9 @@
 
 
     .bg-gradient-primary {
-      background-color: #baba1e;
-      background-image: linear-gradient(180deg,#8fa83d 10%,#224abe 100%);
+      background-color: #ffffff;
+      color: #ffffff;
+      background-image: linear-gradient(180deg,#ff2f00 10%,#111625 100%);
       background-size: cover;
     }
 

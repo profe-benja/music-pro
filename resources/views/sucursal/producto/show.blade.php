@@ -1,12 +1,12 @@
 
-@extends('layouts.bodega.app')
+@extends('layouts.sucursal.app')
 @push('stylesheet')
 
 @endpush
 @section('content')
 <div class="container-fluid">
   <div class="row">
-    @include('bodega.producto._tabs_producto')
+    @include('sucursal.producto._tabs_producto')
     <div class="col-md-12">
       <div class="card shadow mb-4">
         <div class="card-body">

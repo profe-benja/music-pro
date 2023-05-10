@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>@yield('title', 'Bodega - Gestión de Inventario')</title>
+  <title>@yield('title', 'Music Pro - La mejor tienda de musica')</title>
   <link rel="shortcut icon" href="{{ asset('assets/blogooo.svg') }}"/>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{ asset('css/login.css') }}">
   <style>
     .intro-section {
-      background-image: url("{{ asset($s->present()->getBackgroundLogin()) }}");
+      background-image: url("{{ asset('assets/store-gdfc8d738c_1280.jpg') }}");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
@@ -51,11 +51,15 @@
               <img src="{{ asset('assets/blogooo.svg') }}" width="200" class="img-fluid rounded-top" alt="">
             </div>
             <div class="col">
-              <small><strong>{{ $s->getInfoLoginTitle() }}</strong></small>
+              <small>
+                <strong>
+                  Tienda online 100% segura
+                </strong>
+              </small>
             </div>
           </div>
 
-          <form action="{{ route('bodega.acceso') }}" method="POST">
+          <form action="{{ route('sucursal.acceso') }}" method="POST">
             @csrf
             <div class="form-group">
               <label for="user">Usuario</label>
@@ -78,7 +82,7 @@
               </div>
             </div> --}}
             <button type="submit" class="btn btn-dark btn-block">
-              <strong>Iniciar sesión</strong>
+              <strong>A ROCKEAR!!</strong>
             </button>
           </form>
         </div>

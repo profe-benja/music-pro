@@ -1,5 +1,5 @@
 
-@extends('layouts.bodega.app')
+@extends('layouts.sucursal.app')
 @push('stylesheet')
 
   <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
@@ -8,13 +8,12 @@
 @section('content')
 <div class="container-fluid">
   @component('components.button._back')
-    @slot('route', route('bodega.producto.index'))
+    @slot('route', route('sucursal.producto.index'))
     @slot('color', 'secondary')
     @slot('body', 'Creación de producto')
   @endcomponent
   <div class="card shadow mb-3">
-    {{-- form-sample form-submit --}}
-    <form class="" action="{{ route('bodega.producto.store') }}" method="POST" enctype="multipart/form-data">
+    <form class="" action="{{ route('sucursal.producto.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
       <div class="row">
         <div class="col-md-6">

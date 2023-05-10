@@ -1,5 +1,5 @@
 
-@extends('layouts.bodega.app')
+@extends('layouts.sucursal.app')
 @push('stylesheet')
 
 {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"> --}}
@@ -10,7 +10,7 @@
 @section('content')
 <div class="container-fluid">
   @component('components.button._back')
-    @slot('route', route('bodega.usuario.index'))
+    @slot('route', route('sucursal.usuario.index'))
     @slot('color', 'secondary')
     @slot('body', 'Creación de usuarios')
   @endcomponent
@@ -18,7 +18,7 @@
     <div class="col-md-12">
       <div class="card shadow mb-3">
         <div class="card-body">
-          <form class="form-sample form-submit" action="{{ route('bodega.usuario.store') }}" method="POST">
+          <form class="form-sample form-submit" action="{{ route('sucursal.usuario.store') }}" method="POST">
             @csrf
             <div class="row mb-3">
 

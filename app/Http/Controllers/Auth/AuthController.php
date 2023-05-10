@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Bodega\Usuario;
 use App\Models\Sistema\Config;
 use App\Models\Sistema\Sistema;
+use App\Models\Sucursal\Usuario as SucursalUsuario;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -46,6 +47,42 @@ class AuthController extends Controller
         //   return redirect()->route('home.index');
         // }
         return redirect()->route('bodega.home');
+      }else{
+        return back()->with('info','Error. Intente nuevamente.');
+      }
+    } catch (\Throwable $th) {
+      return $th;
+      return back()->with('info','Error. Intente nuevamente.');
+    }
+  }
+
+  public function sucursalAcceso() {
+    $s = Sistema::first();
+
+    $user = '';
+    $pass = '';
+
+    if (app()->isLocal()) {
+      $user = 'admin@musicpro.cl';
+      $pass = '123456';
+    }
+
+    return view('auth.sucursal', compact('s','user','pass'));
+  }
+
+  public function sucursalLogin(Request $request) {
+    try {
+      $u = SucursalUsuario::findByUsername($request->user)->firstOrFail();
+      $pass =  hash('sha256', $request->pass);
+      if($u->password==$pass){
+
+        Auth::guard('store_usuario')->loginUsingId($u->id);
+        $this->start_sesions($u);
+
+        // if ($u->admin) {
+        //   return redirect()->route('home.index');
+        // }
+        return redirect()->route('sucursal.home');
       }else{
         return back()->with('info','Error. Intente nuevamente.');
       }

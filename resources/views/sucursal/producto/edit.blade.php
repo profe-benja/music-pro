@@ -1,5 +1,5 @@
 
-@extends('layouts.bodega.app')
+@extends('layouts.sucursal.app')
 @push('stylesheet')
 
 @endpush
@@ -8,11 +8,11 @@
 
 <div class="container-fluid">
   <div class="row">
-    @include('bodega.producto._tabs_producto')
+    @include('sucursal.producto._tabs_producto')
     <div class="col-md-12">
 
       <div class="card shadow mb-3">
-        <form class="form-sample form-submit" action="{{ route('bodega.producto.update', $p->id) }}" method="POST" enctype="multipart/form-data">
+        <form class="form-sample form-submit" action="{{ route('sucursal.producto.update', $p->id) }}" method="POST" enctype="multipart/form-data">
           @csrf
           @method('PUT')
           <div class="row">

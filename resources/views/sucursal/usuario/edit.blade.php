@@ -1,5 +1,5 @@
 
-@extends('layouts.bodega.app')
+@extends('layouts.sucursal.app')
 @push('stylesheet')
   <link rel="stylesheet" href="{{ asset('vendors/select2/select2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
@@ -8,14 +8,14 @@
 <div class="container-fluid">
   <div class="row">
     @component('components.button._back')
-      @slot('route', route('bodega.usuario.show', $u->id))
+      @slot('route', route('sucursal.usuario.show', $u->id))
       @slot('color', 'secondary')
       @slot('body', 'Editar ' . $u->nombre_completo())
     @endcomponent
     <div class="col-md-12">
       <div class="card shadow mb-3">
         <div class="card-body">
-          <form class="form-sample form-submit" action="{{ route('bodega.usuario.update',$u->id) }}" method="POST">
+          <form class="form-sample form-submit" action="{{ route('sucursal.usuario.update',$u->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="row mb-3">

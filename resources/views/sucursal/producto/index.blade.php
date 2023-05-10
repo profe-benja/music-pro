@@ -1,5 +1,5 @@
 
-@extends('layouts.bodega.app')
+@extends('layouts.sucursal.app')
 @push('stylesheet')
 
 <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
@@ -8,7 +8,7 @@
 @section('content')
 <div class="container-fluid">
   <h1 class="h3 mb-2 text-gray-800">Productos / Articulos</h1>
-  @include('bodega.producto._tabs')
+  @include('sucursal.producto._tabs')
   <div class="card shadow mb-4">
     <div class="card-body">
       <div class="table-responsive">
@@ -32,7 +32,7 @@
                   <img src="{{ asset($p->present()->getImagen()) }}" width="120px" class="rounded" alt="...">
                 </div>
               </td>
-              <td><a href="{{ route('bodega.producto.show',$p->id) }}">{{ $p->nombre }}</a></td>
+              <td><a href="{{ route('sucursal.producto.show',$p->id) }}">{{ $p->nombre }}</a></td>
               <td>
                 <img src="{{ asset(current_config()->present()->getImagenCoin()) }}" width="20px" alt="">
                 {{ $p->getPrecio() }}

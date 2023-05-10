@@ -7,36 +7,43 @@
     <div class="sidebar-brand-text mx-3">MusicPro <small>SUCURSAL</small></div>
   </a>
   <hr class="sidebar-divider my-0">
-  <li class="nav-item {{ activeTab(['admin/home']) }}">
-    <a class="nav-link" href="{{ route('bodega.home') }}">
+  <li class="nav-item {{ activeTab(['sucursal/home']) }}">
+    <a class="nav-link" href="{{ route('sucursal.home') }}">
       <i class="fas fa-fw fa-home"></i>
       <span>Inicio</span>
     </a>
   </li>
 
-  <li class="nav-item {{ activeTab(['admin/solicitudes*']) }}">
+  <li class="nav-item {{ activeTab(['sucursal/solicitudes*']) }}">
     <a class="nav-link" href="">
       <i class="fas fa-fw fa-bell"></i>
-      <span>Solicitudes</span>
+      <span>Compras</span>
     </a>
   </li>
 
   <hr class="sidebar-divider">
-  <li class="nav-item {{ activeTab(['bodega/producto*']) }}">
-    <a class="nav-link" href="{{ route('bodega.producto.index') }}">
+  <li class="nav-item {{ activeTab(['sucursal/producto*']) }}">
+    <a class="nav-link" href="{{ route('sucursal.producto.index') }}">
       <i class="fas fa-fw fa-heart"></i>
       <span>Productos</span>
     </a>
   </li>
 
-  <li class="nav-item {{ activeTab(['bodega/usuario*']) }}">
-    <a class="nav-link" href="{{ route('bodega.usuario.index') }}">
+  <li class="nav-item {{ activeTab(['sucursal/usuario*']) }}">
+    <a class="nav-link" href="{{ route('sucursal.usuario.index') }}">
       <i class="fas fa-fw fa-users"></i>
       <span>Usuarios</span>
     </a>
   </li>
 
-  <li class="nav-item {{ activeTab(['admin/usuario*']) }}">
+  <li class="nav-item {{ activeTab(['sucursal/clientes*']) }}">
+    <a class="nav-link" href="{{ route('sucursal.usuario.index') }}">
+      <i class="fas fa-fw fa-users"></i>
+      <span>Clientes</span>
+    </a>
+  </li>
+
+  <li class="nav-item {{ activeTab(['sucursal/usuario*']) }}">
     <a class="nav-link" href="">
       <i class="fas fa-fw fa-code"></i>
       <span>Integraciones</span>
