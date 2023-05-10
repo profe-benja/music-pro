@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Bodega;
+namespace App\Models\Sucursal;
 
 use App\Services\Currency;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Presenters\Bodega\ProductoPresenter;
+use App\Presenters\Sucursal\ProductoPresenter;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
@@ -14,7 +14,7 @@ class Producto extends Model
 {
   use HasFactory;
 
-  protected $table = 'bodega_producto';
+  protected $table = 'sucursal_producto';
 
   // CONST STATUS = [
   //   1 => 'SIN SOLICITUD',

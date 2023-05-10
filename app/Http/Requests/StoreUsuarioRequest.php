@@ -24,7 +24,7 @@ class StoreUsuarioRequest extends FormRequest
     public function rules()
     {
         return [
-          'correo' => 'required|unique:gp_usuario,correo|max:255',
+          'correo' => 'required|unique:bodega_usuario,correo|max:255',
           'nombre' => 'required|max:255',
           'apellido' => 'required|max:255',
           'team' => 'nullable|exists:gp_team,id',

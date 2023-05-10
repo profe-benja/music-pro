@@ -1,6 +1,6 @@
-<section class="features-overview" id="features-section" >
+<section class="features-overview " id="features-section">
   <div class="content-header">
-    <img src="{{ asset('assets/blogooo.svg') }}" width="200" class="img-fluid rounded-top" alt="">
+    <img src="{{ asset('assets/blogooo.svg') }}" width="200" class="img-fluid" alt="">
 
     <h2 class="stroke2">¿Qué hacemos?</h2>
     <h5 class="section-subtitle text-muted">

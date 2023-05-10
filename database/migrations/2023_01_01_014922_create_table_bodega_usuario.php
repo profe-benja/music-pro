@@ -34,10 +34,10 @@ return new class extends Migration
         });
 
         $u = new Usuario();
-        $u->correo = 'benja.mora.torres@gmail.com';
+        $u->correo = 'admin@musicpro.cl';
         $u->nombre = 'Benjamin';
         $u->apellido = 'Mora';
-        $u->username = 'benja.mora.torres@gmail.com';
+        $u->username = 'admin@musicpro.cl';
         $u->password = hash('sha256','123456');
         $u->admin = true;
         $u->save();

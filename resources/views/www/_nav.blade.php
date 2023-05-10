@@ -18,24 +18,24 @@
           </button>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link btn btn-success" href="">
+          <a class="nav-link btn btn-outline-success rounded rounded-pill" href="{{ route('bodega.acceso') }}">
             📦
             Bodega
           </a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link btn btn-danger" href="">
+          <a class="nav-link btn btn-outline-danger rounded rounded-pill" href="{{ route('sucursal.acceso') }}">
             <span>🏪 Sucursal</span>
           </a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link btn btn-warning" href="">
+          <a class="nav-link btn btn-outline-warning rounded-pill" href="{{ route('transporte.acceso') }}">
             🚚
             Transporte
           </a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link btn btn-info" href="">
+          <a class="nav-link btn btn-outline-info rounded-pill" href="{{ route('tarjeta.acceso') }}">
             💳
             Transporte
           </a>

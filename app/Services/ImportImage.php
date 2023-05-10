@@ -12,7 +12,7 @@ class ImportImage
     try {
       if ($validate) {
         $request->validate([
-          $inputName => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+          $inputName => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:4048',
         ]);
       }
 
@@ -21,6 +21,9 @@ class ImportImage
         $folderSave .= '/' . date('Y') . '/' . date('m');
         $nFile = date('Y') . '/' . date('m') . '/';
       }
+
+      // Crear las carpetas si no existen
+      Storage::makeDirectory($folderSave);
 
       $file = $request->file($inputName);
       $filename = $name .'.'. $file->getClientOriginalExtension();
@@ -42,7 +45,7 @@ class ImportImage
       try {
         if ($validate) {
           $request->validate([
-            $inputName => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            $inputName => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:4048',
           ]);
         }
 

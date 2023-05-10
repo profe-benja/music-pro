@@ -1,6 +1,6 @@
 <footer class="border-top">
   <p class="text-center text-muted pt-4">Copyright © {{ date('Y') }}
-    <a href="https://www.educk.cl/" class="px-1">infast.cl</a>
+    <a href="https://www.educk.cl/" class="px-1">musicpro.cl</a>
     @Bemtorres
   </p>
 

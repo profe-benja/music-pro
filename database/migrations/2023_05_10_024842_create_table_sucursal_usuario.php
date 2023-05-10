@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Sucursal\Usuario;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -31,6 +32,16 @@ return new class extends Migration
           $table->boolean('activo')->default(true);
           $table->timestamps();
         });
+
+
+        $u = new Usuario();
+        $u->correo = 'admin@musicpro.cl';
+        $u->nombre = 'Benjamin';
+        $u->apellido = 'Mora';
+        $u->username = 'admin@musicpro.cl';
+        $u->password = hash('sha256','123456');
+        $u->admin = true;
+        $u->save();
     }
 
     /**
