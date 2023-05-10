@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Inf;
+namespace App\Models\Sistema;
 
 use App\Presenters\Sistema\ConfigPresenter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +13,7 @@ class Config extends Model
 {
   use HasFactory;
 
-  protected $table = 'inf_config';
+  protected $table = 'sistema_config';
 
   // public $incrementing = false;
   // CONST STATUS = [

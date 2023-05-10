@@ -1,10 +1,10 @@
 <section class="features-overview" id="features-section" >
   <div class="content-header">
-    <img src="{{ asset('images/logoinfast.svg') }}" width="200" class="img-fluid rounded-top" alt="">
+    <img src="{{ asset('assets/blogooo.svg') }}" width="200" class="img-fluid rounded-top" alt="">
 
     <h2 class="stroke2">¿Qué hacemos?</h2>
     <h5 class="section-subtitle text-muted">
-      El sistema <strong>inFast</strong> es una plataforma de inventario diseñada para empresas que necesitan llevar un registro preciso y actualizado de su inventario de manera rápida y eficiente. Utilizando tecnología de vanguardia, el sistema permite a las empresas llevar un seguimiento en tiempo real de sus productos, generar informes detallados, controlar sus existencias y optimizar su cadena de suministro.
+      Explora y descubre el mundo de la música en Music Pro, la distribuidora líder en instrumentos y accesorios musicales en Chile. Encuentra una amplia variedad de productos de alta calidad y experimenta un servicio al cliente excepcional tanto en nuestras tiendas físicas como en nuestra plataforma de venta en línea. Únete a nuestra comunidad musical y deja que la pasión por la música te lleve a nuevos niveles.
     </h5>
   </div>
 </section>
@@ -27,8 +27,8 @@
   <div class="row text-center py-2">
     <div class="col-md-4">
       <div class="features-width">
-        <img src="{{ asset('images/portada.svg') }}" width="150" alt="" class="img-icons">
-        <h5 class="py-3">inFast - GESTIÓN</h5>
+        <img src="{{ asset('assets/pexels-pixabay-416831.jpg') }}" width="150" alt="" class="img-icons">
+        <h5 class="py-3">GESTIÓN</h5>
         <p class="text-muted">
           Facilitar la toma de decisiones informadas en cuanto al control de inventario y la gestión de existencias.
         </p>
@@ -37,8 +37,8 @@
 
     <div class="col-md-4">
       <div class="features-width">
-        <img src="{{ asset('images/fast2.svg') }}" width="150" alt="" class="img-icons">
-        <h5 class="py-3">inFast - RÁPIDO</h5>
+        <img src="{{ asset('assets/pexels-pixabay-210764.jpg') }}"  width="150" alt="" class="img-icons">
+        <h5 class="py-3">RÁPIDO</h5>
         <p class="text-muted">
           Reducir el tiempo y los costos asociados con el seguimiento manual de inventario.
         </p>
@@ -46,8 +46,8 @@
     </div>
     <div class="col-md-4">
       <div class="features-width">
-        <img src="{{ asset('images/shop.svg') }}" width="150" alt="" class="img-icons">
-        <h5 class="py-3">inFast - STOCK NOW</h5>
+        <img src="{{ asset('assets/pexels-pixabay-45243.jpg') }}"  width="150" alt="" class="img-icons">
+        <h5 class="py-3">STOCK NOW</h5>
         <p class="text-muted">
           Optimizar la cadena de suministro y mejorar la eficiencia de las operaciones empresariales.
         </p>

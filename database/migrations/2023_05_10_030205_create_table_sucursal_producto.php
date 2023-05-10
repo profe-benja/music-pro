@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('inf_team', function (Blueprint $table) {
+        Schema::create('sucursal_producto', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('descripcion')->nullable();
-            $table->integer('id_lider')->nullable();
-            $table->json('info')->nullable();
-            $table->boolean('activo')->default(true);
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inf_team');
+        Schema::dropIfExists('sucursal_producto');
     }
 };

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('de_producto', function (Blueprint $table) {
+        Schema::create('bodega_producto', function (Blueprint $table) {
             $table->id();
             $table->string('codigo')->nullable();
             $table->string('nombre');
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->integer('cant_entregada')->nullable();
 
             $table->unsignedBigInteger('id_usuario');
-            $table->foreign('id_usuario')->references('id')->on('inf_usuario');
+            $table->foreign('id_usuario')->references('id')->on('bodega_usuario');
 
             $table->integer('estado')->default(1);
             $table->boolean('activo')->default(true);

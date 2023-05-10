@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\De;
+namespace App\Models\Bodega;
 
 use App\Presenters\Sistema\ProductoPresenter;
 use App\Services\Currency;
@@ -14,7 +14,7 @@ class Producto extends Model
 {
   use HasFactory;
 
-  protected $table = 'de_producto';
+  protected $table = 'bodega_producto';
 
   // CONST STATUS = [
   //   1 => 'SIN SOLICITUD',

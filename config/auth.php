@@ -40,9 +40,21 @@ return [
         //     'driver' => 'session',
         //     'provider' => 'users',
         // ],
-        'usuario' => [
-          'driver' => 'session',
-          'provider' => 'usuario',
+      'bode_usuario' => [
+        'driver' => 'session',
+        'provider' => 'bode_usuario',
+      ],
+      'card_usuario' => [
+        'driver' => 'session',
+        'provider' => 'card_usuario',
+      ],
+      'trans_usuario' => [
+        'driver' => 'session',
+        'provider' => 'trans_usuario',
+      ],
+      'store_usuario' => [
+        'driver' => 'session',
+        'provider' => 'store_usuario',
       ],
     ],
 
@@ -64,11 +76,22 @@ return [
     */
 
     'providers' => [
-        'usuario' => [
+        'bode_usuario' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Inf\Usuario::class,
+            'model' => App\Models\Bodega\Usuario::class,
         ],
-
+        'card_usuario' => [
+          'driver' => 'eloquent',
+          'model' => App\Models\Tarjeta\Usuario::class,
+        ],
+        'trans_usuario' => [
+          'driver' => 'eloquent',
+          'model' => App\Models\Transporte\Usuario::class,
+        ],
+        'store_usuario' => [
+          'driver' => 'eloquent',
+          'model' => App\Models\Sucursal\Usuario::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

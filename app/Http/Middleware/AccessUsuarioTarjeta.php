@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AccessUsuario
+class AccessUsuarioTarjeta
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class AccessUsuario
      */
     public function handle(Request $request, Closure $next)
     {
-      if (auth('usuario')->check()){
+      if (auth('card_usuario')->check()){
         return $next($request);
       }
 

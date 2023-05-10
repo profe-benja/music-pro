@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Inf;
+namespace App\Models\Sistema;
 
 use App\Presenters\Sistema\ConfigPresenter;
 use App\Presenters\Sistema\SistemaPresenter;
@@ -14,7 +14,7 @@ class Sistema extends Model
 {
   use HasFactory;
 
-  protected $table = 'inf_sistema';
+  protected $table = 'sistema_sistema';
 
   protected function integrations(): Attribute {
     return Attribute::make(

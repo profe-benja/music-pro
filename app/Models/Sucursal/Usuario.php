@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Models\Inf;
+namespace App\Models\Sucursal;
 
-use App\Models\Rec\Transaccion;
 use App\Presenters\Sistema\UsuarioPresenter;
 use App\Services\Currency;
 use App\Services\Jwt\JwtQrEncode;
@@ -18,14 +17,14 @@ class Usuario extends Authenticatable
   use Notifiable;
   use HasFactory;
 
-  protected $table = 'inf_usuario';
+  protected $table = 'sucursal_usuario';
 
-  protected $guard = 'usuario';
+  protected $guard = 'store_usuario';
 
   const TIPOS = [
-    1 => 'perro',
-    2 => 'gato',
-    3 => 'raton'
+    1 => 'a',
+    2 => 'b',
+    3 => 'c'
   ];
 
   protected function info(): Attribute {
@@ -37,14 +36,6 @@ class Usuario extends Authenticatable
 
   public function scopefindByUsername($query, $username){
     return $query->where('username',$username)->where('activo',true);
-  }
-
-  public function team(){
-    return $this->belongsTo(Team::class,'id_team');
-  }
-
-  public function transacciones(){
-    return $this->hasMany(Transaccion::class,'id_usuario')->with(['accion','producto'])->orderBy('id', 'desc');
   }
 
   public function present(){
@@ -60,9 +51,9 @@ class Usuario extends Authenticatable
     return $this->nombre . ' ' . $this->apellido;
   }
 
-  public function myQR() {
-    return (new JwtQrEncode($this))->call();
-  }
+  // public function myQR() {
+  //   return (new JwtQrEncode($this))->call();
+  // }
 
   public function getCredito() {
     return Currency::getConvert($this->credito) ?? 0;

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Inf\Config;
+use App\Models\Sistema\Sistema;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,19 +14,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('inf_config', function (Blueprint $table) {
+        Schema::create('sistema_sistema', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->string('descripcion')->nullable();
-            $table->string('assets_coin')->nullable();
-
-            // $table->json('integrations')->nullable();
-            // $table->json('info')->nullable();
+            $table->json('info')->nullable();
+            $table->json('assets')->nullable();
+            $table->json('integrations')->nullable();
             $table->timestamps();
         });
 
-        $c = new Config();
-        $c->nombre = 'inFast';
+        $c = new Sistema();
+        $c->nombre = 'music pro';
+        $c->info = [
+          'demo' => true,
+        ];
         $c->save();
     }
 
@@ -37,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inf_config');
+        Schema::dropIfExists('sistema_sistema');
     }
 };
