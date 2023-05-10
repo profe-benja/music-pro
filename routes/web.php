@@ -40,27 +40,29 @@ Route::prefix('bodega')->name('bodega.')->group( function () {
   Route::get('acceso', [AuthController::class,'bodegaAcceso'])->name('acceso');
   Route::post('acceso', [AuthController::class,'bodegaLogin'])->name('acceso');
 
-  Route::get('home', [BodegaController::class,'home'])->name('home');
+  Route::middleware('auth.user.bodega')->group( function () {
+    Route::get('home', [BodegaController::class,'home'])->name('home');
 
-  // Productos
-  Route::get('producto', [BodegaProductoController::class,'index'])->name('producto.index');
-  Route::get('producto/create', [BodegaProductoController::class,'create'])->name('producto.create');
-  Route::post('producto', [BodegaProductoController::class,'store'])->name('producto.store');
-  Route::get('producto/{id}', [BodegaProductoController::class,'show'])->name('producto.show');
-  Route::get('producto/{id}/edit', [BodegaProductoController::class,'edit'])->name('producto.edit');
-  Route::put('producto/{id}', [BodegaProductoController::class,'update'])->name('producto.update');
-  // Route::delete('admin/producto/{id}', [AccionController::class,'destroy'])->name('admin.producto.delete');
+    // Productos
+    Route::get('producto', [BodegaProductoController::class,'index'])->name('producto.index');
+    Route::get('producto/create', [BodegaProductoController::class,'create'])->name('producto.create');
+    Route::post('producto', [BodegaProductoController::class,'store'])->name('producto.store');
+    Route::get('producto/{id}', [BodegaProductoController::class,'show'])->name('producto.show');
+    Route::get('producto/{id}/edit', [BodegaProductoController::class,'edit'])->name('producto.edit');
+    Route::put('producto/{id}', [BodegaProductoController::class,'update'])->name('producto.update');
+    // Route::delete('admin/producto/{id}', [AccionController::class,'destroy'])->name('admin.producto.delete');
 
-  // Usuario
-  Route::get('usuario', [BodegaUsuarioController::class,'index'])->name('usuario.index');
-  Route::get('usuario/admins', [BodegaUsuarioController::class,'admin'])->name('usuario.admin');
-  Route::get('usuario/create', [BodegaUsuarioController::class,'create'])->name('usuario.create');
-  Route::post('usuario', [BodegaUsuarioController::class,'store'])->name('usuario.store');
-  Route::get('usuario/{id}', [BodegaUsuarioController::class,'show'])->name('usuario.show');
-  Route::get('usuario/{id}/edit', [BodegaUsuarioController::class,'edit'])->name('usuario.edit');
-  Route::put('usuario/{id}', [BodegaUsuarioController::class,'update'])->name('usuario.update');
-  // Route::delete('admin/usuario/{id}', [BodegaUsuarioController::class,'destroy'])->name('admin.usuario.delete');
+    // Usuario
+    Route::get('usuario', [BodegaUsuarioController::class,'index'])->name('usuario.index');
+    Route::get('usuario/admins', [BodegaUsuarioController::class,'admin'])->name('usuario.admin');
+    Route::get('usuario/create', [BodegaUsuarioController::class,'create'])->name('usuario.create');
+    Route::post('usuario', [BodegaUsuarioController::class,'store'])->name('usuario.store');
+    Route::get('usuario/{id}', [BodegaUsuarioController::class,'show'])->name('usuario.show');
+    Route::get('usuario/{id}/edit', [BodegaUsuarioController::class,'edit'])->name('usuario.edit');
+    Route::put('usuario/{id}', [BodegaUsuarioController::class,'update'])->name('usuario.update');
+    // Route::delete('admin/usuario/{id}', [BodegaUsuarioController::class,'destroy'])->name('admin.usuario.delete');
 
+  });
 });
 
 // SUCURSAL
@@ -70,27 +72,28 @@ Route::prefix('sucursal')->name('sucursal.')->group( function () {
   Route::get('acceso', [AuthController::class,'sucursalAcceso'])->name('acceso');
   Route::post('acceso', [AuthController::class,'sucursalLogin'])->name('acceso');
 
-  Route::get('home', [SucursalController::class,'home'])->name('home');
+  Route::middleware('auth.user.store')->group( function () {
+    Route::get('home', [SucursalController::class,'home'])->name('home');
 
-  // Productos
-  Route::get('producto', [SucursalProductoController::class,'index'])->name('producto.index');
-  Route::get('producto/create', [SucursalProductoController::class,'create'])->name('producto.create');
-  Route::post('producto', [SucursalProductoController::class,'store'])->name('producto.store');
-  Route::get('producto/{id}', [SucursalProductoController::class,'show'])->name('producto.show');
-  Route::get('producto/{id}/edit', [SucursalProductoController::class,'edit'])->name('producto.edit');
-  Route::put('producto/{id}', [SucursalProductoController::class,'update'])->name('producto.update');
-  // Route::delete('admin/producto/{id}', [AccionController::class,'destroy'])->name('admin.producto.delete');
+    // Productos
+    Route::get('producto', [SucursalProductoController::class,'index'])->name('producto.index');
+    Route::get('producto/create', [SucursalProductoController::class,'create'])->name('producto.create');
+    Route::post('producto', [SucursalProductoController::class,'store'])->name('producto.store');
+    Route::get('producto/{id}', [SucursalProductoController::class,'show'])->name('producto.show');
+    Route::get('producto/{id}/edit', [SucursalProductoController::class,'edit'])->name('producto.edit');
+    Route::put('producto/{id}', [SucursalProductoController::class,'update'])->name('producto.update');
+    // Route::delete('admin/producto/{id}', [AccionController::class,'destroy'])->name('admin.producto.delete');
 
-  // Usuario
-  Route::get('usuario', [SucursalUsuarioController::class,'index'])->name('usuario.index');
-  Route::get('usuario/admins', [SucursalUsuarioController::class,'admin'])->name('usuario.admin');
-  Route::get('usuario/create', [SucursalUsuarioController::class,'create'])->name('usuario.create');
-  Route::post('usuario', [SucursalUsuarioController::class,'store'])->name('usuario.store');
-  Route::get('usuario/{id}', [SucursalUsuarioController::class,'show'])->name('usuario.show');
-  Route::get('usuario/{id}/edit', [SucursalUsuarioController::class,'edit'])->name('usuario.edit');
-  Route::put('usuario/{id}', [SucursalUsuarioController::class,'update'])->name('usuario.update');
-  // Route::delete('admin/usuario/{id}', [BodegaUsuarioController::class,'destroy'])->name('admin.usuario.delete');
-
+    // Usuario
+    Route::get('usuario', [SucursalUsuarioController::class,'index'])->name('usuario.index');
+    Route::get('usuario/admins', [SucursalUsuarioController::class,'admin'])->name('usuario.admin');
+    Route::get('usuario/create', [SucursalUsuarioController::class,'create'])->name('usuario.create');
+    Route::post('usuario', [SucursalUsuarioController::class,'store'])->name('usuario.store');
+    Route::get('usuario/{id}', [SucursalUsuarioController::class,'show'])->name('usuario.show');
+    Route::get('usuario/{id}/edit', [SucursalUsuarioController::class,'edit'])->name('usuario.edit');
+    Route::put('usuario/{id}', [SucursalUsuarioController::class,'update'])->name('usuario.update');
+    // Route::delete('admin/usuario/{id}', [BodegaUsuarioController::class,'destroy'])->name('admin.usuario.delete');
+  });
 });
 
 
