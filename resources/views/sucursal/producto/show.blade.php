@@ -27,7 +27,7 @@
                 <div class="card-footer text-center">
                   <h3>
                     <strong>
-                      <img src="{{ asset(current_config()->present()->getImagenCoin()) }}" width="30px" alt="">
+                      {{-- <img src="{{ asset(current_config()->present()->getImagenCoin()) }}" width="30px" alt=""> --}}
                       {{ $p->getPrecio() }}
                     </strong>
                   </h3>
@@ -48,7 +48,7 @@
               </div>
             </div>
 
-            <div class="col-lg-8 mb-4">
+            {{-- <div class="col-lg-8 mb-4">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
@@ -81,7 +81,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --}}
           </div>
         </div>
       </div>

@@ -56,6 +56,24 @@
                     </div>
                   </div>
 
+                  <div class="col-md-12">
+                    <div class="form-group row">
+                      <label class="col-md-4" for="stock">Stock<small class="text-danger">*</small></label>
+                      <div class="col-md-8">
+                        <input type="number" class="form-control" min="1" name="stock" id="stock" value="{{ $p->stock }}" required/>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group row">
+                      <label class="col-md-4" for="stock_critico">Stock Crítico<small class="text-danger">*</small></label>
+                      <div class="col-md-8">
+                        <input type="number" class="form-control" min="1" name="stock_critico" id="stock_critico" value="{{ $p->stock_critico }}"required/>
+                      </div>
+                    </div>
+                  </div>
+
                   {{-- <div class="col-md-12">
                     <div class="card form-group">
                       <div class="card-header">

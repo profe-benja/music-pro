@@ -18,66 +18,62 @@
       <div class="row">
         <div class="col-md-6">
           <div class="card-body">
-
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group row">
-                    <label class="col-md-4" for="codigo">Código <small class="text-danger">*</small></label>
-                    <div class="col-md-8">
-                      <input type="text" class="form-control {{ $errors->has('codigo') ? 'is-invalid' : '' }}" name="codigo" id="codigo" value="{{ old('codigo') }}" required/>
-                      {!! $errors->first('codigo','<small id="codigo" class="form-text text-danger">:message</small>') !!}
-                    </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group row">
+                  <label class="col-md-4" for="codigo">Código <small class="text-danger">*</small></label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control {{ $errors->has('codigo') ? 'is-invalid' : '' }}" name="codigo" id="codigo" value="{{ old('codigo') }}" required/>
+                    {!! $errors->first('codigo','<small id="codigo" class="form-text text-danger">:message</small>') !!}
                   </div>
                 </div>
-
-                  <div class="col-md-12">
-                    <div class="form-group row">
-                      <label class="col-md-4" for="nombre">Nombre <small class="text-danger">*</small></label>
-                      <div class="col-md-8">
-                        <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre" id="nombre" value="{{ old('nombre') }}" required/>
-                        {!! $errors->first('nombre','<small id="nombre" class="form-text text-danger">:message</small>') !!}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-12">
-                    <div class="form-group row">
-                      <label for="descripcion" class="col-md-4">Descripción</label>
-                      <div class="col-md-8">
-                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
-                      </div>
-                    </div>
-                  </div>
-
-
-                <div class="col-md-12">
-                  <div class="form-group row">
-                    <label class="col-md-4" for="credito">Precio<small class="text-danger">*</small></label>
-                    <div class="col-md-8">
-                      <input type="number" class="form-control" min="1" name="credito" id="credito" value="{{ old('credito') }}" required/>
-                    </div>
-                  </div>
-                </div>
-                {{-- <div class="col-md-12">
-                  <div class="form-group row">
-                    <label class="col-form-label col-sm-3">
-                      Categorías
-                    </label>
-                    <div class="col-sm-9">
-                      <select class="form-control select2Multiple" name="categorias[]" multiple="true">
-                        @foreach ($categorias as $key => $value)
-                          <option value="{{ $value->nombre }}">{{ $value->nombre }}</option>
-                        @endforeach
-                      </select>
-                    </div>
-                  </div>
-                </div> --}}
-
               </div>
-              {{--
-              <div class="form-group d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary">Guardar</button>
+
+                <div class="col-md-12">
+                  <div class="form-group row">
+                    <label class="col-md-4" for="nombre">Nombre <small class="text-danger">*</small></label>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre" id="nombre" value="{{ old('nombre') }}" required/>
+                      {!! $errors->first('nombre','<small id="nombre" class="form-text text-danger">:message</small>') !!}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="form-group row">
+                    <label for="descripcion" class="col-md-4">Descripción</label>
+                    <div class="col-md-8">
+                      <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+
+              <div class="col-md-12">
+                <div class="form-group row">
+                  <label class="col-md-4" for="credito">Precio<small class="text-danger">*</small></label>
+                  <div class="col-md-8">
+                    <input type="number" class="form-control" min="1" name="credito" id="credito" value="{{ old('credito') }}" required/>
+                  </div>
+                </div>
+              </div>
+
+              {{-- <div class="col-md-12">
+                <div class="form-group row">
+                  <label class="col-form-label col-sm-3">
+                    Categorías
+                  </label>
+                  <div class="col-sm-9">
+                    <select class="form-control select2Multiple" name="categorias[]" multiple="true">
+                      @foreach ($categorias as $key => $value)
+                        <option value="{{ $value->nombre }}">{{ $value->nombre }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
               </div> --}}
+
+            </div>
           </div>
         </div>
         <div class="col-md-6">
@@ -106,6 +102,25 @@
                   </div>
                 </div>
               </div> --}}
+
+              <div class="col-md-12">
+                <div class="form-group row">
+                  <label class="col-md-4" for="stock">Stock<small class="text-danger">*</small></label>
+                  <div class="col-md-8">
+                    <input type="number" class="form-control" min="1" name="stock" id="stock" value="{{ old('stock') }}" required/>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="form-group row">
+                  <label class="col-md-4" for="stock_critico">Stock Crítico<small class="text-danger">*</small></label>
+                  <div class="col-md-8">
+                    <input type="number" class="form-control" min="1" name="stock_critico" id="stock_critico" value="{{ old('stock_critico') }}" required/>
+                  </div>
+                </div>
+              </div>
+
               <div class="col-md-12">
                 {{-- <div class="form-group row">
                   <label class="col-form-label col-sm-4" for="hf-rut">Logo</label>
@@ -134,58 +149,10 @@
                   </div>
                 </div>
               </div>
-              {{-- <div class="col-md-12">
-                <div class="card form-group">
-                  <div class="card-header">
-                    <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" id="cant_stock_swith" name="cant_stock_swith" onclick="checkItem(this, 'panel', 'stock');" checked>
-                      <label class="custom-control-label" for="cant_stock_swith">Añadir fechas disponibles</label>
-                    </div>
-                  </div>
-                  <div class="card-body" id="panel">
-                    <div class="col-md-12">
-                      <div class="form-group row">
-                        <label class="col-sm-12" for="stock">
-                          Stock disponible
-                          <small>¿cuantas veces se va a entregará esta acción?</small>
-                        </label>
-                        <div class="col-sm-12">
-                          <input type="datetime-local" class="form-control" min="1" name="stock" id="stock" value="{{ old('stock') }}"/>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="card form-group">
-                  <div class="card-header">
-                    <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" id="cant_stock_swith" name="cant_stock_swith" onclick="checkItem(this, 'panel', 'stock');" checked>
-                      <label class="custom-control-label" for="cant_stock_swith">Añadir fechas disponibles</label>
-                    </div>
-                  </div>
-                  <div class="card-body" id="panel">
-                    <div class="col-md-12">
-                      <div class="form-group row">
-                        <label class="col-sm-12" for="stock">
-                          Stock disponible
-                          <small>¿cuantas veces se va a entregará esta acción?</small>
-                        </label>
-                        <div class="col-sm-12">
-                          <input type="datetime-local" class="form-control" min="1" name="stock" id="stock" value="{{ old('stock') }}"/>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> --}}
             </div>
           </div>
         </div>
-
         <div class="col-md-12">
-
           <div class="form-group d-flex justify-content-end mr-3">
             <button type="submit" class="btn btn-primary">Guardar</button>
           </div>

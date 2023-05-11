@@ -96,8 +96,9 @@ Route::prefix('sucursal')->name('sucursal.')->group( function () {
   });
 });
 
-
-
+Route::prefix('tarjeta')->name('tarjeta.')->group( function () {
+  Route::get('/', [HomeController::class,'tarjeta'])->name('index');
+});
 // Route::middleware('auth.user')->group( function () {
 //   Route::any('logout', [AuthController::class,'logout'])->name('logout');
 

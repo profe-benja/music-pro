@@ -49,6 +49,7 @@
       <span>Integraciones</span>
     </a>
   </li>
+
   {{-- <hr class="sidebar-divider"> --}}
   {{-- <li class="nav-item text-center">
     <a class="btn btn-warning btn-sm mb-3" href="{{ route('webapp.index') }}">

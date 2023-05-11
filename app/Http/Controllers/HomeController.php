@@ -29,14 +29,12 @@ class HomeController extends Controller
   }
 
   public function tarjeta() {
-
+    return view('www.tarjeta.index');
   }
 
   public function sucursal() {
-
+    return view('www.sucursal.index');
   }
-
-
 
   // public function index() {
   //   $reports = [

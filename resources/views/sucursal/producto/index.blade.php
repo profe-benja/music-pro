@@ -19,7 +19,7 @@
               <th>Imagen</th>
               <th>Nombre</th>
               <th>Precio</th>
-              <th>Entregado / Stock disponible</th>
+              <th>Stock disponible</th>
               <th></th>
             </tr>
           </thead>
@@ -38,12 +38,9 @@
                 {{ $p->getPrecio() }}
               </td>
               <td>
-                {{ $a->cantidad_entregada ?? 0 . ' / '}}
-                @if ($p->stock_ilimitado)
-                  ∞
-                @else
+                <span class="badge bg-primary text-white">
                   {{ $p->stock }}
-                @endif
+                </span>
               </td>
               <td class="text-center">
                 @if ($p->estado == 1)

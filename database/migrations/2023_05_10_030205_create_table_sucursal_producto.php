@@ -14,8 +14,24 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sucursal_producto', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+          $table->id();
+          $table->string('codigo')->nullable();
+          $table->string('nombre');
+          $table->string('descripcion', 500)->nullable();
+          $table->integer('precio')->default(0);
+
+          $table->json('assets')->nullable();
+
+          // Es ilimitado o tiene un limite
+          $table->integer('stock')->default(0);
+          $table->integer('stock_critico')->default(0);
+
+          $table->unsignedBigInteger('id_usuario');
+          $table->foreign('id_usuario')->references('id')->on('bodega_usuario');
+
+          $table->integer('estado')->default(1);
+          $table->boolean('activo')->default(true);
+          $table->timestamps();
         });
     }
 

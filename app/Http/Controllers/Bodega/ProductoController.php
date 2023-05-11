@@ -25,9 +25,6 @@ class ProductoController extends Controller
     $p->descripcion = $request->input('descripcion');
     $p->precio = $request->input('credito') ?? 0;
 
-    $p->stock_ilimitado = !empty($request->input('cant_stock_swith'));
-    $p->stock = $request->input('stock') ?? 0;
-
     $p->estado = $request->input('estado');
     $p->id_usuario = current_bodega_user()->id;
 
@@ -70,10 +67,6 @@ class ProductoController extends Controller
     $p->nombre = $request->input('nombre');
     $p->descripcion = $request->input('descripcion');
     $p->precio = $request->input('credito');
-
-    $p->stock_ilimitado = !empty($request->input('cant_stock_swith'));
-    $p->stock = $request->input('stock') ?? 0;
-
     $p->estado = $request->input('estado');
 
     $assets = $p->assets;

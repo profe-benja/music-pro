@@ -25,8 +25,8 @@ class ProductoController extends Controller
     $p->descripcion = $request->input('descripcion');
     $p->precio = $request->input('credito') ?? 0;
 
-    $p->stock_ilimitado = !empty($request->input('cant_stock_swith'));
     $p->stock = $request->input('stock') ?? 0;
+    $p->stock_critico = $request->input('stock_critico') ?? 0;
 
     $p->estado = $request->input('estado');
     $p->id_usuario = current_store_user()->id;
@@ -70,9 +70,8 @@ class ProductoController extends Controller
     $p->nombre = $request->input('nombre');
     $p->descripcion = $request->input('descripcion');
     $p->precio = $request->input('credito');
-
-    $p->stock_ilimitado = !empty($request->input('cant_stock_swith'));
     $p->stock = $request->input('stock') ?? 0;
+    $p->stock_critico = $request->input('stock_critico') ?? 0;
 
     $p->estado = $request->input('estado');
 
