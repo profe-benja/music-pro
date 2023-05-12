@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Sistema\Sistema;
+use App\Models\Sucursal\Producto;
 use App\Services\FormularioSocioeconomico;
 use App\Services\Jwt\JwtFirmaDecode;
 use App\Services\Jwt\JwtFirmaEncode;
@@ -33,7 +34,9 @@ class HomeController extends Controller
   }
 
   public function sucursal() {
-    return view('www.sucursal.index');
+    $productos = Producto::get();
+
+    return view('www.sucursal.index', compact('productos'));
   }
 
   // public function index() {

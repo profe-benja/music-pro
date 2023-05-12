@@ -55,11 +55,20 @@
                 <strong>
                   Tienda online 100% segura
                 </strong>
+                @if ($admin)
+                <h5>
+                  <span class="badge bg-dark text-white">ACCESO ADMINISTRADOR</span>
+                </h5>
+                @else
+                <h5>
+                  <span class="badge bg-danger text-white">ACCESO CLIENTE</span>
+                </h5>
+                @endif
               </small>
             </div>
           </div>
 
-          <form action="{{ route('sucursal.acceso') }}" method="POST">
+          <form action="{{ $admin ? route('sucursal.acceso') : route('sucursal.accesocliente') }}" method="POST">
             @csrf
             <div class="form-group">
               <label for="user">Usuario</label>
@@ -84,8 +93,23 @@
             <button type="submit" class="btn btn-dark btn-block">
               <strong>A ROCKEAR!!</strong>
             </button>
+
+            @unless ($admin)
+            <a href="{{ route('sucursal.acceso.registro') }}" type="submit" class="btn btn-danger btn-block">
+              <strong>Registrarse 🤘</strong>
+            </a>
+            @endunless
+            <hr>
+            <div class="text-center">
+              @if ($admin)
+                <a href="{{ route('sucursal.accesocliente') }}">Acceso cliente</a>
+              @else
+                <a href="{{ route('sucursal.acceso') }}">Acceso admin</a>
+              @endif
+            </div>
           </form>
         </div>
+
       </div>
     </div>
   </div>

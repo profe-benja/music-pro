@@ -67,7 +67,9 @@ class AuthController extends Controller
       $pass = '123456';
     }
 
-    return view('auth.sucursal', compact('s','user','pass'));
+    $admin = true;
+
+    return view('auth.sucursal', compact('s','user','pass','admin'));
   }
 
   public function sucursalLogin(Request $request) {
@@ -92,6 +94,43 @@ class AuthController extends Controller
     }
   }
 
+  public function sucursalAccesoCliente() {
+    $s = Sistema::first();
+
+    $user = '';
+    $pass = '';
+
+    if (app()->isLocal()) {
+      $user = 'admin@musicpro.cl';
+      $pass = '123456';
+    }
+
+    $admin = false;
+
+    return view('auth.sucursal', compact('s','user','pass','admin'));
+  }
+
+  public function sucursalLoginCliente(Request $request) {
+    try {
+      $u = SucursalUsuario::findByUsername($request->user)->firstOrFail();
+      $pass =  hash('sha256', $request->pass);
+      if($u->password==$pass){
+
+        Auth::guard('store_usuario')->loginUsingId($u->id);
+        $this->start_sesions($u);
+
+        // if ($u->admin) {
+        //   return redirect()->route('home.index');
+        // }
+        return redirect()->route('sucursal.home');
+      }else{
+        return back()->with('info','Error. Intente nuevamente.');
+      }
+    } catch (\Throwable $th) {
+      return $th;
+      return back()->with('info','Error. Intente nuevamente.');
+    }
+  }
   // public function login(Request $request){
   //   try {
   //     $u = Usuario::findByUsername($request->user)->firstOrFail();
