@@ -102,6 +102,24 @@ Route::prefix('sucursal')->name('sucursal.')->group( function () {
 
 Route::prefix('tarjeta')->name('tarjeta.')->group( function () {
   Route::get('/', [HomeController::class,'tarjeta'])->name('index');
+  Route::get('acceso', [AuthController::class,'tarjetaAcceso'])->name('acceso');
+  Route::post('acceso', [AuthController::class,'tarjetaLogin'])->name('acceso');
+  Route::get('acceso_cliente', [AuthController::class,'tarjetaAccesoCliente'])->name('accesocliente');
+  Route::post('acceso_cliente', [AuthController::class,'tarjetaLoginCliente'])->name('accesocliente');
+  Route::get('acceso_registro', [AuthController::class,'tarjetaRegistro'])->name('acceso.registro');
+  Route::post('acceso_registro', [AuthController::class,'tarjetaRegistro'])->name('acceso.registro');
+
+});
+
+Route::prefix('transporte')->name('transporte.')->group( function () {
+  Route::get('/', [HomeController::class,'transporte'])->name('index');
+  Route::get('acceso', [AuthController::class,'transporteAcceso'])->name('acceso');
+  Route::post('acceso', [AuthController::class,'transporteLogin'])->name('acceso');
+  Route::get('acceso_cliente', [AuthController::class,'transporteAccesoCliente'])->name('accesocliente');
+  Route::post('acceso_cliente', [AuthController::class,'transporteLoginCliente'])->name('accesocliente');
+  Route::get('acceso_registro', [AuthController::class,'transporteRegistro'])->name('acceso.registro');
+  Route::post('acceso_registro', [AuthController::class,'transporteRegistro'])->name('acceso.registro');
+
 });
 // Route::middleware('auth.user')->group( function () {
 //   Route::any('logout', [AuthController::class,'logout'])->name('logout');

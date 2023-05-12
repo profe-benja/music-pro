@@ -33,6 +33,10 @@ class HomeController extends Controller
     return view('www.tarjeta.index');
   }
 
+  public function transporte() {
+    return view('www.transporte.index');
+  }
+
   public function sucursal() {
     $productos = Producto::get();
 
