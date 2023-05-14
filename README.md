@@ -1,30 +1,64 @@
-# inFast - Sistema de inventario fácil
+# Music pro
+## Instalación
+
+Este proyecto es una tienda de música en línea desarrollada con Laravel. Permite gestionar productos musicales, realizar compras y administrar el inventario.
+
 ## Requisitos
 
-- PHP 8>
-- MySQL
+- [Laragon](https://laragon.org/): Herramienta de desarrollo local que incluye Apache, PHP y MySQL.
 
+## Configuración
 
-- webapp  Bootstrap 5.3
-- admin   Bootstrap 4.6
+1. Clona el repositorio:
 
-## Inicio
-
-- composer install
-
-### Inicial con forma de seed
-```shell
-php artisan storage:link
-
-composer dump-autoload
-
-php artisan migrate:fresh
-
-php artisan imports:faker
-
+```bash
+git clone https://github.com/profe-benja/music-pro
 ```
 
-### Material extra
+2. Crea una base de datos en Laragon.
 
-- Adminlte https://adminlte.io/docs/3.2/
-"# infast" 
+3. Copia el archivo `.env.example` y renómbralo como `.env`. Edita el archivo `.env` para configurar la conexión a la base de datos:
+
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=tu_basedatos
+DB_USERNAME=tu_usuario
+DB_PASSWORD=tu_contraseña
+```
+
+4. Instala las dependencias de Composer:
+
+```bash
+composer install
+```
+
+5. Ejecuta las migraciones y los seeders para crear y poblar la base de datos:
+
+```bash
+php artisan storage:link
+
+php artisan migrate:fresh --seed
+```
+
+## Uso
+
+- Inicia Laragon y asegúrate de que los servicios de Apache y MySQL estén activos.
+
+- Accede a la URL del proyecto en tu navegador (por ejemplo, `http://localhost/music-pro`) para utilizar la tienda de música.
+
+- Si es iniciado en laragon prueba con `http://music-pro.test`
+
+## Contribución
+
+Si deseas contribuir a este proyecto, puedes abrir un issue para reportar errores o sugerir mejoras. También puedes enviar pull requests con tus contribuciones.
+
+## Licencia
+
+Este proyecto está bajo la [Licencia MIT](LICENSE).
+```
+
+Recuerda reemplazar `tu_basedatos`, `tu_usuario` y `tu_contraseña` en el archivo `.env` con los valores correspondientes de tu configuración de base de datos.
+
+Este README.md proporciona una descripción general del proyecto, los requisitos, los pasos de configuración, el uso, la contribución y la información de la licencia. Puedes personalizarlo según tus necesidades y agregar más detalles sobre tu proyecto si lo deseas.
