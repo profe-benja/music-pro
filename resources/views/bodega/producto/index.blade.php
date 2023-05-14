@@ -34,8 +34,8 @@
               </td>
               <td><a href="{{ route('bodega.producto.show',$p->id) }}">{{ $p->nombre }}</a></td>
               <td>
-                <img src="{{ asset(current_config()->present()->getImagenCoin()) }}" width="20px" alt="">
-                {{ $p->getPrecio() }}
+                {{-- <img src="{{ asset(current_config()->present()->getImagenCoin()) }}" width="20px" alt=""> --}}
+                $ {{ $p->getPrecio() }}
               </td>
               <td>
                 {{ $a->cantidad_entregada ?? 0 . ' / '}}

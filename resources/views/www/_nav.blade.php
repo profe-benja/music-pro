@@ -24,7 +24,7 @@
           </a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link btn btn-outline-danger rounded rounded-pill" href="{{ route('sucursal.acceso') }}">
+          <a class="nav-link btn btn-outline-danger rounded rounded-pill" href="{{ route('sucursal.index') }}">
             <span>🏪 Sucursal</span>
           </a>
         </li>

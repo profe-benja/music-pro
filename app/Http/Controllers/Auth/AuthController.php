@@ -131,6 +131,22 @@ class AuthController extends Controller
       return back()->with('info','Error. Intente nuevamente.');
     }
   }
+
+  public function sucursalRegistro() {
+    $s = Sistema::first();
+
+    $user = '';
+    $pass = '';
+
+    if (app()->isLocal()) {
+      $user = 'admin@musicpro.cl';
+      $pass = '123456';
+    }
+
+    $admin = false;
+
+    return view('auth.sucursal_registro', compact('s','user','pass','admin'));
+  }
   // public function login(Request $request){
   //   try {
   //     $u = Usuario::findByUsername($request->user)->firstOrFail();

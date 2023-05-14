@@ -74,7 +74,7 @@ Route::prefix('sucursal')->name('sucursal.')->group( function () {
   Route::get('acceso_cliente', [AuthController::class,'sucursalAccesoCliente'])->name('accesocliente');
   Route::post('acceso_cliente', [AuthController::class,'sucursalLoginCliente'])->name('accesocliente');
   Route::get('acceso_registro', [AuthController::class,'sucursalRegistro'])->name('acceso.registro');
-  Route::post('acceso_registro', [AuthController::class,'sucursalRegistro'])->name('acceso.registro');
+  Route::post('acceso_registro', [AuthController::class,'sucursalRegistroStore'])->name('acceso.registro');
 
   Route::middleware('auth.user.store')->group( function () {
     Route::get('home', [SucursalController::class,'home'])->name('home');

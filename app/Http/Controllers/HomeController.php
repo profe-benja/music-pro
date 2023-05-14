@@ -8,12 +8,19 @@ use App\Models\Sucursal\Producto;
 use App\Services\FormularioSocioeconomico;
 use App\Services\Jwt\JwtFirmaDecode;
 use App\Services\Jwt\JwtFirmaEncode;
+use App\Services\Preload\ProductoPreload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
   public function index() {
+
+    $productos = Producto::get()->count() ?? 0;
+    if ($productos == 0) {
+      (new ProductoPreload())->call();
+    }
+
     $s = Sistema::first();
 
     if ($s->getInfoDemo()) {
@@ -38,7 +45,7 @@ class HomeController extends Controller
   }
 
   public function sucursal() {
-    $productos = Producto::get();
+    $productos = Producto::inRandomOrder()->get();
 
     return view('www.sucursal.index', compact('productos'));
   }

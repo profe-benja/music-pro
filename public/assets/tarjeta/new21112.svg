@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   svg:contrastcolor="00B08B"
+   svg:template="Contrast"
+   svg:presentation="2.5"
+   svg:layouttype="undefined"
+   svg:specialfontid="undefined"
+   svg:id1="004"
+   svg:id2="272"
+   svg:companyname="BeatPay"
+   svg:companytagline=""
+   version="1.1"
+   viewBox="0 0 51397.055 24882.352"
+   id="svg126"
+   width="51397.055"
+   height="24882.352"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs130" />
+  <g
+     fill="#101820"
+     fill-rule="none"
+     stroke="none"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     stroke-miterlimit="10"
+     stroke-dasharray="none"
+     stroke-dashoffset="0"
+     font-family="none"
+     font-weight="none"
+     font-size="none"
+     text-anchor="none"
+     style="mix-blend-mode:normal;fill:#3366cc;fill-opacity:1"
+     id="g78"
+     transform="translate(-8962.6855,-9205.2607)">
+    <g
+       data-paper-data="{&quot;isGlobalGroup&quot;:true,&quot;bounds&quot;:{&quot;x&quot;:65,&quot;y&quot;:173.39013687451094,&quot;width&quot;:420,&quot;height&quot;:123.21972625097808}}"
+       id="g76"
+       style="fill:#3366cc;fill-opacity:1">
+      <g
+         data-paper-data="{&quot;isPrimaryText&quot;:true}"
+         fill-rule="nonzero"
+         id="element-id-5840"
+         style="fill:#3375cc;fill-opacity:1"
+         transform="translate(-85.348259,-184.14179)">
+        <path
+           d="m 139.26437,229.23547 c 0.72193,-0.32086 5.85561,-2.8877 5.85561,-10.9893 0,-7.54011 -5.61497,-14.51872 -18.68984,-14.51872 h -22.45989 c -1.84492,0 -2.3262,0.88235 -2.3262,2.3262 v 48.20855 c 0,1.44385 0.48128,2.3262 2.3262,2.3262 h 23.58289 c 11.14973,0 19.09091,-5.2139 19.09091,-15.40107 0,-8.6631 -6.73797,-11.71123 -7.37968,-11.95187 z m -11.5508,15.96257 h -13.47594 v -30.16043 h 12.19251 c 4.17112,0 6.65775,0.88235 6.65775,4.49198 0,3.12834 -2.00535,4.81283 -6.65775,4.81283 v 0 h -1.04278 c -1.84492,0 -2.3262,0.88235 -2.3262,2.3262 v 6.09626 c 0,1.44385 0.48128,2.3262 2.3262,2.3262 h 1.84492 c 3.85027,0 6.65775,1.12299 6.65775,4.89305 0,3.60963 -2.24599,5.2139 -6.17647,5.2139 z"
+           data-paper-data="{&quot;glyphName&quot;:&quot;B&quot;,&quot;glyphIndex&quot;:0,&quot;firstGlyphOfWord&quot;:true,&quot;word&quot;:1}"
+           id="element-id-38472"
+           style="fill:#3375cc;fill-opacity:1" />
+        <path
+           d="M 192.76704,245.43868 H 157.3125 c -1.44385,0 -2.3262,0.48128 -2.3262,2.3262 v 6.57754 c 0,1.84492 0.88235,2.3262 2.3262,2.3262 h 35.45454 c 1.44385,0 2.3262,-0.48128 2.3262,-2.3262 v -6.57754 c 0,-1.84492 -0.88235,-2.3262 -2.3262,-2.3262 z m -4.01069,-20.85561 H 161.3232 c -1.44385,0 -2.3262,0.48128 -2.3262,2.3262 v 6.57754 c 0,1.84492 0.88235,2.3262 2.3262,2.3262 h 27.43315 c 1.44385,0 2.3262,-0.48128 2.3262,-2.3262 v -6.57754 c 0,-1.84492 -0.88235,-2.3262 -2.3262,-2.3262 z m 4.01069,-20.69519 H 157.3125 c -1.44385,0 -2.3262,0.48128 -2.3262,2.3262 v 6.57754 c 0,1.84492 0.88235,2.3262 2.3262,2.3262 h 35.45454 c 1.44385,0 2.3262,-0.48128 2.3262,-2.3262 v -6.57754 c 0,-1.84492 -0.88235,-2.3262 -2.3262,-2.3262 z"
+           data-paper-data="{&quot;glyphName&quot;:&quot;ξ&quot;,&quot;glyphIndex&quot;:1,&quot;word&quot;:1}"
+           id="element-id-28581"
+           style="fill:#3375cc;fill-opacity:1" />
+      </g>
+    </g>
+  </g>
+</svg>
