@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="shortcut icon" href="{{ asset('assets/blogooos.png') }}" />
-
   <link rel="stylesheet" href="{{ asset('theme2/vendors/owl-carousel/css/owl.carousel.min.css') }}">
   <link rel="stylesheet" href="{{ asset('theme2/vendors/owl-carousel/css/owl.theme.default.css') }}">
   <link rel="stylesheet" href="{{ asset('theme2/vendors/mdi/css/materialdesignicons.min.css') }}">

@@ -40,4 +40,18 @@ class Producto extends Model
   public function getPrecio() {
     return Currency::getConvert($this->precio) ?? 0;
   }
+
+  public function getRawInfo() {
+    return [
+      'id' => $this->id,
+      'codigo' => $this->codigo,
+      'nombre' => $this->nombre,
+      'descripcion' => $this->descripcion,
+      'precio' => $this->getPrecio(),
+      'precio_raw' => $this->precio,
+      'asset' => asset($this->present()->getImagen()),
+      'asset_raw' => $this->present()->getImagen(),
+      'estado' => $this->estado
+    ];
+  }
 }

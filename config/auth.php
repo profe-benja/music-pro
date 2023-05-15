@@ -36,10 +36,10 @@ return [
     */
 
     'guards' => [
-        // 'web' => [
-        //     'driver' => 'session',
-        //     'provider' => 'users',
-        // ],
+      'web' => [
+          'driver' => 'session',
+          'provider' => 'users',
+      ],
       'bode_usuario' => [
         'driver' => 'session',
         'provider' => 'bode_usuario',
@@ -92,10 +92,10 @@ return [
           'driver' => 'eloquent',
           'model' => App\Models\Sucursal\Usuario::class,
         ],
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'users' => [
+            'driver' => 'database',
+            'table' => App\Models\Sucursal\Usuario::class,
+        ],
     ],
 
     /*
