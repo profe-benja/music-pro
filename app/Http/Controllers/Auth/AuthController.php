@@ -7,6 +7,7 @@ use App\Models\Bodega\Usuario;
 use App\Models\Sistema\Config;
 use App\Models\Sistema\Sistema;
 use App\Models\Sucursal\Usuario as SucursalUsuario;
+use App\Models\Transporte\Usuario as TransporteUsuario;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -178,6 +179,29 @@ class AuthController extends Controller
     $admin = false;
 
     return view('auth.transporte', compact('s','user','pass','admin'));
+  }
+
+
+  public function transporteLogin(Request $request) {
+    try {
+      $u = TransporteUsuario::findByUsername($request->user)->firstOrFail();
+      $pass =  hash('sha256', $request->pass);
+      if($u->password==$pass){
+
+        Auth::guard('trans_usuario')->loginUsingId($u->id);
+        $this->start_sesions($u);
+
+        // if ($u->admin) {
+        //   return redirect()->route('home.index');
+        // }
+        return redirect()->route('transporte.home');
+      }else{
+        return back()->with('info','Error. Intente nuevamente.');
+      }
+    } catch (\Throwable $th) {
+      return $th;
+      return back()->with('info','Error. Intente nuevamente.');
+    }
   }
 
   public function transporteRegistro() {
