@@ -147,6 +147,103 @@ class AuthController extends Controller
 
     return view('auth.sucursal_registro', compact('s','user','pass','admin'));
   }
+
+  public function transporteAcceso() {
+    $s = Sistema::first();
+
+    $user = '';
+    $pass = '';
+
+    if (app()->isLocal()) {
+      $user = 'admin@musicpro.cl';
+      $pass = '123456';
+    }
+
+    $admin = true;
+
+    return view('auth.transporte', compact('s','user','pass','admin'));
+  }
+
+  public function transporteAccesoCliente() {
+    $s = Sistema::first();
+
+    $user = '';
+    $pass = '';
+
+    if (app()->isLocal()) {
+      $user = 'admin@musicpro.cl';
+      $pass = '123456';
+    }
+
+    $admin = false;
+
+    return view('auth.transporte', compact('s','user','pass','admin'));
+  }
+
+  public function transporteRegistro() {
+    $s = Sistema::first();
+
+    $user = '';
+    $pass = '';
+
+    if (app()->isLocal()) {
+      $user = 'admin@musicpro.cl';
+      $pass = '123456';
+    }
+
+    $admin = false;
+
+    return view('auth.transporte_registro', compact('s','user','pass','admin'));
+  }
+
+  public function tarjetaAcceso() {
+    $s = Sistema::first();
+
+    $user = '';
+    $pass = '';
+
+    if (app()->isLocal()) {
+      $user = 'admin@musicpro.cl';
+      $pass = '123456';
+    }
+
+    $admin = true;
+
+    return view('auth.tarjeta', compact('s','user','pass','admin'));
+  }
+
+  public function tarjetaAccesoCliente() {
+    $s = Sistema::first();
+
+    $user = '';
+    $pass = '';
+
+    if (app()->isLocal()) {
+      $user = 'admin@musicpro.cl';
+      $pass = '123456';
+    }
+
+    $admin = false;
+
+    return view('auth.tarjeta', compact('s','user','pass','admin'));
+  }
+
+  public function tarjetaRegistro() {
+    $s = Sistema::first();
+
+    $user = '';
+    $pass = '';
+
+    if (app()->isLocal()) {
+      $user = 'admin@musicpro.cl';
+      $pass = '123456';
+    }
+
+    $admin = false;
+
+    return view('auth.tarjeta_registro', compact('s','user','pass','admin'));
+  }
+
   // public function login(Request $request){
   //   try {
   //     $u = Usuario::findByUsername($request->user)->firstOrFail();

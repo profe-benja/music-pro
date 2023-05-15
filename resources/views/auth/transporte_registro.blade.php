@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{{ asset('css/login.css') }}">
   <style>
     .intro-section {
-      background-image: url("{{ asset('assets/store-gdfc8d738c_1280.jpg') }}");
+      background-image: url("{{ asset('assets/transporte.png') }}");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
@@ -97,7 +97,7 @@
 
             <div class="text-center my-3">
 
-              <a href="{{ route('sucursal.accesocliente') }}">Volver</a>
+              <a href="{{ route('transporte.accesocliente') }}">Volver</a>
             </div>
           </form>
         </div>

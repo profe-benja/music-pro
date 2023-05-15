@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{{ asset('css/login.css') }}">
   <style>
     .intro-section {
-      background-image: url("{{ asset('assets/store-gdfc8d738c_1280.jpg') }}");
+      background-image: url("{{ asset('assets/transporte.png') }}");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
@@ -44,42 +44,42 @@
           </nav>
         </div> --}}
       </div>
-
       <div class="col-sm-6 col-md-5 form-section">
         <div class="login-wrapper">
           <div class="text-center mb-4">
             <div class="col">
-              <img src="{{ asset('assets/blogooo.svg') }}" width="100" class="img-fluid rounded-top" alt="">
+              <img src="{{ asset('assets/blogooo.svg') }}" width="200" class="img-fluid rounded-top" alt="">
             </div>
             <div class="col">
               <small>
                 <strong>
-                  {{-- Tienda online 100% segura --}}
+                  Servicio de encomienda a una 🎵 nota de tu casa
                 </strong>
+                @if ($admin)
                 <h5>
-                  <span class="badge bg-danger text-white">REGISTRO CLIENTE</span>
+                  <span class="badge bg-warning text-white">ACCESO ADMINISTRADOR</span>
                 </h5>
+                @else
+                <h5>
+                  <span class="badge bg-warning text-white">ACCESO CLIENTE</span>
+                </h5>
+                @endif
               </small>
             </div>
           </div>
 
-          <form action="" method="POST">
+          <form action="{{ $admin ? route('transporte.acceso') : route('transporte.accesocliente') }}" method="POST">
             @csrf
             <div class="form-group">
-              <label for="nombre">Nombre</label>
-              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" required>
+              <label for="user">Usuario</label>
+              <input type="text" class="form-control" id="user" name="user" value="{{ $user }}" placeholder="" required>
             </div>
             <div class="form-group">
-              <label for="apellido">Apellido</label>
-              <input type="text" class="form-control" id="apellido" name="apellido" placeholder="" required>
-            </div>
-            <div class="form-group">
-              <label for="correo">Correo</label>
-              <input type="text" class="form-control" id="correo" name="correo" placeholder="" required>
-            </div>
-            <div class="form-group">
-              <label for="passw">Contraseña</label>
-              <input type="text" class="form-control" id="passw" name="passw" placeholder="" required>
+              <div class="d-flex justify-content-between">
+                <label for="pass">Contraseña</label>
+                {{-- <a href="">¿He olvidado mi contraseña?</a> --}}
+              </div>
+              <input type="password" class="form-control" id="pass" name="pass" value="{{ $pass }}" placeholder="" required>
             </div>
 
             {{-- <div class="form-group">
@@ -90,14 +90,22 @@
                 </label>
               </div>
             </div> --}}
-            <button type="submit" class="btn btn-dark btn-block">
-              <strong>Registrarse</strong>
+            <button type="submit" class="btn btn-warning btn-block">
+              <strong>INGRESAR</strong>
             </button>
 
-
-            <div class="text-center my-3">
-
-              <a href="{{ route('sucursal.accesocliente') }}">Volver</a>
+            @unless ($admin)
+            <a href="{{ route('transporte.acceso.registro') }}" type="submit" class="btn btn-dark btn-block">
+              <strong>Registrarse 🚚</strong>
+            </a>
+            @endunless
+            <hr>
+            <div class="text-center">
+              @if ($admin)
+                <a href="{{ route('transporte.accesocliente') }}">Acceso cliente</a>
+              @else
+                <a href="{{ route('transporte.acceso') }}">Acceso admin</a>
+              @endif
             </div>
           </form>
         </div>

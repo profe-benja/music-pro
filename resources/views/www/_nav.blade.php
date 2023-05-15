@@ -29,15 +29,15 @@
           </a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link btn btn-outline-warning rounded-pill" href="{{ route('transporte.acceso') }}">
+          <a class="nav-link btn btn-outline-warning rounded-pill" href="{{ route('transporte.index') }}">
             🚚
             Transporte
           </a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link btn btn-outline-info rounded-pill" href="{{ route('tarjeta.acceso') }}">
+          <a class="nav-link btn btn-outline-info rounded-pill" href="{{ route('tarjeta.index') }}">
             💳
-            Transporte
+            Tarjeta
           </a>
         </li>
 
