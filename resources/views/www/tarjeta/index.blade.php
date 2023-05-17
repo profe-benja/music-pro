@@ -143,7 +143,7 @@
       <div class="container px-5">
           <div class="row gx-5 align-items-center justify-content-center">
               <div class="col-lg-8 col-xl-7 col-xxl-6">
-                  <div class="my-5 text-center">
+                    <div class="my-5 text-center">
                       <h2 class="fw-bolder text-white mb-2">
                         Abrela gratis y sin comisiones
                       </h2>
@@ -154,9 +154,9 @@
                         <a class="btn btn-bd-primary btn-lg px-4 me-sm-3" href="{{ route('tarjeta.acceso') }}">BEATPAY FREE</a>
                         <a class="btn btn-outline-light btn-lg px-4" href="#!">BENEFICIOS</a>
                       </div>
-                  </div>
+                    </div>
               </div>
-              <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+              <div class="col-xl-5 col-xxl-6 text-center">
                 <img class="img-fluid rounded-3 my-5 shadow" src="{{ asset('assets/banner/beatpay12.gif') }}" alt="...">
               </div>
           </div>

@@ -1,8 +1,10 @@
 <?php
-
-use App\Http\Controllers\API\Sucursal\APIProductoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\API\APIErrorResponseController;
+use App\Http\Controllers\API\APITestController;
+use App\Http\Controllers\API\Sucursal\APIProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-
-// @API
 Route::post('/product/find',[APIProductoController::class,'find'])->name('api.v1.product.find');
+
+Route::post('/v1/test/saludo',[APIErrorResponseController::class,'saludo'])->name('api.v1.test.saludo');
+Route::post('/v1/test/adios',[APITestController::class,'adios'])->name('api.v1.test.adios');

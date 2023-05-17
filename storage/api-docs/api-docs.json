@@ -1,0 +1,30 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Music pro API Versión 1.0",
+        "description": "\n *\n *\n *      ",
+        "contact": {
+            "name": "Benjamín Mora Torres",
+            "url": "https://www.bemtorres.win",
+            "email": "bej.mora@prefesor.duoc.cl"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "description": "Home page",
+                "operationId": "50db79cd1df19d8aba881b80cf599c55",
+                "responses": {
+                    "default": {
+                        "description": "Welcome page"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -3,7 +3,14 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\HomeController;
-
+/**
+ * @OA\Info(
+ *      version="1.0.0",
+ *      title="L5 OpenApi",
+ *      description="L5 Swagger OpenApi description"
+ * )
+ *
+ */
 Route::get('/', [HomeController::class,'index'])->name('root');
 
 Route::get('tarjeta', [HomeController::class,'tarjeta'])->name('tarjeta.index');

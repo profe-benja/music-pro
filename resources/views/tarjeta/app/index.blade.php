@@ -152,7 +152,7 @@
 
     .credit-card {
       box-sizing: content-box;
-      width: 350px;
+      /* width: 350px; */
       height: 190px;
       background: url("{{ asset('assets/tarjeta/card/verticalpurple.png') }}");
       background-size: cover;
@@ -267,7 +267,7 @@
           </div>
         </div>
         <div class="col-md-7">
-          <div class="card text-start shadow" style="height: 400px;">
+          <div class="card text-start shadow" style="height: 600px;">
             <div class="card-body">
               <ul class="nav nav-pills nav-fill mb-3 mx-2 gap-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -350,12 +350,14 @@
       </div> --}}
       <div class="modal-body">
         @include('tarjeta.app._card')
-        <span class="">
-          <button class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#qrModal">
+
+
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#qrModal">
             <i class="fa-solid fa-3x fa-qrcode"></i>
+            compartir
           </button>
-          Compartir
-        </span>
+        </div>
       </div>
       {{-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
