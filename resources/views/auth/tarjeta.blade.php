@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{{ asset('css/login.css') }}">
   <style>
     .intro-section {
-      background-image: url("{{ asset('assets/beatpay.png') }}");
+      background-image: url("{{ asset('assets/banner/beatpay12.gif') }}");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
@@ -23,22 +23,12 @@
     }
 
 
-    .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
 
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
+    .btn-ta-info {
+        color: #fff;
+        background-color: #712cf9;
+        border-color: #712cf9;
+    }
 
   </style>
 </head>
@@ -60,18 +50,18 @@
                 </strong>
                 @if ($admin)
                 <h5>
-                  <span class="badge bg-info text-white">ACCESO ADMINISTRADOR</span>
+                  <span class="badge btn-ta-info text-white">ACCESO ADMINISTRADOR</span>
                 </h5>
                 @else
                 <h5>
-                  <span class="badge bg-info text-white">ACCESO CLIENTE</span>
+                  <span class="badge btn-ta-info text-white">ACCESO CLIENTE</span>
                 </h5>
                 @endif
               </small>
             </div>
           </div>
 
-          <form action="{{ $admin ? route('tarjeta.acceso') : route('tarjeta.accesocliente') }}" method="POST">
+          <form action="{{ route('tarjeta.acceso') }}" method="POST">
             @csrf
             <div class="form-group">
               <label for="user">Usuario</label>
@@ -93,7 +83,7 @@
                 </label>
               </div>
             </div> --}}
-            <button type="submit" class="btn btn-info btn-block">
+            <button type="submit" class="btn btn-ta-info btn-block">
               <strong>INGRESAR</strong>
             </button>
 

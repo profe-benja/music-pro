@@ -68,7 +68,7 @@
             </div>
           </div>
 
-          <form action="{{ $admin ? route('sucursal.acceso') : route('sucursal.accesocliente') }}" method="POST">
+          <form action="{{ route('sucursal.acceso') }}" method="POST">
             @csrf
             <div class="form-group">
               <label for="user">Usuario</label>

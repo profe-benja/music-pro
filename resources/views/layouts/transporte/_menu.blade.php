@@ -4,7 +4,7 @@
       {{-- <i class="fas fa-star text-warning"></i> --}}
       <img src="{{ asset('assets/blogooos.png') }}" width="100" class="img-fluid rounded-top" alt="">
     </div>
-    <div class="sidebar-brand-text mx-3">MusicPro <small>BODEGA</small></div>
+    <div class="sidebar-brand-text mx-3">MusicPro <small>TRANSPORTE</small></div>
   </a>
   <hr class="sidebar-divider my-0">
   <li class="nav-item {{ activeTab(['transporte/home']) }}">

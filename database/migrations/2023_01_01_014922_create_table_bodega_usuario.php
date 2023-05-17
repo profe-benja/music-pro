@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('username'); // mismo correo
             $table->string('password');
             $table->string('telefono')->nullable();
-
             $table->json('integrations')->nullable();
             $table->json('info')->nullable();
 

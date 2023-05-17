@@ -116,9 +116,24 @@
                   {{-- </span> --}}
                 </button>
 
-                <a href="{{ route('sucursal.accesocliente') }}" class="btn btn-danger ms-3">Iniciar Sesión 🤘</a>
+                @if (!current_store_user())
+                  <a href="{{ route('sucursal.accesocliente') }}" class="btn btn-danger ms-3">Iniciar Sesión 🤘</a>
+                @else
+                  <div class="dropdown ms-3">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{ current_store_user()->correo }}
+                    </a>
 
-
+                    <ul class="dropdown-menu">
+                      {{-- <li><a class="dropdown-item" href="#">Action</a></li> --}}
+                      {{-- <li><a class="dropdown-item" href="#">Another action</a></li> --}}
+                      {{-- <li><a class="dropdown-item" href="#">Something else here</a></li> --}}
+                      <li class="text-center">
+                        <a href="{{ route('logout') }}" class="btn btn-danger">Cerrar Sesión 🤘</a>
+                      </li>
+                    </ul>
+                  </div>
+                @endif
               </div>
           </div>
       </div>

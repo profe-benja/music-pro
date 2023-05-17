@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{{ asset('css/login.css') }}">
   <style>
     .intro-section {
-      background-image: url("{{ asset('assets/transporte.png') }}");
+      background-image: url("{{ asset('assets/banner/beatpay12.gif') }}");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
@@ -21,6 +21,13 @@
       -webkit-box-direction: normal;
       flex-direction: column;
     }
+
+    .btn-ta-info {
+        color: #fff;
+        background-color: #712cf9;
+        border-color: #712cf9;
+    }
+
   </style>
 </head>
 <body>
@@ -57,31 +64,36 @@
                   {{-- Tienda online 100% segura --}}
                 </strong>
                 <h5>
-                  <span class="badge bg-danger text-white">REGISTRO CLIENTE</span>
+                  <span class="badge btn-ta-info text-white">REGISTRO CLIENTE</span>
                 </h5>
               </small>
             </div>
           </div>
 
-          <form action="" method="POST">
+          <form action="{{ route('tarjeta.acceso.registro') }}" method="POST">
             @csrf
-            <div class="form-group">
-              <label for="nombre">Nombre</label>
-              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" required>
+            <div class="row">
+              <div class="form-group col-12">
+                <label for="run">RUN <small>(SIN PUNTOS Y SIN GUIÓN)</small></label>
+                <input type="text" class="form-control" id="run" name="run" placeholder="" required>
+              </div>
+              <div class="form-group col-6">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" required>
+              </div>
+              <div class="form-group col-6">
+                <label for="apellido">Apellido</label>
+                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="" required>
+              </div>
+              <div class="form-group col-6">
+                <label for="correo">Correo</label>
+                <input type="email" class="form-control" id="correo" name="correo" placeholder="" required>
+              </div>
+              <div class="form-group col-6">
+                <label for="passw">Contraseña</label>
+                <input type="password" class="form-control" id="passw" name="passw" placeholder="" required>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="apellido">Apellido</label>
-              <input type="text" class="form-control" id="apellido" name="apellido" placeholder="" required>
-            </div>
-            <div class="form-group">
-              <label for="correo">Correo</label>
-              <input type="text" class="form-control" id="correo" name="correo" placeholder="" required>
-            </div>
-            <div class="form-group">
-              <label for="passw">Contraseña</label>
-              <input type="text" class="form-control" id="passw" name="passw" placeholder="" required>
-            </div>
-
             {{-- <div class="form-group">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="gridCheck">
@@ -90,14 +102,11 @@
                 </label>
               </div>
             </div> --}}
-            <button type="submit" class="btn btn-dark btn-block">
+            <button type="submit" class="btn btn-ta-info btn-block">
               <strong>Registrarse</strong>
             </button>
-
-
             <div class="text-center my-3">
-
-              <a href="{{ route('transporte.accesocliente') }}">Volver</a>
+              <a href="{{ route('tarjeta.accesocliente') }}">Volver</a>
             </div>
           </form>
         </div>
