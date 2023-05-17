@@ -28,7 +28,7 @@ return new class extends Migration
           $table->integer('stock_critico')->default(0);
 
           $table->unsignedBigInteger('id_usuario');
-          $table->foreign('id_usuario')->references('id')->on('bodega_usuario');
+          $table->foreign('id_usuario')->references('id')->on('sucursal_usuario');
 
           $table->integer('estado')->default(1);
           $table->boolean('activo')->default(true);

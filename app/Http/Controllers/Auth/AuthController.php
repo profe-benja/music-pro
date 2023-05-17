@@ -7,6 +7,7 @@ use App\Models\Bodega\Usuario;
 use App\Models\Sistema\Config;
 use App\Models\Sistema\Sistema;
 use App\Models\Sucursal\Usuario as SucursalUsuario;
+use App\Models\Tarjeta\Tarjeta;
 use App\Models\Tarjeta\Usuario as TarjetaUsuario;
 use App\Models\Transporte\Usuario as TransporteUsuario;
 use Auth;
@@ -195,6 +196,28 @@ class AuthController extends Controller
     }
   }
 
+  public function tarjetaLogin(Request $request) {
+    try {
+      $u = TarjetaUsuario::findByUsername($request->user)->firstOrFail();
+      $pass =  hash('sha256', $request->pass);
+      if($u->password==$pass){
+
+        Auth::guard('card_usuario')->loginUsingId($u->id);
+        $this->start_sesions($u);
+
+        if ($u->admin) {
+          return redirect()->route('tarjeta.admin');
+        }
+        return redirect()->route('tarjeta.home');
+      }else{
+        return back()->with('info','Error. Intente nuevamente.');
+      }
+    } catch (\Throwable $th) {
+      return $th;
+      return back()->with('info','Error. Intente nuevamente.');
+    }
+  }
+
   // VIEW REGISTRO
   public function sucursalRegistro() {
     $s = Sistema::first();
@@ -267,7 +290,7 @@ class AuthController extends Controller
     }
   }
 
-  public function TransporteRegistroStore(Request $request) {
+  public function transporteRegistroStore(Request $request) {
     try {
       $u = new TransporteUsuario();
       $u->correo = $request->input('correo');
@@ -289,7 +312,7 @@ class AuthController extends Controller
     }
   }
 
-  public function TarjetaRegistroStore(Request $request) {
+  public function tarjetaRegistroStore(Request $request) {
     try {
       $u = new TarjetaUsuario();
       $u->correo = $request->input('correo');
@@ -301,7 +324,19 @@ class AuthController extends Controller
       $u->admin = false;
       $u->save();
 
-      return redirect()->route('tarjeta.acceso')->with('success','Usuario registrado correctamente.');
+      $t = new Tarjeta();
+      $t->id_usuario = $u->id;
+      $t->nro = $u->id . '0000' . substr($u->run, 0, strlen($u->run) - 1);
+      $t->pin = '';
+      $t->saldo = 0;
+      $t->save();
+
+      Auth::guard('card_usuario')->loginUsingId($u->id);
+      $this->start_sesions($u);
+
+
+
+      return redirect()->route('tarjeta.app.index')->with('success','Usuario registrado correctamente.');
     } catch (\Throwable $th) {
       return $th;
 

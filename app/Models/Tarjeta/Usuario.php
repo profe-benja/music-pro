@@ -55,6 +55,14 @@ class Usuario extends Authenticatable
   //   return (new JwtQrEncode($this))->call();
   // }
 
+  public function tarjetas(){
+		return $this->hasMany(Tarjeta::class, 'id_usuario');
+	}
+
+  public function me_card() {
+    return $this->tarjetas()->first();
+  }
+
   public function getCredito() {
     return Currency::getConvert($this->credito) ?? 0;
   }

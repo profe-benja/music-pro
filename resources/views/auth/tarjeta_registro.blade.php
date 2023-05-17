@@ -56,65 +56,70 @@
         <div class="login-wrapper">
           <div class="text-center mb-4">
             <div class="col">
-              <img src="{{ asset('assets/blogooo.svg') }}" width="100" class="img-fluid rounded-top" alt="">
+              <div class="col">
+                <img src="{{ asset('assets/beatpay.png') }}" width="300" class="img-fluid rounded-top" alt="">
+                {{-- <img src="{{ asset('assets/tarjeta/minilogo.png') }}" width="200" class="img-fluid rounded-top" alt=""> --}}
+              </div>
+              <div class="col pt-2">
+                <small>
+                  <strong>
+                    {{-- Tienda online 100% segura --}}
+                  </strong>
+                  <h5>
+                    <span class="badge btn-ta-info text-white">REGISTRO CLIENTE</span>
+                  </h5>
+                </small>
+              </div>
             </div>
-            <div class="col">
-              <small>
-                <strong>
-                  {{-- Tienda online 100% segura --}}
-                </strong>
-                <h5>
-                  <span class="badge btn-ta-info text-white">REGISTRO CLIENTE</span>
-                </h5>
-              </small>
-            </div>
+
+            <form action="{{ route('tarjeta.acceso.registro') }}" method="POST">
+              @csrf
+              <div class="row">
+                <div class="form-group col-12">
+                  <label for="run">RUN <small>(SIN PUNTOS Y SIN GUIÓN)</small></label>
+                  <input type="text" class="form-control" id="run" name="run" placeholder="ej 19222333K" maxlength="9" min="8" pattern="^\d{7,9}[0-9K]{1}$" title="Formato 19222333K" onkeyup="this.value = validarRut(this.value)" required>
+                  <small id="error" class="text-danger"></small>
+                </div>
+                <div class="form-group col-6">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" required>
+                </div>
+                <div class="form-group col-6">
+                  <label for="apellido">Apellido</label>
+                  <input type="text" class="form-control" id="apellido" name="apellido" placeholder="" required>
+                </div>
+                <div class="form-group col-6">
+                  <label for="correo">Correo</label>
+                  <input type="email" class="form-control" id="correo" name="correo" placeholder="" required>
+                </div>
+                <div class="form-group col-6">
+                  <label for="passw">Contraseña</label>
+                  <input type="password" class="form-control" id="passw" name="passw" placeholder="" required>
+                </div>
+              </div>
+              {{-- <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck">
+                    Check me out
+                  </label>
+                </div>
+              </div> --}}
+              <button type="submit" class="btn btn-ta-info btn-block">
+                <strong>Registrarse</strong>
+              </button>
+              <div class="text-center my-3">
+                <a href="{{ route('tarjeta.accesocliente') }}">Volver</a>
+              </div>
+            </form>
           </div>
 
-          <form action="{{ route('tarjeta.acceso.registro') }}" method="POST">
-            @csrf
-            <div class="row">
-              <div class="form-group col-12">
-                <label for="run">RUN <small>(SIN PUNTOS Y SIN GUIÓN)</small></label>
-                <input type="text" class="form-control" id="run" name="run" placeholder="" required>
-              </div>
-              <div class="form-group col-6">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" required>
-              </div>
-              <div class="form-group col-6">
-                <label for="apellido">Apellido</label>
-                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="" required>
-              </div>
-              <div class="form-group col-6">
-                <label for="correo">Correo</label>
-                <input type="email" class="form-control" id="correo" name="correo" placeholder="" required>
-              </div>
-              <div class="form-group col-6">
-                <label for="passw">Contraseña</label>
-                <input type="password" class="form-control" id="passw" name="passw" placeholder="" required>
-              </div>
-            </div>
-            {{-- <div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                  Check me out
-                </label>
-              </div>
-            </div> --}}
-            <button type="submit" class="btn btn-ta-info btn-block">
-              <strong>Registrarse</strong>
-            </button>
-            <div class="text-center my-3">
-              <a href="{{ route('tarjeta.accesocliente') }}">Volver</a>
-            </div>
-          </form>
         </div>
-
       </div>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset('js/validate-run.js') }}"></script>
 </body>
 </html>

@@ -41,12 +41,13 @@
         <div class="login-wrapper">
           <div class="text-center mb-4">
             <div class="col">
-              <img src="{{ asset('assets/tarjeta/minilogo.png') }}" width="200" class="img-fluid rounded-top" alt="">
+              <img src="{{ asset('assets/beatpay.png') }}" width="300" class="img-fluid rounded-top" alt="">
+              {{-- <img src="{{ asset('assets/tarjeta/minilogo.png') }}" width="200" class="img-fluid rounded-top" alt=""> --}}
             </div>
-            <div class="col">
+            <div class="col pt-2">
               <small>
                 <strong>
-                  Compra, Paga y Rockea!🎵
+                  {{-- Compra, Paga y Rockea!🎵 --}}
                 </strong>
                 @if ($admin)
                 <h5>

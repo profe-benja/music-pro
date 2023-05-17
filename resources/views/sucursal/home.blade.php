@@ -1,4 +1,3 @@
-
 @extends('layouts.sucursal.app')
 @push('stylesheet')
 
