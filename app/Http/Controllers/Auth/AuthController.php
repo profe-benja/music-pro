@@ -206,9 +206,10 @@ class AuthController extends Controller
         $this->start_sesions($u);
 
         if ($u->admin) {
-          return redirect()->route('tarjeta.admin');
+          return redirect()->route('tarjeta.admin.index');
         }
-        return redirect()->route('tarjeta.home');
+        return redirect()->route('tarjeta.app.index');
+
       }else{
         return back()->with('info','Error. Intente nuevamente.');
       }
@@ -334,12 +335,8 @@ class AuthController extends Controller
       Auth::guard('card_usuario')->loginUsingId($u->id);
       $this->start_sesions($u);
 
-
-
       return redirect()->route('tarjeta.app.index')->with('success','Usuario registrado correctamente.');
     } catch (\Throwable $th) {
-      return $th;
-
       return back()->with('info','Error. Intente nuevamente.');
     }
   }
