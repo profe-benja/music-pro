@@ -23,5 +23,17 @@ use App\Http\Controllers\API\Sucursal\APIProductoController;
 
 Route::post('/product/find',[APIProductoController::class,'find'])->name('api.v1.product.find');
 
-Route::post('/v1/test/saludo',[APIErrorResponseController::class,'saludo'])->name('api.v1.test.saludo');
-Route::post('/v1/test/adios',[APITestController::class,'adios'])->name('api.v1.test.adios');
+// TEST INICIALES
+Route::get('/v1/test/saludo',[APITestController::class,'saludo'])->name('api.v1.test.saludo');
+Route::get('/v1/test/saldo',[APITestController::class,'saldo'])->name('api.v1.test.saldo');
+Route::any('/v1/test/parametro/{id}',[APITestController::class,'parametro'])->name('api.v1.test.parametro');
+
+// ERROR TEST
+Route::any('/v1/test/error/bad_request',[APIErrorResponseController::class,'badRequest'])->name('api.v1.test.error.badRequest');
+Route::any('/v1/test/error/not_found',[APIErrorResponseController::class,'notFound'])->name('api.v1.test.error.notFound');
+Route::any('/v1/test/error/unauthorized',[APIErrorResponseController::class,'unauthorized'])->name('api.v1.test.error.unauthorized');
+Route::any('/v1/test/error/forbidden',[APIErrorResponseController::class,'forbidden'])->name('api.v1.test.error.forbidden');
+
+
+
+Route::get('/v1/test/user',[APITestController::class,'index'])->name('api.v1.test.index');

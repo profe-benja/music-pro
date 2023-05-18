@@ -1,4 +1,4 @@
-@extends('layouts.tarjeta_app.app')
+@extends('layouts.tarjeta.app')
 @push('stylesheet')
 
 @endpush

@@ -115,4 +115,35 @@ class AuthController extends Controller
               return response()->json(['success' => $success])->setStatusCode(200);
           }
       }
+
+
+      /**
+ * @OA\Get(
+ *     path="/api/users/{id}",
+ *     summary="Obtener información de un usuario",
+ *     description="Obtiene la información de un usuario en el sistema",
+ *     operationId="getUser",
+ *     tags={"Usuarios"},
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         description="ID del usuario",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="integer",
+ *             format="int64",
+ *             example=1
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="Información del usuario obtenida exitosamente"
+ *     ),
+ *     @OA\Response(
+ *         response=404,
+ *         description="Usuario no encontrado"
+ *     )
+ * )
+ */
+
 }

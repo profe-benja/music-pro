@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Music pro API Versión 1.0",
-        "description": "\n *\n *\n *      ",
+        "title": "Music pro API",
+        "description": "Esta api esta creada para la implementacion de los 4 sistemas de Music Pro",
         "contact": {
             "name": "Benjamín Mora Torres",
             "url": "https://www.bemtorres.win",
@@ -15,13 +15,352 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/": {
+        "/api/v1/test/error/bad_request": {
             "get": {
-                "description": "Home page",
-                "operationId": "50db79cd1df19d8aba881b80cf599c55",
+                "tags": [
+                    "TestError"
+                ],
+                "summary": "Obtiene la respuesta de error Bad Request 400",
+                "description": "Obtiene la respuesta de error Bad Request 400",
+                "operationId": "bad_request",
                 "responses": {
-                    "default": {
-                        "description": "Welcome page"
+                    "400": {
+                        "description": "Respuesta de la endpoint bad_request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "bad request"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "La solicitud no es válida."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/test/error/not_found": {
+            "get": {
+                "tags": [
+                    "TestError"
+                ],
+                "summary": "Obtiene la respuesta de error not found 404",
+                "description": "Obtiene la respuesta de error not found 404",
+                "operationId": "not_found",
+                "responses": {
+                    "404": {
+                        "description": "Respuesta de la endpoint not_found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Not Found"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "El recurso solicitado no se encontró."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/test/error/unauthorized": {
+            "get": {
+                "tags": [
+                    "TestError"
+                ],
+                "summary": "Obtiene la respuesta de error no autorizado unauthorized 401",
+                "description": "Obtiene la respuesta de error no autorizado unauthorized 401",
+                "operationId": "unauthorized",
+                "responses": {
+                    "401": {
+                        "description": "Respuesta de la endpoint unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Acceso no autorizado. Inicia sesión primero."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/test/error/forbidden": {
+            "get": {
+                "tags": [
+                    "TestError"
+                ],
+                "summary": "Obtiene la respuesta de error no tienes permiso 403",
+                "description": "Obtiene la respuesta de error no tienes permiso 403",
+                "operationId": "forbidden",
+                "responses": {
+                    "401": {
+                        "description": "Respuesta de la endpoint forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "forbidden"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No tienes permisos para acceder a este recursos."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/test/saludo": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Obtener un respuesta del servidor",
+                "description": "Obtener un respuesta del servidor",
+                "operationId": "saludo",
+                "responses": {
+                    "200": {
+                        "description": "Saludo obtenido correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Hola como estas"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/test/saldo": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "obtiene el saldo de un usuario",
+                "description": "Obtener el saldo de un usuario",
+                "operationId": "saldo",
+                "responses": {
+                    "200": {
+                        "description": "Saludo obtenido correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "correcto"
+                                        },
+                                        "saldo": {
+                                            "type": "integer",
+                                            "example": "1000"
+                                        },
+                                        "saldo_raw": {
+                                            "type": "string",
+                                            "example": "1.000"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/test/parametro/{id}": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "test para responder parametros",
+                "description": "test para responder parametros",
+                "operationId": "parametroGET",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Saludo obtenido correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "test para responder parametros",
+                "description": "test para responder parametros",
+                "operationId": "parametroPut",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Saludo obtenido correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "test para responder parametros",
+                "description": "test para responder parametros",
+                "operationId": "parametroPOST",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Saludo obtenido correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "test para responder parametros",
+                "description": "test para responder parametros",
+                "operationId": "parametroDELETE",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Saludo obtenido correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }

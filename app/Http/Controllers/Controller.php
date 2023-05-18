@@ -10,11 +10,8 @@ use Illuminate\Routing\Controller as BaseController;
 /**
  * @OA\Info(
  *      version="1.0.0",
- *      title="Music pro API Versión 1.0",
- *      description="
- *
- *
- *      ",
+ *      title="Music pro API",
+ *      description="Esta api esta creada para la implementacion de los 4 sistemas de Music Pro",
  *     @OA\Contact(
  *       email="bej.mora@prefesor.duoc.cl",
  *       name="Benjamín Mora Torres",
