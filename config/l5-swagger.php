@@ -5,7 +5,7 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => 'Music Pro API',
+                'title' => 'Documentación API Music Pro',
             ],
 
             'routes' => [
@@ -274,7 +274,8 @@ return [
                  * is case-sensitive matching the filter expression anywhere inside
                  * the tag.
                  */
-                'filter' => env('L5_SWAGGER_UI_FILTERS', true), // true | false
+                'filter' => env('L5_SWAGGER_UI_FILTERS', false), // true | false
+                'view_top_bar' => false,
             ],
 
             'authorization' => [

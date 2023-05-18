@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Music pro API",
+        "title": "Documentación API Music Pro",
         "description": "Esta api esta creada para la implementacion de los 4 sistemas de Music Pro",
         "contact": {
             "name": "Benjamín Mora Torres",
