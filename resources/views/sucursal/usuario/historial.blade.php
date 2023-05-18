@@ -24,7 +24,6 @@
                   <th>Acción</th>
                   <td>Estado</td>
                   <th class="text-right">
-                    <img src="{{ asset(current_config()->present()->getImagenCoin()) }}" width="20px" alt="">
                     Recibo/Enviado
                   </th>
                 </tr>
@@ -63,14 +62,10 @@
                   @if ($t->estado != 3)
                   <td class="text-{{ $t->tipo ? 'success' : 'danger' }} text-right">
                     <strong>{{ $t->tipo ? '+' : '-' }} {{ $t->getCredito() }}</strong>
-                    <img src="{{ asset(current_config()->present()->getImagenCoin()) }}" width="20px" alt="">
                   </td>
                   @else
                     <td class="text-primary text-right">
                       <span class="badge badge-pill badge-primary">Rechazado/Reembolso</span>
-
-                    {{-- <strong>+ {{ $t->getCredito() }}</strong> --}}
-                    {{-- <img src="{{ asset(current_config()->present()->getImagenCoin()) }}" width="20px" alt=""> --}}
                   </td>
                   @endif
                 </tr>

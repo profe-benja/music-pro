@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Tarjeta\Admin\AdminController;
+use App\Http\Controllers\Tarjeta\Admin\BancoController;
 use App\Http\Controllers\Tarjeta\Admin\TarjetaController;
 use App\Http\Controllers\Tarjeta\Admin\UsuarioController;
 use App\Http\Controllers\Tarjeta\App\AppController;
@@ -39,6 +40,10 @@ Route::prefix('tarjeta')->name('tarjeta.')->group( function () {
     Route::get('tarjeta', [TarjetaController::class,'index'])->name('tarjeta.index');
     Route::get('tarjeta/{id}', [TarjetaController::class,'show'])->name('tarjeta.show');
 
+    Route::get('banco', [BancoController::class,'index'])->name('banco.index');
+    Route::get('banco/create', [BancoController::class,'create'])->name('banco.create');
+    Route::post('banco', [BancoController::class,'store'])->name('banco.store');
+    Route::get('banco/{id}', [BancoController::class,'show'])->name('banco.show');
 
   });
 });

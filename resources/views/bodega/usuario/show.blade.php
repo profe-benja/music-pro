@@ -29,7 +29,6 @@
                 <div class="card-footer text-center">
                   <h3>
                     {{-- <strong>
-                      <img src="{{ asset(current_config()->present()->getImagenCoin()) }}" width="30px" alt="">
                       {{ $u->getCredito() }}
                     </strong> --}}
                   </h3>

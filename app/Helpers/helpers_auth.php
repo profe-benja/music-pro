@@ -42,11 +42,3 @@ function close_sessions() {
   session()->forget('gp_config');
   return true;
 }
-
-function current_config() {
-  return session()->get('gp_config');
-}
-
-function current_sistema() {
-  return session()->get('gp_sistema');
-}

@@ -348,14 +348,6 @@ class AuthController extends Controller
   }
 
   public function start_sesions($u) {
-    $config = Config::first();
-    $sistema = Sistema::first();
-
-    session([
-      'gp_config' => $config,
-      'gp_sistema' => $sistema
-    ]);
-
     return true;
   }
 }

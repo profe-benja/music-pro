@@ -37,18 +37,19 @@
   </li>
 
 
-  <li class="nav-item {{ activeTab(['tarjeta/admin/tarjetas*']) }}">
+  <li class="nav-item {{ activeTab(['tarjeta/admin/tarjeta*']) }}">
     <a class="nav-link" href="{{ route('tarjeta.admin.tarjeta.index') }}">
       <i class="fas fa-credit-card"></i>
       <span>Tarjetas</span>
     </a>
   </li>
-  {{-- <li class="nav-item {{ activeTab(['sucursal/clientes*']) }}">
-    <a class="nav-link" href="{{ route('sucursal.usuario.index') }}">
-      <i class="fas fa-fw fa-users"></i>
-      <span>Clientes</span>
+  <li class="nav-item {{ activeTab(['tarjeta/admin/banco*']) }}">
+    <a class="nav-link" href="{{ route('tarjeta.admin.banco.index') }}">
+      {{-- <i class="fas fa-fw fa-bank"></i> --}}
+      <i class="fas fa-fw fa-building"></i>
+      <span>Bancos</span>
     </a>
-  </li> --}}
+  </li>
 
   <li class="nav-item {{ activeTab(['sucursal/usuario*']) }}">
     <a class="nav-link" href="">
