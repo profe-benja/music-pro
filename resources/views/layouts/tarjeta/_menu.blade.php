@@ -58,6 +58,17 @@
     </a>
   </li>
 
+  <hr class="sidebar-divider">
+  <li class="nav-item">
+    <a class="nav-link btn btn-info" href="{{ route('tarjeta.app.index') }}">
+      {{-- <i class="fas fa-fw fa-bank"></i> --}}
+      <i class="fas fa-fw fa-mobile-alt"></i>
+      <strong>IR AL APP</strong>
+    </a>
+  </li>
+
+
+
   {{-- <hr class="sidebar-divider"> --}}
   {{-- <li class="nav-item text-center">
     <a class="btn btn-warning btn-sm mb-3" href="{{ route('webapp.index') }}">

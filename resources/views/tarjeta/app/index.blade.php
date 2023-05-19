@@ -28,7 +28,7 @@
   <header class="py-2 content bg-woow">
     <div class="container">
       <div class="row">
-        <div class="col-md-5 d-none d-md-block">
+        <div class="col-md-4 d-none d-md-block">
           <div class="card text-start shadow">
             {{-- <img class="card-img-top" src="holder.js/100px180/" alt="Title"> --}}
             <div class="card-body">
@@ -38,8 +38,8 @@
             </div>
           </div>
         </div>
-        <div class="col-md-7">
-          <div class="card text-start shadow" style="height: 600px;">
+        <div class="col">
+          <div class="card text-start shadow">
             <div class="card-body">
               <ul class="nav nav-pills nav-fill mb-3 mx-2 gap-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -79,7 +79,11 @@
 
                 </div>
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
-                  @include('tarjeta.app._transferir')
+                  <div class="container">
+                    <div class="row">
+                      @include('tarjeta.app._transferir')
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -119,14 +123,16 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div> --}}
       <div class="modal-body">
-        @include('tarjeta.app._card')
-
-
-        <div class="d-grid gap-2">
-          <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#qrModal">
-            <i class="fa-solid fa-3x fa-qrcode"></i>
-            compartir
-          </button>
+        <div class="container">
+          <div class="row">
+            @include('tarjeta.app._card')
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#qrModal">
+                <i class="fa-solid fa-3x fa-qrcode"></i>
+                compartir
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       {{-- <div class="modal-footer">

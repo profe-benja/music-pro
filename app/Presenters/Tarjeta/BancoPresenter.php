@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Presenters\Sistema;
+namespace App\Presenters\Tarjeta;
 use App\Presenters\Presenter;
 use App\Services\Imagen;
 

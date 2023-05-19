@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bodega\Usuario;
-use App\Models\Sistema\Config;
-use App\Models\Sistema\Sistema;
 use App\Models\Sucursal\Usuario as SucursalUsuario;
 use App\Models\Tarjeta\Tarjeta;
 use App\Models\Tarjeta\Usuario as TarjetaUsuario;
@@ -20,8 +18,6 @@ class AuthController extends Controller
 {
   // VIEW LOGIN
   public function bodegaAcceso() {
-    $s = Sistema::first();
-
     $user = '';
     $pass = '';
 
@@ -30,12 +26,10 @@ class AuthController extends Controller
       $pass = '123456';
     }
 
-    return view('auth.bodega', compact('s','user','pass'));
+    return view('auth.bodega', compact('user','pass'));
   }
 
   public function sucursalAcceso() {
-    $s = Sistema::first();
-
     $user = '';
     $pass = '';
 
@@ -46,12 +40,10 @@ class AuthController extends Controller
 
     $admin = true;
 
-    return view('auth.sucursal', compact('s','user','pass','admin'));
+    return view('auth.sucursal', compact('user','pass','admin'));
   }
 
   public function sucursalAccesoCliente() {
-    $s = Sistema::first();
-
     $user = '';
     $pass = '';
 
@@ -62,12 +54,10 @@ class AuthController extends Controller
 
     $admin = false;
 
-    return view('auth.sucursal', compact('s','user','pass','admin'));
+    return view('auth.sucursal', compact('user','pass','admin'));
   }
 
   public function transporteAcceso() {
-    $s = Sistema::first();
-
     $user = '';
     $pass = '';
 
@@ -78,12 +68,10 @@ class AuthController extends Controller
 
     $admin = true;
 
-    return view('auth.transporte', compact('s','user','pass','admin'));
+    return view('auth.transporte', compact('user','pass','admin'));
   }
 
   public function transporteAccesoCliente() {
-    $s = Sistema::first();
-
     $user = '';
     $pass = '';
 
@@ -94,12 +82,10 @@ class AuthController extends Controller
 
     $admin = false;
 
-    return view('auth.transporte', compact('s','user','pass','admin'));
+    return view('auth.transporte', compact('user','pass','admin'));
   }
 
   public function tarjetaAcceso() {
-    $s = Sistema::first();
-
     $user = '';
     $pass = '';
 
@@ -110,12 +96,10 @@ class AuthController extends Controller
 
     $admin = true;
 
-    return view('auth.tarjeta', compact('s','user','pass','admin'));
+    return view('auth.tarjeta', compact('user','pass','admin'));
   }
 
   public function tarjetaAccesoCliente() {
-    $s = Sistema::first();
-
     $user = '';
     $pass = '';
 
@@ -126,7 +110,7 @@ class AuthController extends Controller
 
     $admin = false;
 
-    return view('auth.tarjeta', compact('s','user','pass','admin'));
+    return view('auth.tarjeta', compact('user','pass','admin'));
   }
 
   // ACCESS LOGIN
@@ -221,8 +205,6 @@ class AuthController extends Controller
 
   // VIEW REGISTRO
   public function sucursalRegistro() {
-    $s = Sistema::first();
-
     $user = '';
     $pass = '';
 
@@ -233,12 +215,10 @@ class AuthController extends Controller
 
     $admin = false;
 
-    return view('auth.sucursal_registro', compact('s','user','pass','admin'));
+    return view('auth.sucursal_registro', compact('user','pass','admin'));
   }
 
   public function transporteRegistro() {
-    $s = Sistema::first();
-
     $user = '';
     $pass = '';
 
@@ -249,12 +229,10 @@ class AuthController extends Controller
 
     $admin = false;
 
-    return view('auth.transporte_registro', compact('s','user','pass','admin'));
+    return view('auth.transporte_registro', compact('user','pass','admin'));
   }
 
   public function tarjetaRegistro() {
-    $s = Sistema::first();
-
     $user = '';
     $pass = '';
 
@@ -265,7 +243,7 @@ class AuthController extends Controller
 
     $admin = false;
 
-    return view('auth.tarjeta_registro', compact('s','user','pass','admin'));
+    return view('auth.tarjeta_registro', compact('user','pass','admin'));
   }
 
   // STORE

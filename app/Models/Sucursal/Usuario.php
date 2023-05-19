@@ -2,9 +2,7 @@
 
 namespace App\Models\Sucursal;
 
-use App\Presenters\Sistema\UsuarioPresenter;
 use App\Services\Currency;
-use App\Services\Jwt\JwtQrEncode;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -38,10 +36,6 @@ class Usuario extends Authenticatable
     return $query->where('username',$username)->where('activo',true);
   }
 
-  public function present(){
-    return new UsuarioPresenter($this);
-  }
-
   public function get_usuario(){
     return self::TIPOS[$this->tipo_usuario] ?? '';
   }
@@ -50,10 +44,6 @@ class Usuario extends Authenticatable
   public function nombre_completo() {
     return $this->nombre . ' ' . $this->apellido;
   }
-
-  // public function myQR() {
-  //   return (new JwtQrEncode($this))->call();
-  // }
 
   public function getCredito() {
     return Currency::getConvert($this->credito) ?? 0;

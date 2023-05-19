@@ -3,14 +3,9 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Sistema\Sistema;
 use App\Models\Sucursal\Producto;
-use App\Services\FormularioSocioeconomico;
-use App\Services\Jwt\JwtFirmaDecode;
-use App\Services\Jwt\JwtFirmaEncode;
 use App\Services\Preload\ProductoPreload;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -21,19 +16,7 @@ class HomeController extends Controller
       (new ProductoPreload())->call();
     }
 
-    $s = Sistema::first();
-
-    if ($s->getInfoDemo()) {
-      // if ($s->getInfoRedirectUrl()) {
-      //   // return redirect($s->getInfoRedirectUrl());
-
-      //   header('Location: '.$s->getInfoRedirectUrl());
-      // }
-
-      return view('www.index');
-    }
-
-    return redirect()->route('login');
+    return view('www.index');
   }
 
   public function tarjeta() {

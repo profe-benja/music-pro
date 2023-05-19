@@ -1,43 +1,51 @@
-<form action="{{ route('tarjeta.acceso.registro') }}" method="POST">
-  @csrf
-  <div class="row">
-    <div class="form-group col-12 row mb-3">
-      <label for="tarjeta" class="form-label col-6">TARJETA</label>
-      <select class="form-select col-6" name="tarjeta" id="tarjeta">
-        <option selected>BEATPAY - OFICIAL</option>
-        {{-- <option value="">New Delhi</option> --}}
-        {{-- <option value="">Istanbul</option> --}}
-        {{-- <option value="">Jakarta</option> --}}
-      </select>
-    </div>
-    <div class="form-group col-12">
-      <label for="run">RUN <small>(SIN PUNTOS Y SIN GUIÓN)</small></label>
-      <input type="text" class="form-control" id="run" name="run" placeholder="ej 19222333K" maxlength="9" min="8" pattern="^\d{7,9}[0-9K]{1}$" title="Formato 19222333K" onkeyup="this.value = validarRut(this.value)" required>
-      <small id="error" class="text-danger"></small>
-    </div>
-    <div class="form-group col-12">
-      <label for="run">RUN <small>(SIN PUNTOS Y SIN GUIÓN)</small></label>
-      <input type="text" class="form-control" id="run" name="run" placeholder="ej 19222333K" maxlength="9" min="8" pattern="^\d{7,9}[0-9K]{1}$" title="Formato 19222333K" onkeyup="this.value = validarRut(this.value)" required>
-      <small id="error" class="text-danger"></small>
-    </div>
-    <div class="form-group col-6">
-      <label for="nombre">Nombre</label>
-      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" required>
-    </div>
-    <div class="form-group col-6">
-      <label for="correo">Correo</label>
-      <input type="email" class="form-control" id="correo" name="correo" placeholder="" required>
-    </div>
+<div class="card text-white bg-dark">
+  {{-- <img class="card-img-top" src="holder.js/100px180/" alt="Title"> --}}
+  <div class="card-body">
+    {{-- <h4 class="card-title">Title</h4> --}}
+    {{-- <p class="card-text">Text</p> --}}
+
+    <form action="{{ route('tarjeta.acceso.registro') }}" method="POST">
+      @csrf
+      <div class="row">
+        <div class="mb-3 row">
+          <label for="tarjeta" class="col-form-label col-md-2 -col-6"><strong>TARJETA</strong></label>
+          <div class="col">
+            <select class="form-select" name="tarjeta" id="tarjeta">
+              @foreach ($bancos as $b)
+              <option value="{{ $b->code }}">{{ $b->nombre }}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="inputCuenta" class="col-sm-2 col-form-label">Nro cuenta</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="inputCuenta" name="nro" required>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="inputMonto" class="col-sm-2 col-form-label">Monto</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" min="1" maxlength="999" id="inputNombre" name="monto" required>
+            <small class="text-info">(Saldo para transferir: $ {{current_tarjeta_user()->me_card()->getSaldo() ?? 0 }} )</small>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="inputDesc" class="col-sm-2 col-form-label">Descripcion</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputDesc" name="descripcion">
+          </div>
+        </div>
+      </div>
+      <div class="d-grid gap-2">
+        <button class="btn btn-lg btn-bd-primary" type="button">BEAT TRANSFER</button>
+      </div>
+      {{-- <button type="submit" class="btn bg-primary btn-lg btn-block">
+        <strong>Transferir</strong>
+      </button> --}}
+    </form>
   </div>
-  {{-- <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
-    </div>
-  </div> --}}
-  <button type="submit" class="btn bg-primary btn-lg btn-block">
-    <strong>Transferir</strong>
-  </button>
-</form>
+</div>
