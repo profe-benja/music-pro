@@ -364,6 +364,34 @@
                     }
                 }
             }
+        },
+        "/api/v1/bodega/producto": {
+            "get": {
+                "tags": [
+                    "bodega"
+                ],
+                "summary": "Obtener el listado de productos",
+                "description": "Obtener el listado de productos",
+                "operationId": "bodega_producto",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Hola como estas"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

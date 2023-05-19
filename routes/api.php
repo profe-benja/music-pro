@@ -3,7 +3,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\APIErrorResponseController;
+use App\Http\Controllers\API\APIProductoController as APIAPIProductoController;
 use App\Http\Controllers\API\APITestController;
+use App\Http\Controllers\API\Bodega\APIProductoController as BodegaAPIProductoController;
 use App\Http\Controllers\API\Sucursal\APIProductoController;
 
 /*
@@ -33,6 +35,10 @@ Route::any('/v1/test/error/bad_request',[APIErrorResponseController::class,'badR
 Route::any('/v1/test/error/not_found',[APIErrorResponseController::class,'notFound'])->name('api.v1.test.error.notFound');
 Route::any('/v1/test/error/unauthorized',[APIErrorResponseController::class,'unauthorized'])->name('api.v1.test.error.unauthorized');
 Route::any('/v1/test/error/forbidden',[APIErrorResponseController::class,'forbidden'])->name('api.v1.test.error.forbidden');
+
+
+// BODEGA
+Route::any('/v1/bodega/producto',[BodegaAPIProductoController::class,'index'])->name('api.v1.bodega.producto.index');
 
 
 
