@@ -41,6 +41,11 @@
           </a>
         </li>
 
+        <li class="nav-item mx-2">
+          <a class="nav-link btn btn-outline-dark rounded-pill" href="/api/documentation">
+            🧠 API
+          </a>
+        </li>
 
         {{-- <li class="nav-item">
           <a class="nav-link" href="#feedback-section">Testimonials</a>
