@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{{ asset('css/login.css') }}">
   <style>
     .intro-section {
-      background-image: url("{{ asset($s->present()->getBackgroundLogin()) }}");
+      background-image: url("{{ asset('images/bodega2.jpg') }}");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
@@ -51,7 +51,7 @@
               <img src="{{ asset('assets/blogooo.svg') }}" width="200" class="img-fluid rounded-top" alt="">
             </div>
             <div class="col">
-              <small><strong>{{ $s->getInfoLoginTitle() }}</strong></small>
+              <small><strong>La mejor tienda del mundo<strong></small>
             </div>
           </div>
 
