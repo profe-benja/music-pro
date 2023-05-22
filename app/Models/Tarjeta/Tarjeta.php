@@ -21,4 +21,12 @@ class Tarjeta extends Model
   public function getSaldo() {
     return Currency::getConvert($this->saldo) ?? 0;
   }
+
+  public function transaccionesOrigen() {
+    return $this->hasMany(Transaccion::class, 'id_tarjeta_origen');
+  }
+
+  public function transaccionesDestino() {
+    return $this->hasMany(Transaccion::class, 'id_tarjeta_destino');
+  }
 }

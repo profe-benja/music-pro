@@ -1,11 +1,6 @@
-
 @extends('layouts.tarjeta.app')
 @push('stylesheet')
 
-{{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"> --}}
-{{-- <link rel="stylesheet" href="{{ asset('js/select.dataTables.min.css') }}"> --}}
-  <link rel="stylesheet" href="{{ asset('vendors/select2/select2.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
 @endpush
 @section('content')
 <div class="container-fluid">
@@ -57,7 +52,7 @@
                 <div class="form-group row">
                   <label class="col-sm-12" for="run">Rut <small>(Opcional)</small></label>
                   <div class="col-sm-12">
-                    <input type="text" class="form-control" name="run" id="run" value="{{ old('run') }}" />
+                    <input type="text" class="form-control" id="run" name="run" placeholder="ej 19222333K" maxlength="9" min="8" pattern="^\d{7,9}[0-9K]{1}$" title="Formato 19222333K" onkeyup="this.value = validarRut(this.value)" required>
                   </div>
                 </div>
               </div>
@@ -119,8 +114,6 @@
 
 @endsection
 @push('javascript')
-<script src="{{ asset('vendors/select2/select2.min.js') }}"></script>
-<script src="{{ asset('vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
-<script src="{{ asset('js/file-upload.js') }}"></script>
-<script src="{{ asset('js/select2.js') }}"></script>
+<script src="{{ asset('js/validate-run.js') }}"></script>
+
 @endpush

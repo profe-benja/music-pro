@@ -1,0 +1,2 @@
+'export LANG=C.UTF-8'  ~/.zshenv
+'export LANG=en_US.UTF-8'  ~/.zshenv

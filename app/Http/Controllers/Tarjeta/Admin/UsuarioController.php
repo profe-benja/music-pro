@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Tarjeta\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tarjeta\Tarjeta;
 use App\Models\Tarjeta\Usuario;
 use Illuminate\Http\Request;
 
@@ -34,6 +35,13 @@ class UsuarioController extends Controller
     // $u->id_team = $request->input('team');
     $u->tipo_usuario = $request->input('tipo');
     $u->save();
+
+    $t = new Tarjeta();
+    $t->id_usuario = $u->id;
+    $t->nro = $u->id . '0000' . substr($u->run, 0, strlen($u->run) - 1);
+    $t->pin = '';
+    $t->saldo = 0;
+    $t->save();
 
     return redirect()->route('tarjeta.admin.usuario.index')->with('success','Se ha creado correctamente');
   }
