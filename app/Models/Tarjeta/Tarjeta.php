@@ -29,4 +29,8 @@ class Tarjeta extends Model
   public function transaccionesDestino() {
     return $this->hasMany(Transaccion::class, 'id_tarjeta_destino');
   }
+
+  public function banco() {
+    return $this->belongsTo(Banco::class, 'id_banco');
+  }
 }

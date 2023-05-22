@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Tarjeta\Transaccion;
+use App\Models\Tarjeta\Usuario;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -34,6 +36,21 @@ return new class extends Migration
             $table->string('descripcion', 100)->nullable();
             $table->timestamps();
         });
+
+        $u = Usuario::first();
+        $tarjeta = $u->me_card();
+
+        $t = new Transaccion();
+        $t->id_tarjeta_origen = null;
+        $t->id_banco_origen = 1;
+        $t->code_banco_origen = 'QUEMADEDINERO';
+
+        $t->id_tarjeta_destino = $tarjeta->id;
+        $t->id_banco_destino = 1;
+        $t->code_banco_destino = 'BEATPAY';
+        $t->descripcion = 'Carga inicial';
+        $t->monto = 100000000;
+        $t->save();
     }
 
     /**

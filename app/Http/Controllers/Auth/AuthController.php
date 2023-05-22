@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Bodega\Usuario;
 use App\Models\Sucursal\Usuario as SucursalUsuario;
 use App\Models\Tarjeta\Tarjeta;
+use App\Models\Tarjeta\Transaccion;
 use App\Models\Tarjeta\Usuario as TarjetaUsuario;
 use App\Models\Transporte\Usuario as TransporteUsuario;
 use Auth;
@@ -307,8 +308,21 @@ class AuthController extends Controller
       $t->id_usuario = $u->id;
       $t->nro = $u->id . '0000' . substr($u->run, 0, strlen($u->run) - 1);
       $t->pin = '';
+      $t->id_banco = 1;
       $t->saldo = 0;
       $t->save();
+
+      $tr = new Transaccion();
+      $tr->id_tarjeta_origen = 1;
+      $tr->id_banco_origen = 1;
+      $tr->code_banco_origen = 'BETPAY';
+
+      $tr->id_tarjeta_destino = $t->id;
+      $tr->id_banco_destino = 1;
+      $tr->code_banco_destino = 'BEATPAY';
+      $tr->descripcion = 'Carga inicial';
+      $tr->monto = 10000;
+      $tr->save();
 
       Auth::guard('card_usuario')->loginUsingId($u->id);
       $this->start_sesions($u);
