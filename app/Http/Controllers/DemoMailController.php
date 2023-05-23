@@ -12,15 +12,22 @@ class DemoMailController extends Controller
 
     public function index()
     {
-      // Mail::to($request->user())
-      //   ->cc($moreUsers)
-      //   ->bcc($evenMoreUsers)
-      //   ->queue(new OrderShipped($order));
-      $email = new DemoMail();
+      return 'hola';
+      // try {
+      //     // Mail::to($request->user())
+      //     //   ->cc($moreUsers)
+      //     //   ->bcc($evenMoreUsers)
+      //     //   ->queue(new OrderShipped($order));
+      //     $email = new DemoMail();
 
-      return $email;
+      //     // return $email;
 
-      Mail::to('benja.mora.torres@gmail.com')->queue(new DemoMail());
+      //     Mail::to('benja.mora.torres@gmail.com')->queue(new DemoMail());
 
+      //     return 'Email was sent';
+      // } catch (\Throwable $th) {
+      //   //throw $th;
+      //   return 'Error';
+      }
     }
 }

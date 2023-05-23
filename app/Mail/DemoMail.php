@@ -21,32 +21,15 @@ class DemoMail extends Mailable
      *
      * @return void
      */
-    public $a;
-    public $formulario;
+    public $asunto;
+    public $contenido;
+    public $contenido_html;
 
-    public function __construct()
+    public function __construct($asunto = '', $contenido = '', $contenido_html = '')
     {
-      $a = Alumno::findOrFail(39);
-      $formulario = (new FormularioSocioeconomico())->call();
-
-      $n = 1;
-      foreach ($a->solicitudes as $solKey => $solicitud) {
-        foreach ($solicitud->documentos as $dKey => $documento) {
-          foreach ($formulario as $fKey => $form) {
-            if ($fKey == $documento->documento_code ) {
-              $formulario[$documento->documento_code]['values'][$documento->documento_id]['status'] = true;
-              $formulario[$documento->documento_code]['values'][$documento->documento_id]['solicitud'] = $n;
-              $formulario[$documento->documento_code]['values'][$documento->documento_id]['fecha'] = $solicitud->getFechaEntrega()->getDate();
-              $formulario[$documento->documento_code]['values'][$documento->documento_id]['estado'] = $documento->estado;
-            }
-          }
-        }
-
-        $n++;
-      }
-
-      $this->a = $a;
-      $this->formulario = $formulario;
+      $this->asunto = 'Correo de prueba | ' . $asunto;
+      $this->contenido = $contenido;
+      $this->contenido_html = $contenido_html;
       // $pdf = Pdf::loadView('pdf.documento_alumno_pdf',compact('payload','a','formulario'));
     }
 
@@ -62,7 +45,7 @@ class DemoMail extends Mailable
           // replyTo: [
           //     new Address('bej.mora@profesor.duoc.cl', 'Taylor Otwell'),
           // ],
-          subject: 'Notificación de recepción',
+          subject: $this->asunto,
         );
     }
 

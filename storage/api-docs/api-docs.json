@@ -368,7 +368,7 @@
         "/api/v1/bodega/producto": {
             "get": {
                 "tags": [
-                    "bodega"
+                    "Bodega"
                 ],
                 "summary": "Obtener el listado de productos",
                 "description": "Obtener el listado de productos",
@@ -383,6 +383,84 @@
                                         "message": {
                                             "type": "string",
                                             "example": "Hola como estas"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/musicpro/send_email": {
+            "post": {
+                "tags": [
+                    "Musicpro"
+                ],
+                "summary": "Envia un correo electronico",
+                "description": "Envia correco electronico",
+                "operationId": "send_email",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "asunto",
+                                    "correo",
+                                    "contenido"
+                                ],
+                                "properties": {
+                                    "asunto": {
+                                        "description": "Asunto del correo electronico",
+                                        "type": "text",
+                                        "example": "Correo muy importante"
+                                    },
+                                    "correo": {
+                                        "description": "Correo destino del correo electronico",
+                                        "type": "text",
+                                        "example": "bej.mora@profesor.duoc.cl"
+                                    },
+                                    "contenido": {
+                                        "description": "Contenido del correo electronico",
+                                        "type": "text",
+                                        "example": "Este es un musicpro mensaje"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "404": {
+                        "description": "Error al enviar el correo electronico",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error. Algo inesperado ha ocurrido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Se ha enviado correctamente"
                                         }
                                     },
                                     "type": "object"

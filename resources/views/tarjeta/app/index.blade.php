@@ -59,7 +59,18 @@
                 </li>
               </ul>
               <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">...</div>
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                  <div class="mb-3">
+                    <img src="{{ asset('assets/tarjeta/banners/recarga.png') }}" class="shadow img-fluid rounded-top" alt="">
+                  </div>
+
+
+                  <div class="text-center">
+                    <button class="btn btn-bd-primary btn-lg" data-bs-toggle="modal" data-bs-target="#reargarModal">
+                      Cargar tu tarjeta aquí ❤️
+                    </button>
+                  </div>
+                </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
                   <div class="table-responsive">
                     <table class="table
@@ -98,6 +109,24 @@
 </main>
 
 <div class="modal fade" id="configModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      {{-- <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div> --}}
+      <div class="modal-body">
+        <i class="fa-solid fa-qrcode"></i>
+      </div>
+      {{-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> --}}
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reargarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       {{-- <div class="modal-header">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Tarjeta\Admin\UsuarioController;
 use App\Models\Bodega\Usuario;
 use App\Models\Sucursal\Usuario as SucursalUsuario;
 use App\Models\Tarjeta\Tarjeta;
@@ -324,6 +325,8 @@ class AuthController extends Controller
       $tr->monto = 10000;
       $tr->save();
 
+
+
       Auth::guard('card_usuario')->loginUsingId($u->id);
       $this->start_sesions($u);
 
@@ -332,6 +335,21 @@ class AuthController extends Controller
       return back()->with('info','Error. Intente nuevamente.');
     }
   }
+
+  public function tarjetaReset() {
+    return view('auth.tarjeta_reset');
+  }
+
+  public function tarjetaResetRequest(Request $request) {
+    $u = Usuario::where('correo', $request->correo)->firstOrFail();
+    $u->password = hash('sha256', '123456');
+    $u->update();
+
+
+
+    return back()->with('success','Se ha actualizado la contraseña');
+  }
+
 
   // LOGOUT
   public function logout(){
