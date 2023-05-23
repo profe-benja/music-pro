@@ -20,20 +20,25 @@ return new class extends Migration
 
             // ORIGEN
             $table->integer('id_tarjeta_origen')->nullable();
-            $table->unsignedBigInteger('id_banco_origen');
-            $table->foreign('id_banco_origen')->references('id')->on('tarjeta_banco');
+            $table->integer('id_banco_origen')->nullable();
+            // $table->unsignedBigInteger('id_banco_origen');
+            // $table->foreign('id_banco_origen')->references('id')->on('tarjeta_banco');
             $table->string('code_banco_origen')->nullable();
 
             // DESTINO
             $table->integer('id_tarjeta_destino')->nullable();
-            $table->unsignedBigInteger('id_banco_destino');
-            $table->foreign('id_banco_destino')->references('id')->on('tarjeta_banco');
+            $table->integer('id_banco_destino')->nullable();
+            // $table->unsignedBigInteger('id_banco_destino');
+            // $table->foreign('id_banco_destino')->references('id')->on('tarjeta_banco');
 
             $table->string('code_banco_destino')->nullable();
 
             // CONTENIDO
             $table->double('monto', 12, 2); // 9999999999.99
             $table->string('descripcion', 100)->nullable();
+            $table->integer('estado')->default(0); // 0: pendiente, 1: aceptado, 2: rechazado
+
+            $table->json('info')->nullable();
             $table->timestamps();
         });
 
@@ -50,6 +55,7 @@ return new class extends Migration
         $t->code_banco_destino = 'BEATPAY';
         $t->descripcion = 'Carga inicial';
         $t->monto = 100000000;
+        $t->estado = 1;
         $t->save();
     }
 

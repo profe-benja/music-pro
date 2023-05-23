@@ -34,6 +34,7 @@ return new class extends Migration
         $u = Usuario::first();
 
         $t = new Tarjeta();
+        $t->id = 1;
         $t->id_usuario = $u->id;
         $t->nro = $u->id . '0000' . substr($u->run, 0, strlen($u->run) - 1);
         $t->id_banco = 1;

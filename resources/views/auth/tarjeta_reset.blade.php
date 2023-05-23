@@ -75,7 +75,7 @@
             <form action="{{ route('tarjeta.reset') }}" method="POST">
               @csrf
               <div class="row">
-                <div class="form-group col-6">
+                <div class="form-group col-12">
                   <label for="correo">Correo</label>
                   <input type="email" class="form-control" id="correo" name="correo" placeholder="" required>
                 </div>

@@ -10,9 +10,10 @@ use App\Models\Tarjeta\Tarjeta;
 use App\Models\Tarjeta\Transaccion;
 use App\Models\Tarjeta\Usuario as TarjetaUsuario;
 use App\Models\Transporte\Usuario as TransporteUsuario;
+use App\Services\EmailServices;
 use Auth;
 use Illuminate\Http\Request;
-
+use Nette\Utils\Random;
 
 // use App\Http\Requests\AuthLoginRequest as AuthRequest;
 
@@ -307,10 +308,10 @@ class AuthController extends Controller
 
       $t = new Tarjeta();
       $t->id_usuario = $u->id;
-      $t->nro = $u->id . '0000' . substr($u->run, 0, strlen($u->run) - 1);
+      $t->nro = ($u->id * 100) . substr($u->run, 0, strlen($u->run) - 1);
       $t->pin = '';
       $t->id_banco = 1;
-      $t->saldo = 0;
+      $t->saldo = 10000;
       $t->save();
 
       $tr = new Transaccion();
@@ -325,13 +326,16 @@ class AuthController extends Controller
       $tr->monto = 10000;
       $tr->save();
 
-
+      $tarjeta_banco = Tarjeta::find(1);
+      $tarjeta_banco->saldo = $tarjeta_banco->saldo - $tr->monto;
+      $tarjeta_banco->update();
 
       Auth::guard('card_usuario')->loginUsingId($u->id);
       $this->start_sesions($u);
 
       return redirect()->route('tarjeta.app.index')->with('success','Usuario registrado correctamente.');
     } catch (\Throwable $th) {
+      return $th;
       return back()->with('info','Error. Intente nuevamente.');
     }
   }
@@ -341,13 +345,24 @@ class AuthController extends Controller
   }
 
   public function tarjetaResetRequest(Request $request) {
-    $u = Usuario::where('correo', $request->correo)->firstOrFail();
-    $u->password = hash('sha256', '123456');
-    $u->update();
+    try {
+      $u = Usuario::where('correo', $request->correo)->firstOrFail();
+      $numero = rand(100000, 999999);
+      $u->password = hash('sha256', $numero);
+      $u->update();
 
+      $content = '
+        <p>Se ha recuperado su contraseña, su nueva contraseña es: <strong>'.$numero.'</strong></p>
+      ';
+      $e = (new EmailServices('Recuperacion', $u->correo, '' , $content))->send();
 
-
-    return back()->with('success','Se ha actualizado la contraseña');
+      if (!$e['error']) {
+        return back()->with('success','Se ha actualizado la contraseña');
+      }
+      return back()->with('danger','Error. Intente nuevamente.');
+    } catch (\Throwable $th) {
+      return back()->with('danger','Error. Intente nuevamente.');
+    }
   }
 
 

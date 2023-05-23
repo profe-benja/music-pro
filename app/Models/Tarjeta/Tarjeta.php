@@ -33,4 +33,20 @@ class Tarjeta extends Model
   public function banco() {
     return $this->belongsTo(Banco::class, 'id_banco');
   }
+
+  public function getNro() {
+    $numero = $this->nro;
+    $numero_con_espacios = '';
+
+    for ($i = 0; $i < strlen($numero); $i++) {
+      $numero_con_espacios .= $numero[$i];
+
+      // Agregar espacio después de cada grupo de 4 letras
+      if (($i + 1) % 4 == 0 && $i != strlen($numero) - 1) {
+        $numero_con_espacios .= ' ';
+      }
+    }
+
+    return $numero_con_espacios;
+  }
 }

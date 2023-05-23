@@ -102,6 +102,11 @@
           background: linear-gradient(0deg, rgba(227, 101, 255, 1) 0%, rgba(0, 0, 0, 1) 100%);
       }
 
+      .bg-woow4 {
+        background: rgb(140,82,255);
+        background: linear-gradient(90deg, rgba(140,82,255,1) 0%, rgba(80,30,84,1) 100%);
+      }
+
       .nav-pills .nav-link.active,
       .nav-pills .show>.nav-link {
           color: var(--bs-nav-pills-link-active-color);

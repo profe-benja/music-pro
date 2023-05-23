@@ -20,9 +20,14 @@ Route::prefix('tarjeta')->name('tarjeta.')->group( function () {
   Route::post('acceso_registro', [AuthController::class,'tarjetaRegistroStore'])->name('acceso.registro');
 
 
+
   Route::middleware('auth.user.card')->prefix('app')->name('app.')->group( function () {
     Route::get('/', [AppController::class,'index'])->name('index');
+    Route::post('/recargar', [AppController::class,'recargar'])->name('recargar');
   });
+
+  // CALLBACK DE RECARGA
+  Route::any('app/recarga/callback', [AppController::class,'callbackRecarga'])->name('app.recarga.callback');
 
   Route::middleware('auth.user.card')->prefix('admin')->name('admin.')->group( function () {
     Route::get('/', [AdminController::class,'index'])->name('index');
