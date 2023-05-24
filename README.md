@@ -90,6 +90,8 @@ https://www.transbankdevelopers.cl/documentacion/como_empezar#tarjetas-de-prueba
 | Prepago VISA      | 4051 8860 0005 6590       | 123  | Cualquier fecha       | Genera transacciones aprobadas           |
 | Prepago MASTERCARD| 5186 1741 1062 9480       | 123  | Cualquier fecha       | Genera transacciones rechazadas          |
 
-Cuando aparece un formulario de autenticación con RUT y clave, se debe usar el RUT *11.111.111-1* y la clave *123*
+Cuando aparece un formulario de autenticación con RUT y clave
+- RUT **11.111.111-1**
+- Clave **123**
 
 Recuerda que esta tabla contiene información de tarjetas de prueba para realizar transacciones en el ambiente de integración de Webpay. Asegúrate de utilizar esta información solo en dicho entorno y no con tarjetas reales para evitar cualquier problema de seguridad o fraude.
