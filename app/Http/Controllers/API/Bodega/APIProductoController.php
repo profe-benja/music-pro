@@ -15,7 +15,7 @@ class APIProductoController extends Controller
    *     summary="Obtener el listado de productos",
    *     description="Obtener el listado de productos",
    *     operationId="bodega_producto",
-   *     tags={"bodega"},
+   *     tags={"Bodega"},
    *     @OA\Response(
    *         response=200,
    *         description="",

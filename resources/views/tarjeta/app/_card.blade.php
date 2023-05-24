@@ -5,7 +5,7 @@
   </div>
   <div class="mt-5">
     <p class="text-white mt-3 font-number size-card-number" id="card-number-output">
-      <strong>{{ current_tarjeta_user()->me_card()->nro ?? 'XXXXXXXXXX' }}</strong>
+      <strong>{{ current_tarjeta_user()->me_card()->getNro() ?? 'XXXXXXXXXX' }}</strong>
     </p>
   </div>
   <div class="d-flex justify-content-between text-white font-barlow-sc text-uppercase">

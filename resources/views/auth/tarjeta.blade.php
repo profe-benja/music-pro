@@ -93,6 +93,9 @@
               <strong>Registrarse 💳</strong>
             </a>
             @endunless
+            <div class="text-center mt-3">
+                <a href="{{ route('tarjeta.reset') }}" class="text-dark">He olvidado mi contraseña 🎸</a>
+            </div>
             <hr>
             <div class="text-center">
               @if ($admin)

@@ -89,8 +89,6 @@ class APIErrorResponseController extends Controller
     return response()->json($response, Response::HTTP_UNAUTHORIZED);
   }
 
-
-
   /**
    * @OA\Get(
    *     path="/api/v1/test/error/forbidden",

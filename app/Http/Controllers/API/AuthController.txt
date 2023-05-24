@@ -147,3 +147,50 @@ class AuthController extends Controller
  */
 
 }
+
+
+
+  /**
+   * @OA\Get(
+   *     path="/api/v1/musicpro/send_email",
+   *     summary="Envia un correo electronico",
+   *     description="Envia correco electronico",
+   *     operationId="send_email",
+   *     tags={"Musicpro"},
+   *     @OA\Parameter(
+   *         name="asunto",
+   *         in="path",
+   *         description="Asunto del correo electronico",
+   *         required=true,
+   *         @OA\Schema(
+   *             type="string",
+   *             example='Correo muy importante'
+   *         )
+   *      ),
+   *      @OA\Parameter(
+   *         name="contenido",
+   *         in="path",
+   *         description="Contenido del correo electronico",
+   *         required=true,
+   *         @OA\Schema(
+   *             type="string",
+   *             example='hola como estas este es un correo de prueba'
+   *         )
+   *      ),
+   *     @OA\Response(
+   *         response=404,
+   *         description="Respuesta de la endpoint not_found",
+   *         @OA\JsonContent(
+   *            @OA\Property(property="error", type="string", example="Not Found"),
+   *            @OA\Property(property="message", type="string", example="El recurso solicitado no se encontró."),
+   *        )
+   *    ),
+   *     @OA\Response(
+   *         response=200,
+   *         description="Saludo obtenido correctamente",
+   *         @OA\JsonContent(
+   *            @OA\Property(property="message", type="string", example="Hola como estas"),
+   *        )
+   *    )
+   * )
+   */
