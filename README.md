@@ -70,7 +70,26 @@ Recuerda reemplazar `tu_basedatos`, `tu_usuario` y `tu_contraseña` en el archiv
 Este README.md proporciona una descripción general del proyecto, los requisitos, los pasos de configuración, el uso, la contribución y la información de la licencia. Puedes personalizarlo según tus necesidades y agregar más detalles sobre tu proyecto si lo deseas.
 
 
+# OTROS CODIGOS DEV 🎸
+```bash
+php artisan l5-swagger:generate
+```
 
+# TARJETAS PARA UTILIZAR 💳 
 
-OTROS CODIGOS DEV
-> php artisan l5-swagger:generate
+https://www.transbankdevelopers.cl/documentacion/como_empezar#tarjetas-de-prueba
+
+| Tipo de tarjeta   | Número de tarjeta         | CVV  | Fecha de expiración  | Resultado                                |
+|-------------------|---------------------------|------|----------------------|------------------------------------------|
+| VISA              | 4051 8856 0044 6623       | 123  | Cualquier fecha       | Genera transacciones aprobadas           |
+| AMEX              | 3700 0000 0002 032        | 1234 | Cualquier fecha       | Genera transacciones aprobadas           |
+| MASTERCARD        | 5186 0595 5959 0568       | 123  | Cualquier fecha       | Genera transacciones rechazadas          |
+| Redcompra         | 4051 8842 3993 7763       | N/A  | N/A                  | Genera transacciones aprobadas           |
+| Redcompra         | 4511 3466 6003 7060       | N/A  | N/A                  | Genera transacciones aprobadas           |
+| Redcompra         | 5186 0085 4123 3829       | N/A  | N/A                  | Genera transacciones rechazadas          |
+| Prepago VISA      | 4051 8860 0005 6590       | 123  | Cualquier fecha       | Genera transacciones aprobadas           |
+| Prepago MASTERCARD| 5186 1741 1062 9480       | 123  | Cualquier fecha       | Genera transacciones rechazadas          |
+
+Cuando aparece un formulario de autenticación con RUT y clave, se debe usar el RUT *11.111.111-1* y la clave *123*
+
+Recuerda que esta tabla contiene información de tarjetas de prueba para realizar transacciones en el ambiente de integración de Webpay. Asegúrate de utilizar esta información solo en dicho entorno y no con tarjetas reales para evitar cualquier problema de seguridad o fraude.
