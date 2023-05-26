@@ -93,7 +93,7 @@
         <div class="col">
           <div class="card text-start shadow">
             <div class="card-body">
-              <ul class="nav nav-pills nav-fill mb-3 mx-2 gap-3" id="pills-tab" role="tablist">
+              <ul class="nav nav-pills nav-fill mb-3 mx-2 gap-3 d-none d-md-flex" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                   <button class="nav-link active border shadow-sm" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
                     Mi saldo
@@ -186,11 +186,26 @@
 
 
 <div class="mobile-navbar">
-  <div class="navbar-item"><i class="fas fa-home"></i> Home</div>
-  <div class="navbar-item"><i class="fas fa-money-bill-wave"></i> Pagos</div>
-  <div class="navbar-item"><i class="fas fa-exchange-alt"></i> Transferencias</div>
-  <div class="navbar-item"><i class="fas fa-cog"></i> Configuración</div>
-  <div class="navbar-item"><i class="fas fa-cog"></i> Configuración</div>
+  <div class="navbar-item">
+    <button type="button" name="" id="" class="btn"  onclick="selectedItem('pills-home-tab')">
+      <i class="fas fa-home"></i> <br> <small>Home</small>
+    </button>
+  </div>
+  <div class="navbar-item">
+    <button type="button" name="" id="" class="btn"  onclick="selectedItem('pills-profile-tab')">
+      <i class="fas fa-home"></i> <br> <small>Movimientos</small>
+    </button>
+  </div>
+  <div class="navbar-item">
+    <button type="button" name="" id="" class="btn" data-bs-toggle="modal" data-bs-target="#saldoModal">
+      <i class="fas fa-home"></i> <br> <small>Mi Card</small>
+    </button>
+  </div>
+  <div class="navbar-item">
+    <button type="button" name="" id="" class="btn"  onclick="selectedItem('pills-contact-tab')">
+      <i class="fas fa-home"></i> <br> <small>Home</small>
+    </button>
+  </div>
 </div>
 
 
@@ -263,5 +278,9 @@
     colorLight : "#ffffff",
     correctLevel : QRCode.CorrectLevel.H
   });
+
+  function selectedItem(item) {
+    document.getElementById(item).click();
+  }
 </script>
 @endpush
