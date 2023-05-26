@@ -9,12 +9,14 @@
       <div class="modal-body">
         <div class="container">
           <div class="row">
-            @include('tarjeta.app._card')
+            <div class="col-12">
+              @include('tarjeta.app._card')
+            </div>
             <div class="d-grid gap-2">
-              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#qrModal">
+              {{-- <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#qrModal">
                 <i class="fa-solid fa-3x fa-qrcode"></i>
                 compartir
-              </button>
+              </button> --}}
             </div>
           </div>
         </div>

@@ -13,7 +13,6 @@ use App\Models\Transporte\Usuario as TransporteUsuario;
 use App\Services\EmailServices;
 use Auth;
 use Illuminate\Http\Request;
-use Nette\Utils\Random;
 
 // use App\Http\Requests\AuthLoginRequest as AuthRequest;
 
@@ -134,7 +133,6 @@ class AuthController extends Controller
         return back()->with('info','Error. Intente nuevamente.');
       }
     } catch (\Throwable $th) {
-      return $th;
       return back()->with('info','Error. Intente nuevamente.');
     }
   }
@@ -156,7 +154,6 @@ class AuthController extends Controller
         return back()->with('info','Error. Intente nuevamente.');
       }
     } catch (\Throwable $th) {
-      return $th;
       return back()->with('info','Error. Intente nuevamente.');
     }
   }
@@ -178,7 +175,6 @@ class AuthController extends Controller
         return back()->with('info','Error. Intente nuevamente.');
       }
     } catch (\Throwable $th) {
-      return $th;
       return back()->with('info','Error. Intente nuevamente.');
     }
   }
@@ -201,7 +197,6 @@ class AuthController extends Controller
         return back()->with('info','Error. Intente nuevamente.');
       }
     } catch (\Throwable $th) {
-      return $th;
       return back()->with('info','Error. Intente nuevamente.');
     }
   }
@@ -266,8 +261,6 @@ class AuthController extends Controller
 
       return redirect()->route('sucursal.acceso')->with('success','Usuario registrado correctamente.');
     } catch (\Throwable $th) {
-      return $th;
-
       return back()->with('info','Error. Intente nuevamente.');
     }
   }
@@ -288,8 +281,6 @@ class AuthController extends Controller
 
       return redirect()->route('transporte.acceso')->with('success','Usuario registrado correctamente.');
     } catch (\Throwable $th) {
-      return $th;
-
       return back()->with('info','Error. Intente nuevamente.');
     }
   }
@@ -324,6 +315,7 @@ class AuthController extends Controller
       $tr->code_banco_destino = 'BEATPAY';
       $tr->descripcion = 'Carga inicial';
       $tr->monto = 10000;
+      $tr->estado = 1;
       $tr->save();
 
       $tarjeta_banco = Tarjeta::find(1);
@@ -335,7 +327,6 @@ class AuthController extends Controller
 
       return redirect()->route('tarjeta.app.index')->with('success','Usuario registrado correctamente.');
     } catch (\Throwable $th) {
-      return $th;
       return back()->with('info','Error. Intente nuevamente.');
     }
   }

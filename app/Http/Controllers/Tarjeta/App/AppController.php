@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tarjeta\App;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tarjeta\Banco;
+use App\Models\Tarjeta\Tarjeta;
 use App\Models\Tarjeta\Transaccion;
 use App\Models\Tarjeta\Usuario;
 use App\Services\TransbankServices;
@@ -21,9 +22,10 @@ class AppController extends Controller
                                 ->orderBy('id', 'desc')->get();
 
     // return $transacciones;
+    $isMobile = true;
 
 
-    return view('tarjeta.app.index', compact('u', 'bancos'));
+    return view('tarjeta.app.index', compact('u','isMobile','tarjeta', 'bancos', 'transacciones'));
   }
 
   public function recargar(Request $request) {
@@ -54,6 +56,7 @@ class AppController extends Controller
 
   public function callbackRecarga() {
     $token = $_GET['token_ws'];
+
     $info = (new TransbankServices())->getCallback($token);
     $id_trans = $info['BuyOrder'];
     $monto = $info['Amount'];
@@ -65,11 +68,67 @@ class AppController extends Controller
       $tarjeta = $trans->tarjetaDestino;
       $tarjeta->saldo += $monto;
       $tarjeta->update();
-    } else {
-      $trans->estado = Transaccion::STATUS_RECHAZADO;
+      $trans->update();
+      return redirect()->route('tarjeta.app.index')->with('success', 'Transacción realizada');
     }
 
+    $trans->estado = Transaccion::STATUS_RECHAZADO;
     $trans->update();
-    return redirect()->route('tarjeta.app.index')->with('success', 'Transacción realizada');
+    return redirect()->route('tarjeta.app.index')->with('danger', 'Error en la transacción');
+  }
+
+  public function transferir(Request $request) {
+    try {
+      $id_banco = $request->input('id_banco');
+      $nro_destino = $request->input('nro');
+      $monto = abs($request->input('monto'));
+      $descripcion = $request->input('descripcion');
+
+      $u = current_tarjeta_user();
+      $t = $u->me_card();
+
+      $resto = $t->saldo - $monto;
+
+      if ($resto < 0) {
+        return back()->with('danger', 'Saldo insuficiente');
+      }
+
+      if ($id_banco == 1) {
+        if($nro_destino == $t->nro) {
+          return back()->with('danger', 'No puedes transferir a tu misma tarjeta');
+        }
+
+        $tarjeta_destino = Tarjeta::where('nro', $request->input('nro'))->where('id_banco',1)->first();
+
+        if (!$tarjeta_destino) { return back()->with('danger', 'Tarjeta no encontrada'); }
+
+        $tr = new Transaccion();
+        $tr->id_tarjeta_origen = $t->id;
+        $tr->id_banco_origen = $t->id_banco;
+        $tr->code_banco_origen = $t->banco->code;
+
+        $tr->id_tarjeta_destino = $tarjeta_destino->id;
+        $tr->id_banco_destino = $tarjeta_destino->id_banco;
+        $tr->code_banco_destino = $tarjeta_destino->banco->code;
+        $tr->descripcion = $descripcion;
+        $tr->monto = $monto;
+        $tr->estado = Transaccion::STATUS_APROBADO;
+        $tr->save();
+
+        $t->saldo = $resto;
+        $t->update();
+
+        $tarjeta_destino->saldo += $monto;
+        $tarjeta_destino->update();
+
+        return back()->with('success', 'Se ha realizado una transacción exitosa');
+      } else {
+
+        // Integracion con la otra entidad bancaria
+        return back()->with('danger', 'Saldo insuficiente');
+      }
+    } catch (\Throwable $th) {
+      return $th;
+    }
   }
 }

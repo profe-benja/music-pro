@@ -2,6 +2,7 @@
 
 namespace App\Models\Tarjeta;
 
+use App\Services\ConvertDatetime;
 use App\Services\Currency;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -53,5 +54,9 @@ class Transaccion extends Model
 
   public function bancoDestino() {
     return $this->belongsTo(Banco::class, 'id_banco_destino');
+  }
+
+  public function getFechaCreacion(){
+    return new ConvertDatetime($this->created_at);
   }
 }

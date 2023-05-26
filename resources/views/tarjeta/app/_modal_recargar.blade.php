@@ -8,7 +8,7 @@
             <div class="mb-3 row">
               <label for="inputRecargar" class="col-sm-2 col-form-label">Monto</label>
               <div class="col-sm-10">
-                <input type="number" class="form-control" min="1" maxlength="999" id="inputRecargar" name="monto" required>
+                <input type="number" class="form-control" min="1" max="10000000000" maxlength="10" id="inputRecargar" name="monto" required>
               </div>
             </div>
           </div>

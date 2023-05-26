@@ -38,6 +38,7 @@ class TransaccionController extends Controller
       $t->id_banco_destino = $request->id_banco_destino;
       $t->monto = $request->monto;
       $t->descripcion = $request->decripcion;
+      $t->estado = Transaccion::STATUS_APROBADO;
       $t->save();
 
 

@@ -24,6 +24,7 @@ Route::prefix('tarjeta')->name('tarjeta.')->group( function () {
   Route::middleware('auth.user.card')->prefix('app')->name('app.')->group( function () {
     Route::get('/', [AppController::class,'index'])->name('index');
     Route::post('/recargar', [AppController::class,'recargar'])->name('recargar');
+    Route::post('/transferir', [AppController::class,'transferir'])->name('transferir');
   });
 
   // CALLBACK DE RECARGA
