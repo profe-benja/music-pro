@@ -138,8 +138,6 @@
           --bs-offcanvas-width: 499px;
       }
 
-      @import url('https://fonts.googleapis.com/css?family=Barlow|Major+Mono+Display&display=swap');
-
       body {
           background-color: rgb(250, 250, 250);
       }
@@ -154,10 +152,6 @@
           font-family: 'Barlow', cursive;
       }
 
-      .font-number {
-          font-family: 'Major Mono Display', monospace;
-      }
-
       .p-30 {
           padding: 30px;
       }
@@ -168,8 +162,8 @@
 
       .credit-card {
           box-sizing: content-box;
-          /* width: 350px; */
-          height: 190px;
+          /* width: 100%; */
+          /* height: 100%; */
           background: url("{{ asset('assets/tarjeta/card/verticalpurple.png') }}");
           background-size: cover;
           border-radius: 15px;

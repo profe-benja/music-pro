@@ -42,6 +42,12 @@
         </li>
 
         <li class="nav-item mx-2">
+          <a class="nav-link btn btn-outline-primary rounded-pill" href="https://doc.clickup.com/9003039734/p/h/8c9yyzp-662/314548aefec49f8">
+            📄 Documentación
+          </a>
+        </li>
+
+        <li class="nav-item mx-2">
           <a class="nav-link btn btn-outline-dark rounded-pill" href="/api/documentation">
             🧠 API
           </a>

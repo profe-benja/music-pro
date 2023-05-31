@@ -1,6 +1,7 @@
 <?php
 
 use App\Services\ConvertDatetime;
+use App\Services\Currency;
 
 function activeValidate($urls, $blockers) {
   $status = false;
@@ -27,4 +28,8 @@ function activeOpen($urls, $blockers = array()){
 
 function helperDateFormat(string $date) {
   return (new ConvertDatetime($date));
+}
+
+function helperMoneyFormat($n) {
+  return Currency::getConvert($n);
 }

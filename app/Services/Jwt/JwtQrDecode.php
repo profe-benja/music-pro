@@ -33,6 +33,8 @@ class JwtQrDecode extends JwtQR
         return 409;
       }
 
+      // $token = Auth::guard('card_usuario')->issueToken();
+
       return 404;
     } catch (\Throwable $th) {
       return 500;

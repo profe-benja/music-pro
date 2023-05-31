@@ -25,12 +25,20 @@ class Usuario extends Authenticatable
     3 => 'c'
   ];
 
+  protected function integrations(): Attribute {
+    return Attribute::make(
+        get: fn ($value) => json_decode($value, true),
+        set: fn ($value) => json_encode($value),
+    );
+  }
+
   protected function info(): Attribute {
     return Attribute::make(
         get: fn ($value) => json_decode($value, true),
         set: fn ($value) => json_encode($value),
     );
   }
+
 
   public function scopefindByUsername($query, $username){
     return $query->where('username',$username)->where('activo',true);
@@ -55,6 +63,34 @@ class Usuario extends Authenticatable
 
   public function me_card() {
     return $this->tarjetas()->first();
+  }
+
+  public function generateSecretKey() {
+    return substr(time(), 1,5) . substr($this->username,1,6);
+  }
+
+  public function getIntegrationCompany() {
+    return $this->integrations['company'] ?? '';
+  }
+
+  public function getIntegrationUser() {
+    return $this->integrations['user'] ?? '';
+  }
+
+  public function getSecretKey() {
+    $secret = $this->integrations['secret_key'] ?? null;
+
+    if (empty($secret)) {
+      $secret = $this->generateSecretKey();
+
+      $integrations = $this->integrations;
+      $integrations['secret_key'] = $secret;
+      $this->integrations = $integrations;
+
+      $this->update();
+    }
+
+    return $secret;
   }
 
   public function getCredito() {

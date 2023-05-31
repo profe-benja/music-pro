@@ -8,6 +8,7 @@ use App\Http\Controllers\API\APITestController;
 use App\Http\Controllers\API\Bodega\APIProductoController as BodegaAPIProductoController;
 use App\Http\Controllers\API\Musicpro\APIEmailController;
 use App\Http\Controllers\API\Sucursal\APIProductoController;
+use App\Http\Controllers\API\Tarjeta\APITransaccionController;
 
 Route::post('/product/find',[APIProductoController::class,'find'])->name('api.v1.product.find');
 
@@ -36,7 +37,8 @@ Route::prefix('/v1')->name('api.v1.')->group( function () {
 });
 
 
-
-
+Route::get('doc',function() {
+  return redirect('api/documentation');
+})->name('api.doc');
 
 

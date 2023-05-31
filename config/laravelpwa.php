@@ -9,7 +9,7 @@ return [
         'background_color' => '#ffffff',
         'theme_color' => '#000000',
         'display' => 'standalone',
-        'orientation'=> 'any',
+        'orientation'=> 'portrait',
         'status_bar'=> 'black',
         'icons' => [
             '72x72' => [
@@ -58,20 +58,20 @@ return [
             '2048x2732' => '/images/icons/splash-1668x2224.png',
         ],
         'shortcuts' => [
-            [
-                'name' => 'Shortcut Link 1',
-                'description' => 'Shortcut Link 1 Description',
-                'url' => '/shortcutlink1',
-                'icons' => [
-                    "src" => "/images/icons/icon-72x72.png",
-                    "purpose" => "any"
-                ]
-            ],
-            [
-                'name' => 'Shortcut Link 2',
-                'description' => 'Shortcut Link 2 Description',
-                'url' => '/shortcutlink2'
-            ]
+            // [
+            //     'name' => 'Shortcut Link 1',
+            //     'description' => 'Shortcut Link 1 Description',
+            //     'url' => '/shortcutlink1',
+            //     'icons' => [
+            //         "src" => "/images/icons/icon-72x72.png",
+            //         "purpose" => "any"
+            //     ]
+            // ],
+            // [
+            //     'name' => 'Shortcut Link 2',
+            //     'description' => 'Shortcut Link 2 Description',
+            //     'url' => '/shortcutlink2'
+            // ]
         ],
         'custom' => []
     ]

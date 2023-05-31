@@ -4,7 +4,7 @@
       <div class="fa fa-home"></div>
       <img src="{{ $img ?? '' }}" width="60px" height="60px" class="img-fluid rounded-3" alt="...">
     </div> --}}
-    <div class="col-8">
+    <div class="col-12">
       <small>{{ $date ?? '' }}</small><br/>
       <p class="{{ $isMobile ? '' : 'h6' }}">
         <span class="fw-bold ">

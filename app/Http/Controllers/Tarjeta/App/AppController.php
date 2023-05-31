@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Tarjeta\App;
 
+use Jenssegers\Agent\Agent;
 use App\Http\Controllers\Controller;
 use App\Models\Tarjeta\Banco;
 use App\Models\Tarjeta\Tarjeta;
@@ -22,7 +23,8 @@ class AppController extends Controller
                                 ->orderBy('id', 'desc')->get();
 
     // return $transacciones;
-    $isMobile = true;
+    $agent = new Agent();
+    $isMobile = $agent->isMobile();
 
 
     return view('tarjeta.app.index', compact('u','isMobile','tarjeta', 'bancos', 'transacciones'));
@@ -131,4 +133,38 @@ class AppController extends Controller
       return $th;
     }
   }
+
+  public function habilitar(Request $request) {
+    $u = current_tarjeta_user();
+    $t = $u->me_card();
+
+
+
+  }
+
+  public function empresa() {
+    $u = current_tarjeta_user();
+    $bancos = Banco::where('disponible', true)->get();
+    $tarjeta = $u->me_card();
+
+    // return $transacciones;
+    $agent = new Agent();
+    $isMobile = $agent->isMobile();
+
+    return view('tarjeta.app.empresa', compact('u','isMobile','tarjeta', 'bancos'));
+  }
+
+  public function empresaUpdate(Request $request) {
+    $u = current_tarjeta_user();
+
+    $integrations = $u->integrations;
+    $integrations['user'] = $request->input('user');
+    $integrations['secret_key'] = $request->input('secret_key');
+    $integrations['company'] = $request->input('company');
+    $u->integrations = $integrations;
+    $u->update();
+
+    return back()->with('success', 'Se ha actualizado la información');
+  }
+
 }

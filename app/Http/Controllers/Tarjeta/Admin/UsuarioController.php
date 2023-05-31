@@ -36,6 +36,7 @@ class UsuarioController extends Controller
     // $u->id_team = $request->input('team');
     $u->tipo_usuario = $request->input('tipo');
     $u->save();
+    $u->getSecretKey();
 
     $t = new Tarjeta();
     $t->id_usuario = $u->id;

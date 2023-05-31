@@ -13,6 +13,7 @@ use App\Models\Transporte\Usuario as TransporteUsuario;
 use App\Services\EmailServices;
 use Auth;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 // use App\Http\Requests\AuthLoginRequest as AuthRequest;
 
@@ -125,6 +126,12 @@ class AuthController extends Controller
         Auth::guard('store_usuario')->loginUsingId($u->id);
         $this->start_sesions($u);
 
+        // $token = Auth::guard('store_usuario')->issueToken();
+
+        // $token = JWTAuth::fromUser(Auth::guard('store_usuario')->user());
+        // $token = auth()->login($u);
+
+        // return $token;
         // if ($u->admin) {
         //   return redirect()->route('home.index');
         // }
@@ -133,6 +140,7 @@ class AuthController extends Controller
         return back()->with('info','Error. Intente nuevamente.');
       }
     } catch (\Throwable $th) {
+      return $th;
       return back()->with('info','Error. Intente nuevamente.');
     }
   }
@@ -296,6 +304,8 @@ class AuthController extends Controller
       $u->run = $request->input('run');
       $u->admin = false;
       $u->save();
+      $u->getSecretKey();
+
 
       $t = new Tarjeta();
       $t->id_usuario = $u->id;

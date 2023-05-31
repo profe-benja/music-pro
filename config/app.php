@@ -188,6 +188,8 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         L5Swagger\L5SwaggerServiceProvider::class,
+        Jenssegers\Agent\AgentServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -214,6 +216,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
       'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
       'PDF' => Barryvdh\DomPDF\Facade::class,
+      'Agent' => Jenssegers\Agent\Facades\Agent::class,
     ])->toArray(),
 
 ];
