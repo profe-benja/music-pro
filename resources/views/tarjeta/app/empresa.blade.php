@@ -94,7 +94,12 @@
                   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
                       <div class="card-body">
                         <h4 class="card-title">Información de integración</h4>
-                        <p class="card-text">Realizar pagos</p>
+                        <p class="card-text">
+                          <code>
+                            {{route('api.v1.tarjeta.transferir')}}
+                          </code>
+
+                        </p>
 
                         <table class="table">
                           <tbody>

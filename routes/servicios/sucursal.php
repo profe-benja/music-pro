@@ -4,12 +4,17 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Sucursal\IntegracionController;
 use App\Http\Controllers\Sucursal\ProductoController;
 use App\Http\Controllers\Sucursal\UsuarioController;
 use App\Http\Controllers\SucursalController;
 
 Route::prefix('sucursal')->name('sucursal.')->group( function () {
   Route::get('/', [HomeController::class,'sucursal'])->name('index');
+  Route::get('/pago', [HomeController::class,'sucursalPago'])->name('pago');
+  Route::post('/pago', [HomeController::class,'sucursalPagoStore'])->name('pago.store');
+  Route::post('/pago/recibo', [HomeController::class,'sucursalPagoRecibo'])->name('pago.recibo');
+
 
   Route::get('acceso', [AuthController::class,'sucursalAcceso'])->name('acceso');
   Route::post('acceso', [AuthController::class,'sucursalLogin'])->name('acceso');
@@ -38,5 +43,13 @@ Route::prefix('sucursal')->name('sucursal.')->group( function () {
     Route::get('usuario/{id}/edit', [UsuarioController::class,'edit'])->name('usuario.edit');
     Route::put('usuario/{id}', [UsuarioController::class,'update'])->name('usuario.update');
     // Route::delete('admin/usuario/{id}', [BodegaUsuarioController::class,'destroy'])->name('admin.usuario.delete');
+
+
+    Route::get('integracion', [IntegracionController::class,'index'])->name('integracion.index');
+    Route::get('integracion/tarjeta', [IntegracionController::class,'tarjeta'])->name('integracion.tarjeta');
+    Route::get('integracion/tarjeta/create', [IntegracionController::class,'tarjeta'])->name('integracion.tarjeta.create');
+    Route::get('integracion/bodega', [IntegracionController::class,'bodega'])->name('integracion.bodega');
+    Route::get('integracion/transporte', [IntegracionController::class,'transporte'])->name('integracion.transporte');
+
   });
 });

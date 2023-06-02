@@ -14,33 +14,54 @@ use Jenssegers\Agent\Agent;
 class APITransaccionController extends Controller
 {
 
+  /**
+   * @OA\Get(
+   *     path="/api/v1/bodega/producto",
+   *     summary="Obtener el listado de productos",
+   *     description="Obtener el listado de productos",
+   *     operationId="bodega_producto",
+   *     tags={"Bodega"},
+   *     @OA\Response(
+   *         response=200,
+   *         description="",
+   *         @OA\JsonContent(
+   *            @OA\Property(property="message", type="string", example="Hola como estas"),
+   *        )
+   *    )
+   * )
+   */
   public function transferir_get(Request $request) {
-    $user = $_GET['user'] ?? ''; // correo
-    $secret_key = $_GET['secret_key'] ?? ''; // clave interna
-    $monto = $_GET['monto'] ?? '';
-    $callback = $_GET['callback'] ?? '';
-    $compania = $_GET['compania'] ?? '';
+    try {
+      $user = $_GET['user'] ?? ''; // correo
+      $secret_key = $_GET['secret_key'] ?? ''; // clave interna
+      $monto = $_GET['monto'] ?? '';
+      $callback = $_GET['callback'] ?? '';
 
-    // user=benja@gmail.com&secret_key=123123&monto=1000&callback=https://www.google.com
-    $get = 'user=' . $user . '&secret_key=' . $secret_key . '&monto' . $monto . '&compania' . $compania . '&callback=' . $callback;
+      // user=benja@gmail.com&secret_key=123123&monto=1000&callback=https://www.google.com
+      $get = 'user=' . $user . '&secret_key=' . $secret_key . '&monto' . $monto . '&callback=' . $callback;
 
-    $route_post = $get;
-    // $usuarioTarjeta = Usuario::whereJsonContains('integrations->user', $user)->whereJsonContains('integrations->secret_key', $secret_key)->first();
-    $usuarioTarjeta = Usuario::whereJsonContains('integrations->user', $user)->first();
-    if ($usuarioTarjeta->getSecretKey() == $secret_key) {
+      $route_post = $get;
+      $usuarioTarjeta = Usuario::whereJsonContains('integrations->user', $user)->first();
+      $compania = $usuarioTarjeta->getIntegrationCompany();
 
-    } else {
+      if ($usuarioTarjeta->getSecretKey() == $secret_key) {
+        $agent = new Agent();
+        $isMobile = $agent->isMobile();
 
+        return view('tarjeta.api.transferir', compact('isMobile','route_post','monto','usuarioTarjeta', 'compania'));
+      }
+
+      $callback = $callback . '?error=1';
+      return Redirect($callback);
+    } catch (\Throwable $th) {
+      throw $th;
+      $callback = $callback . '?error=1';
+      return Redirect($callback);
     }
-
-    $agent = new Agent();
-    $isMobile = $agent->isMobile();
-
-    return view('tarjeta.api.transferir', compact('isMobile','route_post','monto','usuarioTarjeta', 'compania'));
   }
 
-  public function transferir_post(Request $request) {
-
+  // INTERNO PAGO
+  public function transaccion(Request $request) {
     $user = $_GET['user'] ?? ''; // correo
     $secret_key = $_GET['secret_key'] ?? ''; // clave interna
     $monto = $_GET['monto'] ?? '';
@@ -49,7 +70,11 @@ class APITransaccionController extends Controller
     // user=benja@gmail.com&secret_key=123123&monto=1000&callback=www.google.com
     $get = 'user=' . $user . '&secret_key=' . $secret_key . '&monto' . $monto . '&callback=' . $callback;
 
-    $route_post = $get;
+    $usuario = $request->input('user');
+    $clave = $request->input('clave');
+
+
+
     // return Redirect($callback);
 
     $usuario = Usuario::whereJsonContains('integrations->user', $user)->first();
@@ -60,13 +85,6 @@ class APITransaccionController extends Controller
     }
 
     return $get;
-    $agent = new Agent();
-    $isMobile = $agent->isMobile();
-
-
-
-
-    return view('tarjeta.api.transferir', compact('isMobile','route_post'));
   }
 }
 

@@ -43,8 +43,8 @@
     </a>
   </li>
 
-  <li class="nav-item {{ activeTab(['sucursal/usuario*']) }}">
-    <a class="nav-link" href="">
+  <li class="nav-item {{ activeTab(['sucursal/integracion*']) }}">
+    <a class="nav-link" href="{{ route('sucursal.integracion.index') }}">
       <i class="fas fa-fw fa-code"></i>
       <span>Integraciones</span>
     </a>

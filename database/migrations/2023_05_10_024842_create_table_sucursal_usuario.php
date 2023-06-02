@@ -42,6 +42,7 @@ return new class extends Migration
         $u->apellido = 'Mora';
         $u->username = 'admin@musicpro.cl';
         $u->password = hash('sha256','123456');
+        $u->direccion = 'Calle falsa 123';
         $u->admin = true;
         $u->save();
     }
