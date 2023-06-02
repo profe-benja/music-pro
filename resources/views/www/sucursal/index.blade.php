@@ -227,7 +227,7 @@
             <strong>PAGAR</strong>
           </a>
         @else
-          <a class="btn btn-primary btn-lg mx-2" href="{{ route('sucursal.login') }}" >
+          <a class="btn btn-primary btn-lg mx-2" href="{{ route('sucursal.acceso') }}" >
             <strong>INICIAR SESIÓN</strong>
           </a>
         @endif
