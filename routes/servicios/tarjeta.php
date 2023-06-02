@@ -28,6 +28,7 @@ Route::prefix('tarjeta')->name('tarjeta.')->group( function () {
     Route::post('/habilitar', [AppController::class,'habilitar'])->name('habilitar');
     Route::get('/empresa', [AppController::class,'empresa'])->name('empresa');
     Route::put('/empresa', [AppController::class,'empresaUpdate'])->name('empresa.update');
+    Route::put('/perfil', [AppController::class,'pefilUpdate'])->name('perfil.update');
   });
 
   // CALLBACK DE RECARGA

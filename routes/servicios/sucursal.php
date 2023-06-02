@@ -11,10 +11,9 @@ use App\Http\Controllers\SucursalController;
 
 Route::prefix('sucursal')->name('sucursal.')->group( function () {
   Route::get('/', [HomeController::class,'sucursal'])->name('index');
-  Route::get('/pago', [HomeController::class,'sucursalPago'])->name('pago');
-  Route::post('/pago', [HomeController::class,'sucursalPagoStore'])->name('pago.store');
-  Route::post('/pago/recibo', [HomeController::class,'sucursalPagoRecibo'])->name('pago.recibo');
-
+  Route::get('pago', [HomeController::class,'sucursalPago'])->name('pago');
+  Route::post('pago', [HomeController::class,'sucursalPagoStore'])->name('pago.store');
+  Route::post('pago/recibo', [HomeController::class,'sucursalPagoRecibo'])->name('pago.recibo');
 
   Route::get('acceso', [AuthController::class,'sucursalAcceso'])->name('acceso');
   Route::post('acceso', [AuthController::class,'sucursalLogin'])->name('acceso');
@@ -22,7 +21,7 @@ Route::prefix('sucursal')->name('sucursal.')->group( function () {
   Route::get('acceso_registro', [AuthController::class,'sucursalRegistro'])->name('acceso.registro');
   Route::post('acceso_registro', [AuthController::class,'sucursalRegistroStore'])->name('acceso.registro');
 
-  Route::middleware('auth.user.store')->group( function () {
+  Route::middleware('auth.user.store.admin')->group( function () {
     Route::get('home', [SucursalController::class,'home'])->name('home');
 
     // Productos

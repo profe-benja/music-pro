@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AccessUsuarioSucursal
+class AccessUsuarioSucursalAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,9 @@ class AccessUsuarioSucursal
     public function handle(Request $request, Closure $next)
     {
       if (auth('store_usuario')->check()){
-        return $next($request);
+        if (auth('store_usuario')->user()->admin) {
+          return $next($request);
+        }
       }
 
       return redirect('/')->with('danger','Usuario deshabilitado.');

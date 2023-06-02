@@ -167,4 +167,11 @@ class AppController extends Controller
     return back()->with('success', 'Se ha actualizado la información');
   }
 
+  public function pefilUpdate(Request $request) {
+    $pass = $request->input('password');
+    $u = current_tarjeta_user();
+    $u->password = hash('sha256', $pass);
+    $u->update();
+    return back()->with('success', 'Se ha actualizado la información');
+  }
 }

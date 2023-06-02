@@ -221,9 +221,16 @@
           <i class="bi bi-whatsapp"></i>
           Envía el pedido por Whatsapp $<strong><span id="cart_price_total_one">0</span></strong>
         </button>
-        <a class="btn btn-primary btn-lg mx-2" href="{{ route('sucursal.pago') }}" >
-          <strong>PAGAR</strong>
-        </a>
+
+        @if (current_store_user())
+          <a class="btn btn-primary btn-lg mx-2" href="{{ route('sucursal.pago') }}" >
+            <strong>PAGAR</strong>
+          </a>
+        @else
+          <a class="btn btn-primary btn-lg mx-2" href="{{ route('sucursal.login') }}" >
+            <strong>INICIAR SESIÓN</strong>
+          </a>
+        @endif
       </div>
     </div>
   </div>

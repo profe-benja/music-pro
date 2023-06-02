@@ -88,7 +88,13 @@
                           Editar
                       </button>
                   </li>
-
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link border shadow-sm" id="pills-password-tab"
+                        data-bs-toggle="pill" data-bs-target="#pills-password" type="button"
+                        role="tab" aria-controls="pills-password" aria-selected="false">
+                        Cambiar contraseña
+                    </button>
+                </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
@@ -161,6 +167,31 @@
                             </div>
                           </div>
 
+                        </div>
+                        <div class="d-grid gap-2">
+                          <button class="btn btn-lg btn-bd-primary" type="submit">Guardar</button>
+                        </div>
+                        {{-- <button type="submit" class="btn bg-primary btn-lg btn-block">
+                          <strong>Transferir</strong>
+                        </button> --}}
+                      </form>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="pills-password" role="tabpanel" aria-labelledby="pills-password-tab" tabindex="0">
+                    <div class="container">
+                      <h4 class="card-title">Cambiar contraseña</h4>
+                      {{-- <p class="card-text">Text</p> --}}
+
+                      <form action="{{ route('tarjeta.app.perfil.update') }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="row">
+                          <div class="mb-3 row">
+                            <label for="company" class="col-sm-6 col-form-label"><strong>Contraseña</strong></label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" id="password" name="password" value="" required>
+                            </div>
+                          </div>
                         </div>
                         <div class="d-grid gap-2">
                           <button class="btn btn-lg btn-bd-primary" type="submit">Guardar</button>

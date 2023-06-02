@@ -61,10 +61,13 @@ class HomeController extends Controller
   }
 
   public function sucursalPagoStore(Request $request) {
-
     $pago = $request->input('pago');
+    $banco = BancoApi::where('code', $pago)->firstOrFail();
 
-    $banco = BancoApi::where('code', $pago)->first();
+
+
+    $b = new Boleta();
+    $b->total = $request->input('monto');
 
     // return $banco;
     // $lista_producto = json_decode($request->input('listaproductos'));
