@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sucursal_boleta', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_usuario_solcitante')->nullable();
+            $table->integer('id_usuario_solicitante')->nullable();
             $table->string('direccion')->nullable();
             $table->string('nombre')->nullable();
             $table->integer('total_pagado')->nullable();

@@ -1,9 +1,5 @@
 @extends('layouts.tarjeta.skeleton')
 @section('app')
-
-
-
-
 <div id="wrapper">
   @include('layouts.tarjeta._menu')
   <div id="content-wrapper" class="d-flex flex-column">

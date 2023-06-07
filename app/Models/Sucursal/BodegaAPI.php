@@ -10,11 +10,11 @@ use App\Presenters\Sucursal\ProductoPresenter;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 
-class BancoAPI extends Model
+class BodegaAPI extends Model
 {
   use HasFactory;
 
-  protected $table = 'sucursal_banco_api';
+  protected $table = 'sucursal_bodega_api';
 
   // CONST STATUS = [
   //   1 => 'SIN SOLICITUD',

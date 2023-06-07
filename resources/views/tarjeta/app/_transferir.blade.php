@@ -21,7 +21,7 @@
         <div class="mb-2 row">
           <label for="inputCuenta" class="col-sm-2 col-form-label">Nro cuenta</label>
           <div class="col-sm-10">
-            <input type="number" class="form-control" id="inputCuenta" name="nro" required>
+            <input type="text" class="form-control" id="inputCuenta" name="nro" required>
           </div>
         </div>
 

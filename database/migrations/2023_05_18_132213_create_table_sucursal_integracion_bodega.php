@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Sucursal\BancoAPI;
+use App\Models\Sucursal\BodegaAPI;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
-      Schema::create('sucursal_banco_api', function (Blueprint $table) {
+      Schema::create('sucursal_bodega_api', function (Blueprint $table) {
         $table->id();
         $table->string('nombre')->nullable();
         $table->string('code')->nullable();
@@ -25,21 +25,22 @@ return new class extends Migration
       });
 
 
-      $b = new BancoAPI();
+      $b = new BodegaAPI();
       $b->id = 1;
-      $b->nombre = 'BEATPAY VIRTUAL';
-      $b->code = 'BEATPAY';
-      $b->usuario = 'BEATPAY';
-      $b->secret_key = 'BEATPAY123';
+      $b->nombre = 'MUSICPRO';
+      $b->code = 'MUSICPRO';
+      $b->usuario = 'MUSICPRO';
+      $b->secret_key = 'MUSICPRO123';
       $b->save();
 
-      $b = new BancoAPI();
-      $b->id = 2;
-      $b->nombre = 'WEBPAY';
-      $b->code = 'WEBPAY';
-      $b->usuario = 'WEBPAY';
-      $b->secret_key = 'WEBPAY123';
+      $b = new BodegaAPI();
+      $b->id = 1;
+      $b->nombre = 'MUSICPRO';
+      $b->code = 'MUSICPRO';
+      $b->usuario = 'MUSICPRO';
+      $b->secret_key = 'MUSICPRO123';
       $b->save();
+
     }
 
     /**
@@ -49,6 +50,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sucursal_banco_api');
+        Schema::dropIfExists('sucursal_boega_api');
     }
 };

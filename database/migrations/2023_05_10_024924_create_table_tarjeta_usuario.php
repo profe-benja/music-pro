@@ -42,6 +42,27 @@ return new class extends Migration
         $u->password = hash('sha256','123456');
         $u->run = '12345678K';
         $u->admin = true;
+        $integrations = $u->integrations;
+        $integrations['company'] = 'BEATPAY';
+        $integrations['user'] = 'BEATPAY';
+        $integrations['secret_key'] = $u->generateSecretKey();
+        $u->integrations = $integrations;
+        $u->save();
+
+
+        $u = new Usuario();
+        $u->correo = 'benja@musicpro.cl';
+        $u->nombre = 'Benja';
+        $u->apellido = 'torres';
+        $u->username = 'benja@musicpro.cl';
+        $u->password = hash('sha256','123456');
+        $u->run = '13333333K';
+        $u->admin = true;
+        $integrations = $u->integrations;
+        $integrations['company'] = 'BENJA';
+        $integrations['user'] = 'BENJA';
+        $integrations['secret_key'] = $u->generateSecretKey();
+        $u->integrations = $integrations;
         $u->save();
     }
 

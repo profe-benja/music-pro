@@ -40,6 +40,14 @@ return new class extends Migration
         $b->token = 'BANCOESTADOTEST';
         $b->disponible = false;
         $b->save();
+
+        // GRUPO DAEMON SECCION 008D
+        $b = new Banco();
+        $b->nombre = 'DAEMON PAY';
+        $b->code = 'DAEMON';
+        $b->token = 'DAEMON123';
+        $b->disponible = true;
+        $b->save();
     }
 
     /**

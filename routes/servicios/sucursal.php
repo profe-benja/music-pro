@@ -13,7 +13,10 @@ Route::prefix('sucursal')->name('sucursal.')->group( function () {
   Route::get('/', [HomeController::class,'sucursal'])->name('index');
   Route::get('pago', [HomeController::class,'sucursalPago'])->name('pago');
   Route::post('pago', [HomeController::class,'sucursalPagoStore'])->name('pago.store');
-  Route::post('pago/recibo', [HomeController::class,'sucursalPagoRecibo'])->name('pago.recibo');
+
+  //CALLBACKS
+  Route::any('pago/recibo/{id}', [HomeController::class,'sucursalPagoRecibo'])->name('pago.recibo');
+  // Route::get('pago/recibo', [HomeController::class,'sucursalPagoRecibido'])->name('pago.recibo');
 
   Route::get('acceso', [AuthController::class,'sucursalAcceso'])->name('acceso');
   Route::post('acceso', [AuthController::class,'sucursalLogin'])->name('acceso');

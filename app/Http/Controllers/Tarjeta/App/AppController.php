@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Tarjeta\App;
-
+use Illuminate\Support\Facades\Http;
 use Jenssegers\Agent\Agent;
 use App\Http\Controllers\Controller;
 use App\Models\Tarjeta\Banco;
@@ -82,6 +82,8 @@ class AppController extends Controller
   public function transferir(Request $request) {
     try {
       $id_banco = $request->input('id_banco');
+      $banco =  Banco::findOrFail($id_banco);
+
       $nro_destino = $request->input('nro');
       $monto = abs($request->input('monto'));
       $descripcion = $request->input('descripcion');
@@ -95,7 +97,11 @@ class AppController extends Controller
         return back()->with('danger', 'Saldo insuficiente');
       }
 
-      if ($id_banco == 1) {
+      if ($banco->code == 'DAEMON') {
+
+        return self::transferirDaemon($t, $nro_destino, $monto, $descripcion);
+
+      } elseif ($banco->code == 'BEATPAY') {
         if($nro_destino == $t->nro) {
           return back()->with('danger', 'No puedes transferir a tu misma tarjeta');
         }
@@ -173,5 +179,34 @@ class AppController extends Controller
     $u->password = hash('sha256', $pass);
     $u->update();
     return back()->with('success', 'Se ha actualizado la información');
+  }
+
+  // SEND ENDPOINT
+  public function transferirDaemon($banco, $nro_destino, $monto, $descripcion) {
+    $data = array(
+      'usuario-origen' => 'BEATPAY',
+      'usuario-destino' => $nro_destino,
+      'total' => $monto,
+    );
+
+    // URL de destino
+    $url = 'http://192.168.43.37:5000/api/v1/transferencia/';
+
+    // Realizar la solicitud POST
+    $response = Http::post($url, $data);
+
+    // Obtener la respuesta
+    if ($response->successful()) {
+      // La solicitud fue exitosa (código de respuesta 2xx)
+      $responseData = $response->json(); // Obtener la respuesta como JSON
+      // Hacer algo con los datos de la respuesta
+      return $response;
+    } else {
+      // La solicitud falló (código de respuesta diferente de 2xx)
+      $statusCode = $response->status(); // Obtener el código de respuesta
+      // Manejar el error de acuerdo a tus necesidades
+
+      return $response;
+    }
   }
 }
