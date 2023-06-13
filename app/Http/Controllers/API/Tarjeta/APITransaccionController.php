@@ -13,23 +13,6 @@ use Jenssegers\Agent\Agent;
 
 class APITransaccionController extends Controller
 {
-
-  /**
-   * @OA\Get(
-   *     path="/api/v1/bodega/producto",
-   *     summary="Obtener el listado de productos",
-   *     description="Obtener el listado de productos",
-   *     operationId="bodega_producto",
-   *     tags={"Bodega"},
-   *     @OA\Response(
-   *         response=200,
-   *         description="",
-   *         @OA\JsonContent(
-   *            @OA\Property(property="message", type="string", example="Hola como estas"),
-   *        )
-   *    )
-   * )
-   */
   public function transferir_get(Request $request) {
     try {
       $user = $_GET['user'] ?? ''; // correo

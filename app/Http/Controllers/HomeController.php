@@ -6,7 +6,12 @@ use App\Models\Sucursal\BancoAPI;
 use App\Models\Sucursal\Boleta;
 use App\Models\Sucursal\DetalleBoleta;
 use App\Models\Sucursal\Producto;
+use App\Models\Transporte\Solicitud;
+use App\Services\Integrations\Bodega\CodeConClave;
+use App\Services\Integrations\Tarjeta\FreeCode;
+use App\Services\Integrations\Transporte\GranJVCorp;
 use App\Services\Preload\ProductoPreload;
+use App\Services\Integrations\Tarjeta\DaemonPay;
 use COM;
 use Illuminate\Http\Request;
 
@@ -132,5 +137,31 @@ class HomeController extends Controller
     // return redirect()->route('sucursal.pago.recibo');
 
     return view('www.sucursal.recibido', compact('estado'));
+  }
+
+  function transporteSeguimiento($code) {
+    try {
+      $s = Solicitud::where('codigo_seguimiento', $code)->firstOrFail();
+      return view('www.transporte.show', compact('s'));
+    } catch (\Throwable $th) {
+      return back()->with('danger','No se encontro el codigo de seguimiento');
+    }
+  }
+
+
+  public function testPay() {
+    // $cc = (new CodeConClave())->enviarSolicitud();
+
+    // $cc = (new GranJVCorp())->pedidosAll();
+
+    $daemon = (new DaemonPay())->post();
+
+    // $fre = (new FreeCode())->tranferir();
+
+    return $daemon;
+  }
+
+  function bodega ()  {
+
   }
 }

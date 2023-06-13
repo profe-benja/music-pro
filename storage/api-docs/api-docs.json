@@ -470,6 +470,136 @@
                     }
                 }
             }
+        },
+        "/api/v1/transporte/seguimiento/{codigo_seguimiento}": {
+            "get": {
+                "tags": [
+                    "Transporte"
+                ],
+                "summary": "Obtener información de la encomienda",
+                "description": "Obtiene detalles de la encomienda",
+                "operationId": "seguimiento",
+                "parameters": [
+                    {
+                        "name": "codigo_seguimiento",
+                        "in": "path",
+                        "description": "Codigo seguimiento de la encomienda",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "00000MUSICPRO999999"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Información del usuario obtenida exitosamente"
+                    },
+                    "404": {
+                        "description": "No se encontro encomienda"
+                    }
+                }
+            }
+        },
+        "/api/v1/transporte/solicitud": {
+            "post": {
+                "tags": [
+                    "Transporte"
+                ],
+                "summary": "Envia una solicitud de transporte",
+                "description": "Envia una solicitud de transporte",
+                "operationId": "transporte_solicitud",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "asunto",
+                                    "correo",
+                                    "contenido"
+                                ],
+                                "properties": {
+                                    "nombre_origen": {
+                                        "type": "text",
+                                        "example": "Mario Perez"
+                                    },
+                                    "direccion_origen": {
+                                        "type": "text",
+                                        "example": "Av 1 de mayo # 1-1"
+                                    },
+                                    "nombre_destino": {
+                                        "type": "text",
+                                        "example": "Marcela Torres"
+                                    },
+                                    "direccion_destino": {
+                                        "type": "text",
+                                        "example": "Calle 1 # 1-1"
+                                    },
+                                    "comentario": {
+                                        "type": "text",
+                                        "example": "Envio de documentos"
+                                    },
+                                    "info": {
+                                        "type": "json",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Error al crear la solicitud",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "codigo_seguimiento": {
+                                            "type": "string",
+                                            "example": "problemas al crear la solicitud"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Se creo correctamente la solicitud",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "201"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "correcto"
+                                        },
+                                        "error": {
+                                            "type": "string",
+                                            "example": "00000MUSICPRO99999"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

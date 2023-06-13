@@ -8,7 +8,7 @@ use App\Http\Controllers\API\APITestController;
 use App\Http\Controllers\API\Bodega\APIProductoController as BodegaAPIProductoController;
 use App\Http\Controllers\API\Musicpro\APIEmailController;
 use App\Http\Controllers\API\Sucursal\APIProductoController;
-use App\Http\Controllers\API\Tarjeta\APITransaccionController;
+use App\Http\Controllers\API\Transporte\APITransporteController;
 
 Route::post('/product/find',[APIProductoController::class,'find'])->name('api.v1.product.find');
 
@@ -34,6 +34,13 @@ Route::prefix('/v1')->name('api.v1.')->group( function () {
 
 
   Route::post('musicpro/send_email',[APIEmailController::class,'index'])->name('musicpro.index');
+
+
+  // TRANSPORTE
+  Route::any('transporte/seguimiento/{codigo}',[APITransporteController::class,'seguimiento'])->name('transporte.seguimiento');
+  Route::post('transporte/solicitud',[APITransporteController::class,'solicitud'])->name('transporte.solicitud');
+
+
 });
 
 

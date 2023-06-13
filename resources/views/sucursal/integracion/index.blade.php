@@ -2,7 +2,6 @@
 @extends('layouts.sucursal.app')
 @push('stylesheet')
 
-
 @endpush
 @section('content')
 <div class="container-fluid">

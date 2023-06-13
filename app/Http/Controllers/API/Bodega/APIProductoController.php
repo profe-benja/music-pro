@@ -27,19 +27,23 @@ class APIProductoController extends Controller
    */
   public function index()
   {
-    $productos = Producto::get();
+    // if ($_GET['token'] == 1234) {
 
-    $array_productos = [];
+      $productos = Producto::get();
 
-    foreach ($productos as $key => $p) {
-      array_push($array_productos, $p->getRawInfo());
-    }
+      $array_productos = [];
 
-    $response = [
-      'message' => 'correcto',
-      'productos' => $array_productos
-    ];
+      foreach ($productos as $key => $p) {
+        array_push($array_productos, $p->getRawInfo());
+      }
 
-    return response()->json($response, 200);
+      $response = [
+        'message' => 'correcto',
+        'productos' => $array_productos
+      ];
+      return response()->json($response, 200);
+    // }
+    // return response()->json(['code' => 'nada'], 404);
+
   }
 }

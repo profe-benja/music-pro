@@ -34,12 +34,21 @@ return new class extends Migration
       $b->save();
 
       $b = new BodegaAPI();
-      $b->id = 1;
-      $b->nombre = 'MUSICPRO';
-      $b->code = 'MUSICPRO';
-      $b->usuario = 'MUSICPRO';
-      $b->secret_key = 'MUSICPRO123';
+      $b->id = 2;
+      $b->nombre = 'CODECONCLAVE';
+      $b->code = 'CODECONCLAVE';
+      $b->usuario = 'CODECONCLAVE';
+      $b->secret_key = 'CODECONCLAVE123';
       $b->save();
+
+
+      // $b = new BodegaAPI();
+      // $b->id = 1;
+      // $b->nombre = 'MUSICPRO';
+      // $b->code = 'MUSICPRO';
+      // $b->usuario = 'MUSICPRO';
+      // $b->secret_key = 'MUSICPRO123';
+      // $b->save();
 
     }
 

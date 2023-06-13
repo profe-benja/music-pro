@@ -2,6 +2,7 @@
 
 namespace App\Services\Integrations;
 
+
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 
@@ -10,10 +11,13 @@ class ApiConnection
   protected $client;
   protected $baseUrl;
 
-  public function __construct($baseUrl)
+  public function __construct()
   {
     $this->client = new Client();
-    $this->baseUrl = $baseUrl;
+    // $this->client = new Client([
+    //   // 'headers' => [ 'Content-Type' => 'application/json' ]
+    // ]);
+
   }
 
   protected function sendRequest($method, $endpoint, $data = []) {
@@ -24,19 +28,35 @@ class ApiConnection
         'json' => $data,
       ]);
 
-      return json_decode($response->getBody(), true);
+      // return $response;
+
+      return [
+        'code' => $response->getStatusCode(),
+        'data' => $response->getBody()
+      ];
     } catch (\Throwable $e) {
-      // Manejar el error de la manera que mejor se adapte a tu aplicación
-      // Por ejemplo, lanzar una excepción personalizada, registrar el error, etc.
-      // throw $e;
 
       return $e;
+      return [
+        'code' => $e->getCode(),
+        'error' => $e->getMessage(),
+        'a' => $e->getTrace()
+      ];
     }
   }
 
   protected function sendRequestHttp($url, $params) {
     try {
       return Http::post($url, $params);
+    } catch (\Throwable $th) {
+      //throw $th;
+      return $th;
+    }
+  }
+
+  protected function sendRequestHttpGET($url) {
+    try {
+      return Http::get($url);
     } catch (\Throwable $th) {
       //throw $th;
       return $th;

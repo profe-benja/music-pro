@@ -29,6 +29,13 @@
     </a>
   </li> --}}
 
+  <li class="nav-item {{ activeTab(['transporte/encomienda*']) }}">
+    <a class="nav-link" href="{{ route('transporte.encomienda.index') }}">
+      <i class="fas fa-fw fa-users"></i>
+      <span>Encomiendas</span>
+    </a>
+  </li>
+
   <li class="nav-item {{ activeTab(['transporte/usuario*']) }}">
     <a class="nav-link" href="{{ route('transporte.usuario.index') }}">
       <i class="fas fa-fw fa-users"></i>
@@ -36,10 +43,10 @@
     </a>
   </li>
 
-  <li class="nav-item {{ activeTab(['transporte/integraciones*']) }}">
-    <a class="nav-link" href="">
+  <li class="nav-item {{ activeTab(['transporte/tenant*']) }}">
+    <a class="nav-link" href="{{ route('transporte.tenant.index') }}">
       <i class="fas fa-fw fa-code"></i>
-      <span>Integraciones</span>
+      <span>Bodega/Sucursal API</span>
     </a>
   </li>
   {{-- <hr class="sidebar-divider"> --}}

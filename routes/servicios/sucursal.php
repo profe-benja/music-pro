@@ -51,7 +51,10 @@ Route::prefix('sucursal')->name('sucursal.')->group( function () {
     Route::get('integracion/tarjeta', [IntegracionController::class,'tarjeta'])->name('integracion.tarjeta');
     Route::get('integracion/tarjeta/create', [IntegracionController::class,'tarjeta'])->name('integracion.tarjeta.create');
     Route::get('integracion/bodega', [IntegracionController::class,'bodega'])->name('integracion.bodega');
+    Route::get('integracion/bodega/create', [IntegracionController::class,'bodegaCreate'])->name('integracion.bodega.create');
     Route::get('integracion/transporte', [IntegracionController::class,'transporte'])->name('integracion.transporte');
+
+    Route::get('integracion/bodega/musicpro', [IntegracionController::class,'bodegaMusicpro'])->name('integracion.bodega.musicpro');
 
   });
 });
