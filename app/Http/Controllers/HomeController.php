@@ -113,8 +113,13 @@ class HomeController extends Controller
       $info = $info . "&monto=" . $monto;
       $info = $info . "&callback=" . $callback;
 
-      return redirect('http://192.168.137.145:3000/api/v1/tarjeta/transferir_get?' . $info);
+
+
+      return redirect()->route('api.v1.tarjeta.transferir_get', $info);
+      // return redirect('http://192.168.137.145:3000/api/v1/tarjeta/transferir_get?' . $info);
     }
+
+
 
 
     return "error 500";
@@ -136,7 +141,7 @@ class HomeController extends Controller
 
     // return redirect()->route('sucursal.pago.recibo');
 
-    return view('www.sucursal.recibido', compact('estado'));
+    return view('www.sucursal.recibido', compact('status', 'b'));
   }
 
   function transporteSeguimiento($code) {

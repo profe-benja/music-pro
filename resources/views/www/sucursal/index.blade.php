@@ -127,8 +127,11 @@
                     <ul class="dropdown-menu">
                       {{-- <li><a class="dropdown-item" href="#">Action</a></li> --}}
                       {{-- <li><a class="dropdown-item" href="#">Another action</a></li> --}}
-                      {{-- <li><a class="dropdown-item" href="#">Something else here</a></li> --}}
+                      {{-- <li><a class="dropdown-item" href="#">ADMIN</a></li> --}}
                       <li class="text-center">
+                        @if (current_store_user()->admin)
+                          <a href="{{ route('sucursal.home') }}" class="btn btn-success mb-2">ADMIN</a>
+                        @endif
                         <a href="{{ route('logout') }}" class="btn btn-danger">Cerrar Sesión 🤘</a>
                       </li>
                     </ul>

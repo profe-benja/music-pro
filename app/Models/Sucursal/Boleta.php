@@ -16,27 +16,28 @@ class Boleta extends Model
 
   protected $table = 'sucursal_boleta';
 
-  CONST FORMA_PAGO = [
-    1 => 'SIN SOLICITUD',
-    2 => 'CON SOLICITUD',
-    3 => 'FINALIZADOS'
+  CONST STATUS = [
+    0 => 'PENDIENTE DE PAGO',
+    1 => 'PAGADO',
   ];
 
-  CONST STATUS = [
-    1 => 'SIN SOLICITUD',
-    2 => 'CON SOLICITUD',
-    3 => 'FINALIZADOS'
-  ];
 
   // $table->string('forma_pago')->nullable();
   // $table->integer('estado')->default(0);
 
+  public function detalle() {
+    return $this->hasMany(DetalleBoleta::class, 'id_boleta')->with('producto');
+  }
 
   public function solicitante() {
-    return $this->belongsTo(Usuario::class, 'id_usuario_solcitante');
+    return $this->belongsTo(Usuario::class, 'id_usuario_solicitante');
   }
 
   public function getPrecio() {
     return Currency::getConvert($this->total_pagado) ?? 0;
+  }
+
+  function getStatus() {
+    return self::STATUS[$this->estado] ?? 'SIN ESTADO';
   }
 }

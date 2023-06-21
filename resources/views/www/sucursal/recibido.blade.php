@@ -152,84 +152,24 @@
 
   <div class="content">
     <div class="container">
-      <div class="row">
+      <div class="row justify-content-center">
 
         <div class="col-md-5">
           <div class="card">
-            <img class="card-img-top" src="holder.js/100px180/" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Detalle del cliente</h4>
-              <p class="card-text">Ingrese sus datos para enviar el producto a su domicilio</p>
-              <p class="text-primary">Por la compra de cualquiera de nuestro producto su despacho es totalmente <strong>GRATIS</strong></p>
-              <form action="{{ route('sucursal.pago.store') }}" method="POST">
-                @csrf
-                <input type="hidden" name="listaproductos" id="listaproductos">
-                <div class="row">
-                    <div class="col-md-12 mb-3">
-                      <div class="form-group row">
-                        <label class="col-md-4" for="nombre">Nombre <small class="text-danger">*</small></label>
-                        <div class="col-md-8">
-                          <input type="text" class="form-control" name="nombre" id="nombre" value="{{ $nombre }}" required/>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-md-12 mb-3">
-                      <div class="form-group row">
-                        <label for="direccion" class="col-md-4">Dirección <small class="text-danger">*</small></label>
-                        <div class="col-md-8">
-                          <textarea class="form-control" id="direccion" name="direccion" rows="3" required>{{ $direccion }}</textarea>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="col-md-12 mb-3">
-                      <div class="form-group row">
-                        <label for="direccion" class="col-md-4">Medio de pago <small class="text-danger">*</small></label>
-                        <div class="col-md-8">
-                          <select class="form-select form-select-lg" name="pago" id="pago">
-                            @foreach ($tarjetas as $t)
-                              <option value="{{ $t->code }}">{{ $t->nombre }}</option>
-                            @endforeach
-                            <option disabled>BANCO ESTADO</option>
-                            <option disabled>KIPHU</option>
-                            <option disabled>SANTANDER</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="d-grid gap-2">
-                      <button class="btn btn-primary btn-lg mx-2" type="submit">
-                        <strong>PAGAR</strong>  $<strong><span id="cart_price_total_one">0</span></strong>
-                      </button>
-                    </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Listado de compras</h4>
-              {{-- <p class="card-text">Text</p> --}}
-              <table class="table">
-                <thead class="thead-light">
-                  <tr>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody id="cart_body">
-                </tbody>
-              </table>
-              {{-- $<strong><span id="cart_price_total_one">0</span> --}}
-
-            </div>
+            @if ($status == 'success')
+              <div class="card-body">
+                <h4 class="card-title">BOLETA #{{ $b->id }}</h4>
+                <p class="card-text">Boleta ha sido pagada con exito</p>
+                <strong>PAGO CORRECTO</strong>
+                <a href="{{ route('sucursal.index') }}" class="btn btn-lg btn-primary">VOLVER</a>
+              </div>
+            @else
+              <div class="card-body">
+                <h4 class="card-title">NO PAGO BOLETA #{{ $b->id }}</h4>
+                <p class="card-text">Boleta no pagada</p>
+                <a href="{{ route('sucursal.index') }}" class="btn btn-lg btn-primary">VOLVER</a>
+              </div>
+            @endif
           </div>
         </div>
       </div>
@@ -312,61 +252,9 @@ function obtenerInformacionProductos(data) {
   return resultado;
 }
 
-
-function loadTable() {
-  var productos = c.all();
-  var total = 0;
-  var format = {
-    precision: 0,
-    decimal: ',',
-    separator: '.',
-  }
-  $("#btn_cart_open").hide();
-  $("#btn_cart").show();
-
-  $("#cart_body").html("");
-
-  listaproductos.value = JSON.stringify(obtenerInformacionProductos(JSON.stringify(productos)));
-
-
-  for (var i = 0; i < productos.length; i++) {
-    total += productos[i].precio_raw * productos[i].cantidad;
-    var tr = `<tr>
-        <td>
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="${productos[i].asset}" class="img-fluid" alt="Imagen del producto">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body ms-2">
-                <small><strong>${productos[i].nombre}</strong></small><br>
-                <small class="card-text fw-bold text-danger">Un: ${productos[i].cantidad}</small><br>
-                <small style="font-size='2px;'">$${currency(productos[i].precio_raw, format).format()}</small>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="text-end">$${currency(productos[i].precio_raw * productos[i].cantidad, format).format()}</td>
-        <td>
-          <button class="btn btn-outline-danger delete_cart" id="delete_cart" data-id="${productos[i].id}">
-            <i class="fa fa-trash text-danger"></i>
-          </button>
-        </td>
-      </tr>`;
-    $("#cart_body").append(tr);
-  }
-
-  $("#cart_price_total_one").html(currency(total, format).format());
-  // $("#cart_price_total_two").html(currency(total, format).format());
-  // $("#cart_price_total_original").html(currency(total, format).format());
-}
-
-
-
-
-loadTable();
-
-
+@if ($status == 'success')
+  c.reset();
+@endif
 
   </script>
 </body>

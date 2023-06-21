@@ -86,24 +86,33 @@
                 <h2 class="card-title mt-2">{{ $compania ?? '' }}</h2>
                 <p class="card-text">Monto a transferir ${{ helperMoneyFormat($monto) }}</p>
               </div>
-
-              <form action="{{ route('tarjeta.app.transferir') }}" method="POST">
+              <form action="{{ route('api.v1.tarjeta.transaccion') }}" method="POST">
                 @csrf
+                  <input type="hidden" name="params_get" value="{{ $params_get }}">
+                  <input type="hidden" name="callback" value="{{ $callback }}">
+                  <input type="hidden" name="usuarioTarjeta" value="{{$usuarioTarjeta->id}}">
+                  <input type="hidden" name="monto" value="{{$monto}}">
+
                   <div class="mb-2 row">
-                    <label for="inputCuenta" class="col-sm-12 col-form-label">Usuario</label>
+                    <label for="correo" class="col-sm-12 col-form-label">Correo electronico</label>
                     <div class="col-sm-12">
-                      <input type="text" class="form-control" id="inputCuenta" name="cuenta" required>
+                      <input type="text" class="form-control" id="correo" name="correo" required>
                     </div>
                   </div>
                   <div class="mb-2 row">
-                    <label for="inputPass" class="col-sm-12 col-form-label">Contraseña</label>
+                    <label for="pass" class="col-sm-12 col-form-label">Contraseña</label>
                     <div class="col-sm-12">
-                      <input type="text" class="form-control" min="1" id="inputPass" name="pass" required>
+                      <input type="password" class="form-control" min="1" id="pass" name="pass" required>
                     </div>
                   </div>
                 </div>
                 <div class="d-grid gap-2 m-3">
                   <button class="btn btn-lg btn-bd-primary" type="submit">PAGAR</button>
+
+
+                  @if ($status)
+                    <a href="{{ $callback }}?status=error" class="btn btn-lg btn-danger">CANCELAR</a>
+                  @endif
                 </div>
               </form>
             </div>
@@ -114,28 +123,43 @@
   </header>
 </main>
 
-
-
-  {{-- @include('tarjeta.app._mobile_bar') --}}
-  {{-- @include('tarjeta.app._modal_recargar') --}}
-  {{-- @include('tarjeta.app._modal_saldo') --}}
-
 @endsection
 @push('javascript')
-    @include('tarjeta.app._swal')
-    <script src="{{ asset('js/qrcode.min.js') }}"></script>
-    <script>
-        var qrcode = new QRCode("qrcode", {
-            text: "http://jindo.dev.naver.com/collie",
-            width: 228,
-            height: 228,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H
-        });
-
-        function selectedItem(item) {
-            document.getElementById(item).click();
-        }
-    </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (session('success'))
+<script>
+  Swal.fire({
+    icon: 'success',
+    // title: 'Correo enviado',
+    text: "{{ session('success') }}",
+  })
+</script>
+@endif
+@if ($status == 'fail')
+<script>
+  Swal.fire({
+    icon: 'info',
+    title: 'No se pudo realizar la transacción',
+    text: "por favor intente nuevamente.",
+  })
+</script>
+@endif
+@if ($status == 'error')
+<script>
+  Swal.fire({
+    icon: 'error',
+    title: 'No se pudo realizar la transacción',
+    text: "por favor intente nuevamente.",
+  })
+</script>
+@endif
+@if ($status == 'money')
+<script>
+  Swal.fire({
+    icon: 'error',
+    title: 'No se pudo realizar la transacción',
+    text: "No tienes dinero suficiente.",
+  })
+</script>
+@endif
 @endpush

@@ -43,7 +43,6 @@ Route::prefix('transporte')->name('transporte.')->group( function () {
     Route::get('encomienda/entregado', [EncomiendaController::class,'indexEntregado'])->name('encomienda.entregado');
     Route::get('encomienda/create', [EncomiendaController::class,'create'])->name('encomienda.create');
     Route::get('encomienda/{code}/show', [EncomiendaController::class,'show'])->name('encomienda.show');
-    Route::get('encomienda/{code}/edit', [EncomiendaController::class,'edit'])->name('encomienda.edit');
     Route::put('encomienda/{code}', [EncomiendaController::class,'update'])->name('encomienda.update');
     Route::post('encomienda', [EncomiendaController::class,'store'])->name('encomienda.store');
 

@@ -31,4 +31,4 @@ Route::any('pago/callback', [TransbankController::class, 'callback'])->name('pag
 // Route::get('demo', [DemoMailController::class,'index']);
 
 
-route::get('test-pay', [HomeController::class,'testPay']);
+route::get('test-pay', [HomeController::class,'tesmtPay']);

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Sucursal\BoletaController;
 use App\Http\Controllers\Sucursal\IntegracionController;
 use App\Http\Controllers\Sucursal\ProductoController;
 use App\Http\Controllers\Sucursal\UsuarioController;
@@ -45,6 +46,11 @@ Route::prefix('sucursal')->name('sucursal.')->group( function () {
     Route::get('usuario/{id}/edit', [UsuarioController::class,'edit'])->name('usuario.edit');
     Route::put('usuario/{id}', [UsuarioController::class,'update'])->name('usuario.update');
     // Route::delete('admin/usuario/{id}', [BodegaUsuarioController::class,'destroy'])->name('admin.usuario.delete');
+
+    Route::get('boleta', [BoletaController::class,'index'])->name('boleta.index');
+    Route::get('boleta/{id}', [BoletaController::class,'show'])->name('boleta.show');
+    Route::put('boleta/{id}', [BoletaController::class,'update'])->name('boleta.update');
+
 
 
     Route::get('integracion', [IntegracionController::class,'index'])->name('integracion.index');

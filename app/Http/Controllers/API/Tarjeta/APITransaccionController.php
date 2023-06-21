@@ -19,11 +19,11 @@ class APITransaccionController extends Controller
       $secret_key = $_GET['secret_key'] ?? ''; // clave interna
       $monto = $_GET['monto'] ?? '';
       $callback = $_GET['callback'] ?? '';
+      $status = $_GET['status'] ?? '';
 
       // user=benja@gmail.com&secret_key=123123&monto=1000&callback=https://www.google.com
-      $get = 'user=' . $user . '&secret_key=' . $secret_key . '&monto' . $monto . '&callback=' . $callback;
+      $params_get = 'user=' . $user . '&secret_key=' . $secret_key . '&monto=' . $monto . '&callback=' . $callback;
 
-      $route_post = $get;
       $usuarioTarjeta = Usuario::whereJsonContains('integrations->user', $user)->first();
       $compania = $usuarioTarjeta->getIntegrationCompany();
 
@@ -31,43 +31,69 @@ class APITransaccionController extends Controller
         $agent = new Agent();
         $isMobile = $agent->isMobile();
 
-        return view('tarjeta.api.transferir', compact('isMobile','route_post','monto','usuarioTarjeta', 'compania'));
+        return view('tarjeta.api.transferir', compact('callback','isMobile','params_get','monto','usuarioTarjeta', 'compania','status'));
       }
-
-      $callback = $callback . '?error=1';
+      $callback = $callback . '?status=error';
       return Redirect($callback);
     } catch (\Throwable $th) {
-      throw $th;
-      $callback = $callback . '?error=1';
+      $callback = $callback . '?status=error';
       return Redirect($callback);
     }
   }
 
   // INTERNO PAGO
   public function transaccion(Request $request) {
-    $user = $_GET['user'] ?? ''; // correo
-    $secret_key = $_GET['secret_key'] ?? ''; // clave interna
-    $monto = $_GET['monto'] ?? '';
-    $callback = $_GET['callback'] ?? '';
+    $params_get = $request->input('params_get');
+    $correo = $request->input('correo');
+    $pass =  hash('sha256', $request->input('pass'));
 
-    // user=benja@gmail.com&secret_key=123123&monto=1000&callback=www.google.com
-    $get = 'user=' . $user . '&secret_key=' . $secret_key . '&monto' . $monto . '&callback=' . $callback;
+    $status = 'error';
+    try {
+      $usuario = Usuario::where('correo', $correo)->firstOrFail();
+      if ($usuario->password == $pass ) {
+        $idUsuario = $request->input('usuarioTarjeta');
+        $callback = $request->input('callback');
+        $usuarioTarjeta = Usuario::findOrFail($idUsuario);
 
-    $usuario = $request->input('user');
-    $clave = $request->input('clave');
+        $monto = $request->input('monto');
 
+        $tarjeta_destino = $usuarioTarjeta->me_card();
+        $tarjeta_origen = $usuario->me_card();
 
+        if ($tarjeta_origen->saldo < $monto) {
+          $status = 'money';
+          $params_get = $params_get . '&status=' . $status;
+          return redirect()->route('api.v1.tarjeta.transferir_get', $params_get);
+        }
 
-    // return Redirect($callback);
+        $transaccion = new Transaccion();
+        $transaccion->monto = $monto;
+        $transaccion->id_tarjeta_origen = $tarjeta_origen->id;
+        $transaccion->id_banco_origen = 1;
+        $transaccion->code_banco_origen = "BEATPAY";
+        $transaccion->id_tarjeta_destino = $tarjeta_destino->id;
+        $transaccion->id_banco_destino = 1;
+        $transaccion->code_banco_destino = "BEATPAY";
+        $transaccion->descripcion = 'Transferencia de dinero ONLINE';
+        $transaccion->save();
 
-    $usuario = Usuario::whereJsonContains('integrations->user', $user)->first();
-    return $usuario;
-    // $usuario = Usuario::where('correo', $user)->first();
-    if ($usuario->getSecretKey() == $secret_key) {
+        $tarjeta_origen->saldo -= $monto;
+        $tarjeta_origen->update();
 
+        $tarjeta_destino->saldo += $monto;
+        $tarjeta_destino->update();
+
+        $status = 'success';
+        return redirect($callback . '?status=' . $status);
+      }
+      $params_get = $params_get . '&status=' . $status;
+      return redirect()->route('api.v1.tarjeta.transferir_get', $params_get);
+    } catch (\Throwable $th) {
+      return $th;
+      $status = 'fail';
+      $params_get = $params_get . '&status=' . $status;
+      return redirect()->route('api.v1.tarjeta.transferir_get', $params_get);
     }
-
-    return $get;
   }
 }
 

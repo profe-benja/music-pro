@@ -4,7 +4,7 @@ namespace App\Services\Integrations\Tarjeta;
 
 use App\Services\Integrations\ApiConnection;
 
-class FreeCode extends ApiConnection
+class ByteBuilders extends ApiConnection
 {
   protected $baseUrl = 'http://172.20.10.5:5000/api/v1/';
   protected $cuenta_origen;
@@ -54,5 +54,3 @@ class FreeCode extends ApiConnection
     );
   }
 }
-
-

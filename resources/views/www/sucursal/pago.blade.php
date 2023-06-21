@@ -156,7 +156,6 @@
 
         <div class="col-md-5">
           <div class="card">
-            <img class="card-img-top" src="holder.js/100px180/" alt="">
             <div class="card-body">
               <h4 class="card-title">Detalle del cliente</h4>
               <p class="card-text">Ingrese sus datos para enviar el producto a su domicilio</p>
@@ -183,7 +182,6 @@
                       </div>
                     </div>
 
-
                     <div class="col-md-12 mb-3">
                       <div class="form-group row">
                         <label for="direccion" class="col-md-4">Medio de pago <small class="text-danger">*</small></label>
@@ -200,6 +198,16 @@
                       </div>
                     </div>
 
+                    <div class="col-md-12 mb-3">
+                      <div class="form-group row">
+                        <label for="urltest" class="col-md-12">URL
+                          <small class="text-danger">* se usará esta url de prueba</small>
+                        </label>
+                        <div class="col-md-12">
+                          <textarea class="form-control" id="urltest" name="urltest" rows="3"></textarea>
+                        </div>
+                      </div>
+                    </div>
 
                     <div class="d-grid gap-2">
                       <button class="btn btn-primary btn-lg mx-2" type="submit">
@@ -209,13 +217,14 @@
                 </div>
               </form>
             </div>
+
           </div>
+
         </div>
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Listado de compras</h4>
-              {{-- <p class="card-text">Text</p> --}}
               <table class="table">
                 <thead class="thead-light">
                   <tr>

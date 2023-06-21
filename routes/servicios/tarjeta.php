@@ -54,6 +54,7 @@ Route::prefix('tarjeta')->name('tarjeta.')->group( function () {
     Route::get('banco/create', [BancoController::class,'create'])->name('banco.create');
     Route::post('banco', [BancoController::class,'store'])->name('banco.store');
     Route::get('banco/{id}', [BancoController::class,'show'])->name('banco.show');
+    Route::put('banco/{id}', [BancoController::class,'update'])->name('banco.update');
 
   });
 });

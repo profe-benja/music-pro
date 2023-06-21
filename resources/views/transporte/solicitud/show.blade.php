@@ -1,4 +1,4 @@
-@extends('layouts.sucursal.app')
+@extends('layouts.transporte.app')
 @push('stylesheet')
 
 @endpush
@@ -6,13 +6,13 @@
 <div class="container-fluid">
   <div class="row">
     @component('components.button._back')
-      @slot('route', route('sucursal.usuario.index'))
+      @slot('route', route('transporte.encomienda.index'))
       @slot('color', 'secondary')
-      @slot('body', 'Perfil - ' . $u->nombre_completo())
+      @slot('body', 'Seguimiento - ' . $solicitud->codigo_seguimiento)
     @endcomponent
 
     <div class="col-md-12">
-      @include('sucursal.usuario._tabs_usuario')
+      {{-- @include('transporte.solicitud._tabs_usuario') --}}
       <div class="card shadow mb-4">
         <div class="card-body">
           <div class="row">
@@ -20,65 +20,41 @@
               <div class="card mb-4">
                 <div class="card-body">
                   <h4 class="m-0 font-weight-bold">
-                    {{ $u->nombre_completo() }}
+                    {{ $solicitud->codigo_seguimiento }}
                   </h4>
-                  {{-- <div class="text-center">
-                    <img src="{{ asset($p->present()->getImagen()) }}" width="300px" class="rounded mt-3 mb-4" alt="...">
-                  </div> --}}
                 </div>
                 <div class="card-footer text-center">
-                  <h3>
-                    {{-- <strong>
-                      {{ $u->getCredito() }}
-                    </strong> --}}
-                  </h3>
-                </div>
-                {{-- <div class="card-footer text-center">
                   <h4>
-                    @if ($p->estado == 1)
-                      <span class="badge badge-primary">Borrador</span>
-                    @else
-                    @if ($p->estado == 2)
-                      <span class="badge badge-dark">No disponible</span>
-                    @else
-                      <span class="badge badge-success">Disponible</span>
-                    @endif
-                    @endif
+                    <span class="badge text-white bg-{{ $solicitud->estado == 0 ? 'dark' : ($solicitud->estado == 1 ? 'primary' : 'success' )}}">{{ $solicitud->getEstado() }}</span>
                   </h4>
-                </div> --}}
+                </div>
               </div>
             </div>
-
-            <div class="col-lg-8 mb-4">
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-                </div>
+            <div class="col-lg-4 mb-4">
+              <div class="card mb-4">
                 <div class="card-body">
-                  <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4>
-                  <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100"
-                      aria-valuemin="0" aria-valuemax="100"></div>
+                  <h4 class="m-0 font-weight-bold">
+                    CAMBIAR
+                  </h4>
+                  <div class="container">
+                    <form action="{{ route('transporte.encomienda.update', $solicitud->id) }}" method="post">
+                      @csrf
+                      @method('PUT')
+
+                      <div class="row mb-3">
+                        <div class="col-md-12">
+                          {{-- <label for="tipo">ESTADO</label> --}}
+                          <select class="form-control" id="estado" name="estado">
+                            <option value="0" {{ $solicitud->estado == 0 ? 'checked' : '' }}>En proceso</option>
+                            <option value="1" {{ $solicitud->estado == 1 ? 'checked' : '' }}>En camino</option>
+                            <option value="2" {{ $solicitud->estado == 2 ? 'checked' : '' }}>Entregado</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>

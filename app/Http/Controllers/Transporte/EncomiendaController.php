@@ -33,15 +33,12 @@ class EncomiendaController extends Controller
   }
 
   // 0: en proceso, 1: en camino, 2: entregado
-  public function create()
-  {
+  public function create() {
     return view('transporte.solicitud.create');
   }
 
   public function store(Request $request)
   {
-
-    return $request;
     $solicitud = new Solicitud();
     $solicitud->codigo_seguimiento = substr(time(), 1, 5) . 'MUSICPRO' . rand(100000, 999999);
     // $solicitud->tipo = 'C';
@@ -53,11 +50,27 @@ class EncomiendaController extends Controller
 
     $solicitud->comentario = $request->comentario;
     $solicitud->save();
-    return redirect()->route('transporte.encomienda.index')->with('success', 'Solicitud creada correctamente #' + $solicitud->codigo_seguimiento);
+    return redirect()->route('transporte.encomienda.index')->with('success', 'Solicitud creada correctamente #' . $solicitud->codigo_seguimiento);
   }
 
   function show($id) {
     $solicitud = Solicitud::find($id);
     return view('transporte.solicitud.show', compact('solicitud'));
+  }
+
+
+  public function update(Request $request, $id)
+  {
+    $solicitud = Solicitud::find($id);
+
+    $estado = $request->input('estado');
+    $solicitud->estado = 0;
+
+    if ($estado >= 1) {
+      $solicitud->estado = $estado;
+    }
+
+    $solicitud->update();
+    return back()->with('success', 'Solicitud actualizada correctamente #' . $solicitud->codigo_seguimiento);
   }
 }

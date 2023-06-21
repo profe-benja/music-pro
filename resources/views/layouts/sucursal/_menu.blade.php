@@ -14,8 +14,8 @@
     </a>
   </li>
 
-  <li class="nav-item {{ activeTab(['sucursal/solicitudes*']) }}">
-    <a class="nav-link" href="">
+  <li class="nav-item {{ activeTab(['sucursal/boleta*']) }}">
+    <a class="nav-link" href="{{ route('sucursal.boleta.index') }}">
       <i class="fas fa-fw fa-bell"></i>
       <span>Compras</span>
     </a>

@@ -8,8 +8,8 @@ use App\Models\Tarjeta\Banco;
 use App\Models\Tarjeta\Tarjeta;
 use App\Models\Tarjeta\Transaccion;
 use App\Models\Tarjeta\Usuario;
+use App\Services\Integrations\Tarjeta\DaemonPay;
 use App\Services\Integrations\Tarjeta\FreeCode;
-use App\Services\Tarjeta\Integrations\DaemonPay;
 use App\Services\TransbankServices;
 use Illuminate\Http\Request;
 
@@ -100,7 +100,19 @@ class AppController extends Controller
       }
 
       if ($banco->code == 'DAEMON') {
-        return (new DaemonPay($t, $nro_destino, $monto, $descripcion))->tranferir();
+        $d = Banco::where('code','DAEMON')->first();
+
+        try {
+          $response = (new DaemonPay($d->url, $t, $nro_destino, $monto, $descripcion))->tranferir();
+          return $response;
+          if ($response['message'] == "Transferencia exitosa") {
+            return back()->with('success', 'Se ha transferido correctamente');
+          }
+          return back()->with('danger', 'No puedes transferir a tu misma tarjeta');
+        } catch (\Throwable $th) {
+          return back()->with('danger', 'No puedes transferir a tu misma tarjeta');
+        }
+
       } elseif ($banco->code == 'FREEPAY') {
         return (new FreeCode($t, $nro_destino, $monto, $descripcion))->tranferir();
       } elseif ($banco->code == 'BEATPAY') {
