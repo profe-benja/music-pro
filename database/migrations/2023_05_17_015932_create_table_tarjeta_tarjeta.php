@@ -20,7 +20,7 @@ return new class extends Migration
             $table->id();
             $table->string('nro')->unique();
             $table->string('pin')->nullable();
-            $table->integer('saldo')->default(0);
+            $table->double('saldo', 18, 2); // 9999999999.99
 
             $table->unsignedBigInteger('id_usuario');
             $table->foreign('id_usuario')->references('id')->on('tarjeta_usuario');

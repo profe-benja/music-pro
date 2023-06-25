@@ -10,6 +10,7 @@ use App\Models\Tarjeta\Transaccion;
 use App\Models\Tarjeta\Usuario;
 use App\Services\Integrations\Tarjeta\DaemonPay;
 use App\Services\Integrations\Tarjeta\FreeCode;
+use App\Services\Integrations\Tarjeta\GenericoPay;
 use App\Services\TransbankServices;
 use Illuminate\Http\Request;
 
@@ -99,13 +100,31 @@ class AppController extends Controller
         return back()->with('danger', 'Saldo insuficiente');
       }
 
-      if ($banco->code == 'DAEMON') {
-        $d = Banco::where('code','DAEMON')->first();
+      if($banco->code == 'DEMOMUSICPRO') {
+        // envio de dinero a demomusicpro
+        $d = Banco::where('code','DEMOMUSICPRO')->first();
 
         try {
-          $response = (new DaemonPay($d->url, $t, $nro_destino, $monto, $descripcion))->tranferir();
-          return $response;
-          if ($response['message'] == "Transferencia exitosa") {
+          $response = (new GenericoPay($d->url, $t, $nro_destino, $monto, $descripcion))->tranferir();
+
+          if ($response['status'] == "success") {
+
+            $tr = new Transaccion();
+            $tr->id_tarjeta_origen = $t->id;
+            $tr->id_banco_origen = $t->id_banco;
+            $tr->code_banco_origen = $t->banco->code;
+            $tr->id_tarjeta_destino = null;
+            $tr->nro_tarjeta_destino = $nro_destino;
+            $tr->id_banco_destino = $d->id;
+            $tr->code_banco_destino = strtoupper(str_replace(' ', '', $d->nombre));
+            $tr->descripcion = 'transferencia a ' . $nro_destino . ' - ' . $descripcion;
+            $tr->monto = $monto;
+            $tr->estado = Transaccion::STATUS_APROBADO;
+            $tr->save();
+
+            $t->saldo = $resto;
+            $t->update();
+
             return back()->with('success', 'Se ha transferido correctamente');
           }
           return back()->with('danger', 'No puedes transferir a tu misma tarjeta');
@@ -113,6 +132,60 @@ class AppController extends Controller
           return back()->with('danger', 'No puedes transferir a tu misma tarjeta');
         }
 
+      } elseif($banco->code == 'DEMOTESTCORRECTO') {
+        // envio de dinero a demomusicpro
+        $d = Banco::where('code','DEMOTESTCORRECTO')->first();
+
+        $tr = new Transaccion();
+        $tr->id_tarjeta_origen = $t->id;
+        $tr->nro_tarjeta_origen = $t->nro;
+        $tr->id_banco_origen = $t->id_banco;
+        $tr->code_banco_origen = $t->banco->code;
+        $tr->id_tarjeta_destino = null;
+        $tr->nro_tarjeta_destino = $nro_destino;
+        $tr->id_banco_destino = $d->id;
+        $tr->code_banco_destino = strtoupper(str_replace(' ', '', $d->nombre));
+        $tr->descripcion = 'transferencia a ' . $nro_destino . ' - ' . $descripcion;
+        $tr->monto = $monto;
+        $tr->estado = Transaccion::STATUS_APROBADO;
+        $tr->save();
+
+        $t->saldo = $resto;
+        $t->update();
+
+        return back()->with('success', 'Se ha transferido correctamente');
+      } elseif($banco->code == 'DEMOTESTERROR') {
+        return back()->with('danger', 'Error al transferir');
+      } elseif ($banco->code == 'DAEMON') {
+        $d = Banco::where('code','DAEMON')->first();
+
+        try {
+          $response = (new DaemonPay($d->url, $t, $nro_destino, $monto, $descripcion))->tranferir();
+          if ($response['message'] == "Transferencia exitosa") {
+
+            $tr = new Transaccion();
+            $tr->id_tarjeta_origen = $t->id;
+            $tr->nro_tarjeta_origen = $t->nro;
+            $tr->id_banco_origen = $t->id_banco;
+            $tr->code_banco_origen = $t->banco->code;
+            $tr->id_tarjeta_destino = null;
+            $tr->id_banco_destino = $d->id;
+            $tr->nro_tarjeta_destino = $nro_destino;
+            $tr->code_banco_destino = "DAEMON";
+            $tr->descripcion = 'transferencia a ' . $nro_destino . ' - ' . $descripcion;
+            $tr->monto = $monto;
+            $tr->estado = Transaccion::STATUS_APROBADO;
+            $tr->save();
+
+            $t->saldo = $resto;
+            $t->update();
+
+            return back()->with('success', 'Se ha transferido correctamente');
+          }
+          return back()->with('danger', 'No puedes transferir a tu misma tarjeta');
+        } catch (\Throwable $th) {
+          return back()->with('danger', 'No puedes transferir a tu misma tarjeta');
+        }
       } elseif ($banco->code == 'FREEPAY') {
         return (new FreeCode($t, $nro_destino, $monto, $descripcion))->tranferir();
       } elseif ($banco->code == 'BEATPAY') {

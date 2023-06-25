@@ -321,6 +321,7 @@ class AuthController extends Controller
       $tr->code_banco_origen = 'BETPAY';
 
       $tr->id_tarjeta_destino = $t->id;
+      $tr->nro_tarjeta_destino = $t->nro;
       $tr->id_banco_destino = 1;
       $tr->code_banco_destino = 'BEATPAY';
       $tr->descripcion = 'Carga inicial';

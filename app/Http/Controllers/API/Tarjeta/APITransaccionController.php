@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Tarjeta;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tarjeta\Banco;
 use App\Models\Tarjeta\Tarjeta;
 use App\Models\Tarjeta\Transaccion;
 use App\Models\Tarjeta\Usuario;
@@ -13,6 +14,61 @@ use Jenssegers\Agent\Agent;
 
 class APITransaccionController extends Controller
 {
+/**
+ * @OA\Get(
+ *     path="/api/v1/tarjeta/transferir_get",
+ *     operationId="transferirGet",
+ *     summary="Transferir fondos",
+ *     tags={"Tarjeta BEATPAY"},
+ *     description="Transferir fondos desde una tienda",
+ *     @OA\Parameter(
+ *         name="user",
+ *         in="query",
+ *         required=true,
+ *         description="El nombre de usuario",
+ *         @OA\Schema(
+ *             type="string"
+ *         )
+ *     ),
+ *     @OA\Parameter(
+ *         name="secret_key",
+ *         in="query",
+ *         required=true,
+ *         description="La clave secreta",
+ *         @OA\Schema(
+ *             type="string"
+ *         )
+ *     ),
+ *     @OA\Parameter(
+ *         name="monto",
+ *         in="query",
+ *         required=true,
+ *         description="El monto a transferir",
+ *         @OA\Schema(
+ *             type="integer",
+ *             format="int32"
+ *         )
+ *     ),
+ *     @OA\Parameter(
+ *         name="callback",
+ *         in="query",
+ *         required=true,
+ *         description="La URL de callback",
+ *         @OA\Schema(
+ *             type="string",
+ *             format="uri"
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="Operación exitosa"
+ *     ),
+ *     @OA\Response(
+ *         response=400,
+ *         description="Parámetros inválidos"
+ *     )
+ * )
+ */
   public function transferir_get(Request $request) {
     try {
       $user = $_GET['user'] ?? ''; // correo
@@ -95,77 +151,128 @@ class APITransaccionController extends Controller
       return redirect()->route('api.v1.tarjeta.transferir_get', $params_get);
     }
   }
+
+  /**
+ * @OA\Post(
+ *     path="/api/v1/tarjeta/transferir",
+ *     operationId="transferirPost",
+ *     summary="Transferir fondos",
+ *     tags={"Tarjeta BEATPAY"},
+ *     @OA\RequestBody(
+ *         required=true,
+ *         @OA\JsonContent(
+ *             @OA\Property(
+ *                 property="tarjeta_origen",
+ *                 type="string"
+ *             ),
+ *             @OA\Property(
+ *                 property="tarjeta_destino",
+ *                 type="string"
+ *             ),
+ *             @OA\Property(
+ *                 property="comentario",
+ *                 type="string"
+ *             ),
+ *             @OA\Property(
+ *                 property="monto",
+ *                 type="integer",
+ *                 format="int32"
+ *             ),
+ *             @OA\Property(
+ *                 property="banco",
+ *                 type="string"
+ *             ),
+ *             @OA\Property(
+ *                 property="token",
+ *                 type="string"
+ *             )
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="Operación exitosa",
+ *         @OA\JsonContent(
+ *             @OA\Property(
+ *                 property="status",
+ *                 type="integer",
+ *                 example=200
+ *             ),
+ *             @OA\Property(
+ *                 property="result",
+ *                 @OA\Property(
+ *                     property="message",
+ *                     type="string",
+ *                     example="Se ha realizado el depósito"
+ *                 )
+ *             )
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=400,
+ *         description="Parámetros inválidos"
+ *     )
+ * )
+ */
+  public function transferir(Request $request)  {
+    $nro_origen =  $request->input('tarjeta_origen');
+    $nro_destino = $request->input('tarjeta_destino');
+    $comentario = $request->input('comentario') ?? '';
+
+    $monto = $request->input('monto');
+    $codigo = $request->input('codigo');
+    $token = $request->input('token');
+    $banco_origen = Banco::where('code',$codigo)->where('token', $token)->first();
+    $tarjeta_destino = Tarjeta::where('nro', $nro_destino)->first();
+
+    if ($monto <= 0) {
+      $response = array(
+        'status'  => 404,
+        'message' => 'El monto debe ser mayor a 0'
+      );
+    } else {
+
+      if ($banco_origen == null) {
+        $response = array(
+          'status'  => 404,
+          'message' => 'Banco no encontrado'
+        );
+      } else {
+
+        if ($tarjeta_destino == null) {
+          $response = array(
+            'status'  => 404,
+            'message' => 'Tarjeta destino no encontrada'
+          );
+        } else {
+
+
+          $tr = new Transaccion();
+          $tr->id_tarjeta_origen = null;
+          $tr->nro_tarjeta_origen = $nro_origen;
+          $tr->id_banco_origen = $banco_origen->id;
+          $tr->code_banco_origen = $banco_origen->code;
+
+          $tr->id_tarjeta_destino = $tarjeta_destino->id;
+          $tr->nro_tarjeta_destino = $tarjeta_destino->nro;
+          $tr->id_banco_destino = $tarjeta_destino->id;
+          $tr->code_banco_destino = 'BEATPAY';
+
+          $tr->descripcion = 'transferencia a ' . $nro_destino . ' - ' . $comentario;
+          $tr->monto = $monto;
+          $tr->estado = Transaccion::STATUS_APROBADO;
+          $tr->save();
+
+          $tarjeta_destino->saldo += $monto;
+          $tarjeta_destino->update();
+
+          $response = array(
+            'status'  => 200,
+            'message' => 'Se ha realizado la transferencia'
+          );
+        }
+      }
+    }
+
+    return response()->json(compact('response'));
+  }
 }
-
-//   public function transferir(Request $request) {
-//     $response = array(
-//       'status'  => 404,
-//       'result' => array(
-//         'message'    => 'No se pudo realizar la transferencia',
-//       )
-//     );
-
-//     $nro_origen = $request->input('nro_origen');
-//     $nro_destino = $request->input('nro_destino');
-//     $monto = $request->input('monto');
-
-//     $origen = Tarjeta::where('nro', $nro_origen)->first();
-//     $destino = Tarjeta::where('nro', $nro_destino)->first();
-
-//     if ($nro_origen == $nro_destino) {
-//       if ($origen && $destino) {
-//         if ($origen->saldo >= $monto) {
-//           $origen->saldo -= $monto;
-//           $destino->saldo += $monto;
-//           $origen->update();
-//           $destino->update();
-
-//           // $u = Usuario::first();
-//           // $tarjeta = $u->me_card();
-
-//           $t = new Transaccion();
-//           $t->id_tarjeta_origen = null;
-//           $t->id_banco_origen = 1;
-//           $t->code_banco_origen = 'QUEMADEDINERO';
-
-//           $t->id_tarjeta_destino = $tarjeta->id;
-//           $t->id_banco_destino = 1;
-//           $t->code_banco_destino = 'BEATPAY';
-//           $t->descripcion = 'Transferencia de dinero';
-//           $t->monto = $monto;
-//           $t->estado = 1;
-//           $t->save();
-
-//           $response['status'] = 200;
-//           $response['result']['message'] = 'Transferencia realizada correctamente';
-//         } else {
-//           $response['result']['message'] = 'Saldo insuficiente';
-//         }
-//       } else {
-//         $response['result']['message'] = 'Tarjeta no encontrada';
-//       }
-//     } else {
-//       $response['result']['message'] = 'No puedes transferir a tu misma tarjeta';
-//     }
-
-//     return response()->json($response, 200);
-//   }
-
-//   public function saldo(Request $request, $nro) {
-//     $response = array(
-//       'status'  => 404,
-//       'result' => array(
-//         'saldo'    => null,
-//       )
-//     );
-
-//     $p = Tarjeta::where('nro', $nro)->first();
-
-//     if ($p) {
-//       $response['status'] = 200;
-//       $response['result']['saldo'] = $p->saldo;
-//     }
-
-//     return response()->json($response, 200);
-//   }
-// }

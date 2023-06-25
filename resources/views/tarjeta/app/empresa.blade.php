@@ -102,9 +102,8 @@
                         <h4 class="card-title">Información de integración</h4>
                         <p class="card-text">
                           <code>
-                            {{route('api.v1.tarjeta.transferir')}}
+                            {{route('api.v1.tarjeta.transferir_get')}}
                           </code>
-
                         </p>
 
                         <table class="table">

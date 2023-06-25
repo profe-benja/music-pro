@@ -15,7 +15,7 @@ class ApiClient
   public function __construct()
   {
     // Define la URL base de la API que deseas conectar
-    $this->baseUrl = 'https://api.example.com/';
+    // $this->baseUrl = 'https://api.example.com/';
 
     // Inicializa el cliente GuzzleHttp
     $this->client = new Client([
@@ -59,9 +59,11 @@ class ApiClient
       return $this->handleResponse($response);
     } catch (ClientException $e) {
       // Error de cliente (4xx)
+      return $e;
       abort($e->getCode(), 'Error en la solicitud a la API: ' . $e->getMessage());
     } catch (ServerException $e) {
       // Error de servidor (5xx)
+      return $e;
       abort($e->getCode(), 'Error en la solicitud a la API: ' . $e->getMessage());
     }
   }

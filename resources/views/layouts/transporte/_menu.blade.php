@@ -14,13 +14,6 @@
     </a>
   </li>
 
-  <li class="nav-item {{ activeTab(['transporte/solicitudes*']) }}">
-    <a class="nav-link" href="">
-      <i class="fas fa-fw fa-bell"></i>
-      <span>Solicitudes</span>
-    </a>
-  </li>
-
   <hr class="sidebar-divider">
   {{-- <li class="nav-item {{ activeTab(['transporte/producto*']) }}">
     <a class="nav-link" href="{{ route('bodega.producto.index') }}">

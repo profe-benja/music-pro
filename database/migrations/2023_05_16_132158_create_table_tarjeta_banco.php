@@ -64,6 +64,20 @@ return new class extends Migration
         $b->token = 'BYTEBUILDERS123';
         $b->disponible = true;
         $b->save();
+
+        $b = new Banco();
+        $b->nombre = 'BANCO TEST CORRECTO';
+        $b->code = 'DEMOTESTCORRECTO';
+        $b->token = 'DEMOTESTCORRECTO';
+        $b->disponible = true;
+        $b->save();
+
+        $b = new Banco();
+        $b->nombre = 'BANCO TEST ERROR';
+        $b->code = 'DEMOTESTERROR';
+        $b->token = 'DEMOTESTERROR';
+        $b->disponible = true;
+        $b->save();
     }
 
     /**

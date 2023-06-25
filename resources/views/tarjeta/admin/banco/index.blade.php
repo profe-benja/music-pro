@@ -15,8 +15,9 @@
           <thead>
             <tr>
               <th>Nro</th>
-              <th>Saldo</th>
-              <th>Auth Token</th>
+              <th>NOMBRE</th>
+              <th>CODIGO</th>
+              <th>TOKEN</th>
               <th>Disponible</th>
               {{-- <th>Nombre</th> --}}
             </tr>
@@ -26,6 +27,11 @@
             <tr>
               <td>{{ $b->id }}</td>
               <td><a href="{{ route('tarjeta.admin.banco.show',$b->id) }}">{{ $b->nombre }}</a></td>
+              <td>
+                <code>
+                  {{ $b->code }}
+                </code>
+              </td>
               <td>
                 <code>
                   {{ $b->token }}

@@ -46,4 +46,6 @@ class APIProductoController extends Controller
     // return response()->json(['code' => 'nada'], 404);
 
   }
+
+
 }

@@ -2,38 +2,52 @@
 
 namespace App\Services\Integrations\Bodega;
 
-use App\Services\Integrations\ApiConnection;
+use App\Services\Integrations\ApiClient;
 
-class CodeConClave extends ApiConnection
+class CodeConClave extends ApiClient
 {
-  protected $baseUrl = 'http://192.168.137.154:5000/api/v1/';
+  protected $baseUrl = 'http://10.15.209.16:5000/api/v1/';
 
   // GET /productos
   public function buscarProductos() {
     // reponse { id_producto: 1, nombre: 'producto 1', stock: 1000, stock: 10 }
-    return $this->sendRequest('GET', 'productos');
+    return $this->get('productos');
   }
 
   // POST /productos/solicitud
   public function enviarSolicitud() {
     try {
-      // $data = [
-      //   'ids_productos' => [1,2,3,4]
-      // ];
+    # formato del json nuevo esto recibe
+    # {
+    #   "productos": [
+    #     {
+    #       "id": "1",
+    #       "cantidad": 1
+    #     },
+    #     {
+    #       "id": "2",
+    #       "cantidad": 2
+    #     }
+    #   ],
+    #   "nombre": "juan",
+    #   "direccion": "su casa"
+    # }
 
       $data= [
+        'nombre' => 'benjamin',
+        'direccion' => 'su casa av duoc san joaquin',
         'productos' => [
           [
             'id' => 1,
-            'cantidad' => 10
+            'cantidad' => 1
           ],
           [
             'id' => 2,
-            'cantidad' => 10
+            'cantidad' => 1
           ],
           [
             'id' => 3,
-            'cantidad' => 10
+            'cantidad' => 1
           ],
           [
             'id' => 4,
@@ -42,7 +56,7 @@ class CodeConClave extends ApiConnection
         ]
       ];
 
-      return $this->sendRequest('POST', 'productos/solicitud' , $data);
+      return $this->post('productos/solicitud' , $data);
     } catch (\Throwable $th) {
       return "error";
     }

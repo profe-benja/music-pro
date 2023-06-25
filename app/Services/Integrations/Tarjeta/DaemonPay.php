@@ -4,12 +4,14 @@ namespace App\Services\Integrations\Tarjeta;
 
 use App\Models\Tarjeta\Banco;
 use App\Services\Integrations\ApiClient;
+use App\Services\Integrations\ApiConn;
 use Illuminate\Support\Facades\Http;
 
 
-class DaemonPay extends ApiClient
+class DaemonPay extends ApiConn
 {
-  protected $baseUrl = 'http://192.168.60.94:5000/api/v1/';
+  protected $baseUrl;
+  // protected $baseUrl = 'http://192.168.60.94:5000/api/v1/';
   protected $cuenta_origen;
   protected $cuenta_destino;
   protected $monto;
@@ -19,7 +21,7 @@ class DaemonPay extends ApiClient
     $this->baseUrl = $API . '/api/v1/';
     $this->cuenta_origen = $cuenta_origen;
     $this->cuenta_destino = $cuenta_destino;
-    $this->cuenta_origen = $monto;
+    $this->monto = $monto;
     $this->descripcion = $descripcion;
   }
 

@@ -12,11 +12,17 @@
                   $type = 'IN';
                   $img = '';
                   $name = $trans->descripcion;
-                  $comment = 'Transacción interna BEATPAY';
+                  $comment = '';
+
+                  if ($trans->nro_tarjeta_origen  == null) {
+                    $comment = 'Transacción interna BEATPAY';
+                  } else {
+                    $comment = 'Transacción por ' . $trans->nro_tarjeta_origen . ' - ' . $trans->code_banco_origen ?? '';
+                  }
 
                   if ($trans->id_tarjeta_origen == $tarjeta->id) {
                     $type = 'OUT';
-                    $comment = 'para ' . $trans->tarjetaOrigen->usuario->nombre_completo() ?? '';
+                    $comment = 'para ' . $trans->nro_tarjeta_destino . ' - ' . $trans->code_banco_destino ?? '';
                   }
               @endphp
               <tr>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\DemoMailController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\TransbankController;
 
 Route::get('/', [HomeController::class,'index'])->name('root');
@@ -32,3 +33,6 @@ Route::any('pago/callback', [TransbankController::class, 'callback'])->name('pag
 
 
 route::get('test-pay', [HomeController::class,'tesmtPay']);
+route::get('test/codeconclave/productos', [TestController::class,'cccProductos']);
+route::get('test/codeconclave/solicitud', [TestController::class,'cccSolicitud']);
+

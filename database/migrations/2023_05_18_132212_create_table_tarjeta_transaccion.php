@@ -19,14 +19,16 @@ return new class extends Migration
             $table->id();
 
             // ORIGEN
-            $table->integer('id_tarjeta_origen')->nullable();
+            $table->string('id_tarjeta_origen')->nullable();
+            $table->string('nro_tarjeta_origen')->nullable();
             $table->integer('id_banco_origen')->nullable();
             // $table->unsignedBigInteger('id_banco_origen');
             // $table->foreign('id_banco_origen')->references('id')->on('tarjeta_banco');
             $table->string('code_banco_origen')->nullable();
 
             // DESTINO
-            $table->integer('id_tarjeta_destino')->nullable();
+            $table->string('id_tarjeta_destino')->nullable();
+            $table->string('nro_tarjeta_destino')->nullable();
             $table->integer('id_banco_destino')->nullable();
             // $table->unsignedBigInteger('id_banco_destino');
             // $table->foreign('id_banco_destino')->references('id')->on('tarjeta_banco');
@@ -34,7 +36,7 @@ return new class extends Migration
             $table->string('code_banco_destino')->nullable();
 
             // CONTENIDO
-            $table->double('monto', 12, 2); // 9999999999.99
+            $table->double('monto', 18, 2); // 9999999999.99
             $table->string('descripcion', 100)->nullable();
             $table->integer('estado')->default(0); // 0: pendiente, 1: aceptado, 2: rechazado
 
@@ -52,6 +54,7 @@ return new class extends Migration
 
         $t->id_tarjeta_destino = $tarjeta->id;
         $t->id_banco_destino = 1;
+        $t->nro_tarjeta_destino = $tarjeta->nro;
         $t->code_banco_destino = 'BEATPAY';
         $t->descripcion = 'Carga inicial';
         $t->monto = 100000000;

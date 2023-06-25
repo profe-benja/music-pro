@@ -159,11 +159,11 @@ class HomeController extends Controller
 
     // $cc = (new GranJVCorp())->pedidosAll();
 
-    $daemon = (new DaemonPay())->post();
+    // $daemon = (new DaemonPay())->post();
 
     // $fre = (new FreeCode())->tranferir();
 
-    return $daemon;
+    // return $daemon;
   }
 
   function bodega ()  {

@@ -471,6 +471,134 @@
                 }
             }
         },
+        "/api/v1/tarjeta/transferir_get": {
+            "get": {
+                "tags": [
+                    "Tarjeta BEATPAY"
+                ],
+                "summary": "Transferir fondos",
+                "description": "Transferir fondos desde una tienda",
+                "operationId": "transferirGet",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "description": "El nombre de usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "secret_key",
+                        "in": "query",
+                        "description": "La clave secreta",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "monto",
+                        "in": "query",
+                        "description": "El monto a transferir",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "callback",
+                        "in": "query",
+                        "description": "La URL de callback",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uri"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    },
+                    "400": {
+                        "description": "Parámetros inválidos"
+                    }
+                }
+            }
+        },
+        "/api/v1/tarjeta/transferir": {
+            "post": {
+                "tags": [
+                    "Tarjeta BEATPAY"
+                ],
+                "summary": "Transferir fondos",
+                "operationId": "transferirPost",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "tarjeta_origen": {
+                                        "type": "string"
+                                    },
+                                    "tarjeta_destino": {
+                                        "type": "string"
+                                    },
+                                    "comentario": {
+                                        "type": "string"
+                                    },
+                                    "monto": {
+                                        "type": "integer",
+                                        "format": "int32"
+                                    },
+                                    "banco": {
+                                        "type": "string"
+                                    },
+                                    "token": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "result": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Se ha realizado el depósito"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parámetros inválidos"
+                    }
+                }
+            }
+        },
         "/api/v1/transporte/seguimiento/{codigo_seguimiento}": {
             "get": {
                 "tags": [
