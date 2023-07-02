@@ -126,6 +126,9 @@ class AuthController extends Controller
         Auth::guard('store_usuario')->loginUsingId($u->id);
         $this->start_sesions($u);
 
+        if ($u->admin) {
+          return redirect()->route('sucursal.home');
+        }
         // $token = Auth::guard('store_usuario')->issueToken();
 
         // $token = JWTAuth::fromUser(Auth::guard('store_usuario')->user());

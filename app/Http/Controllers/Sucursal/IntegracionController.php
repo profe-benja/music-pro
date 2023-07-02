@@ -35,7 +35,64 @@ class IntegracionController extends Controller
     return view('sucursal.integracion.bodega.create');
   }
 
+  public function bodegaStore(Request $request) {
+    $b = new BodegaAPI();
+    $b->nombre = $request->input('nombre');
+    $b->token =  substr(trim($request->input('nombre')), 0, 3) . '-' . substr(md5(time()), 0, 5);
+    $b->url = $request->input('url');
+    $b->code = $request->input('code');
+    $b->disponible = $request->input('disponible') == 1 ? true : false;
+    $url_productos = $request->input('url_productos');
+    $url_solicitud = $request->input('url_solicitud');
 
+    $integracion = [
+      'url_productos' => $url_productos,
+      'url_solicitud' => $url_solicitud,
+    ];
+
+    $b->integrations = $integracion;
+    $b->save();
+    return redirect()->route('sucursal.integracion.bodega')->with('success', 'Se ha creado correctamente');
+  }
+
+
+  public function bodegaEditar($id) {
+    $b = BodegaAPI::findOrFail($id);
+    return view('sucursal.integracion.bodega.edit', compact('b'));
+  }
+
+  public function bodegaUpdate(Request $request, $id) {
+    $b = BodegaAPI::findOrFail($id);
+    $b->nombre = $request->input('nombre');
+    $b->url = $request->input('url');
+    $b->code = $request->input('code');
+    $b->disponible = $request->input('disponible') == 1 ? true : false;
+
+    $integracion = $b->integrations;
+    $url_productos = $request->input('url_productos');
+    $url_solicitud = $request->input('url_solicitud');
+
+    $integracion = [
+      'url_productos' => $url_productos,
+      'url_solicitud' => $url_solicitud,
+    ];
+
+    $b->integrations = $integracion;
+    $b->update();
+
+    return back()->with('success', 'Se ha actualizado correctamente');
+  }
+
+
+  public function bodegaSolicitudes($id) {
+    $b = BodegaAPI::with('solicitudes')->findOrFail($id);
+    return view('sucursal.integracion.bodega.solicitud.index', compact('b'));
+  }
+
+  public function bodegaSolicitudesCreate($id) {
+    $b = BodegaAPI::findOrFail($id);
+
+  }
 
 
   function bodegaMusicpro() {

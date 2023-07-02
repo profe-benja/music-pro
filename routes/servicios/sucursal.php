@@ -51,16 +51,29 @@ Route::prefix('sucursal')->name('sucursal.')->group( function () {
     Route::get('boleta/{id}', [BoletaController::class,'show'])->name('boleta.show');
     Route::put('boleta/{id}', [BoletaController::class,'update'])->name('boleta.update');
 
+    Route::prefix('integracion')->name('integracion.')->group( function () {
+      Route::get('/', [IntegracionController::class,'index'])->name('index');
 
 
-    Route::get('integracion', [IntegracionController::class,'index'])->name('integracion.index');
-    Route::get('integracion/tarjeta', [IntegracionController::class,'tarjeta'])->name('integracion.tarjeta');
-    Route::get('integracion/tarjeta/create', [IntegracionController::class,'tarjeta'])->name('integracion.tarjeta.create');
-    Route::get('integracion/bodega', [IntegracionController::class,'bodega'])->name('integracion.bodega');
-    Route::get('integracion/bodega/create', [IntegracionController::class,'bodegaCreate'])->name('integracion.bodega.create');
-    Route::get('integracion/transporte', [IntegracionController::class,'transporte'])->name('integracion.transporte');
+      Route::get('tarjeta', [IntegracionController::class,'tarjeta'])->name('tarjeta');
+      Route::get('tarjeta/create', [IntegracionController::class,'tarjeta'])->name('tarjeta.create');
 
-    Route::get('integracion/bodega/musicpro', [IntegracionController::class,'bodegaMusicpro'])->name('integracion.bodega.musicpro');
+
+      Route::get('bodega', [IntegracionController::class,'bodega'])->name('bodega');
+      Route::get('bodega/create', [IntegracionController::class,'bodegaCreate'])->name('bodega.create');
+      Route::post('bodega', [IntegracionController::class,'bodegaStore'])->name('bodega.store');
+      Route::get('bodega/{id}/edit', [IntegracionController::class,'bodegaEditar'])->name('bodega.edit');
+      Route::put('bodega/{id}', [IntegracionController::class,'bodegaUpdate'])->name('bodega.update');
+      Route::get('bodega/{id}/solicitudes', [IntegracionController::class,'bodegaSolicitudes'])->name('bodega.solicitudes');
+      Route::get('bodega/{id}/solicitudes/create', [IntegracionController::class,'bodegaSolicitudesCreate'])->name('bodega.solicitudes.create');
+
+
+
+
+      Route::get('transporte', [IntegracionController::class,'transporte'])->name('transporte');
+      Route::get('bodega/musicpro', [IntegracionController::class,'bodegaMusicpro'])->name('bodega.musicpro');
+    });
+
 
   });
 });

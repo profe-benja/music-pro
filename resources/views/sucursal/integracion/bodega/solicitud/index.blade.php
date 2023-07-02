@@ -6,11 +6,12 @@
 @endpush
 @section('content')
 <div class="container-fluid">
-  <h1 class="h3 mb-2 text-gray-800">
-    {{-- <a href="{{ route('sucursal.integracion.index') }}">volver</a> --}}
-    Bodegas
-  </h1>
-  @include('sucursal.integracion.bodega._tabs')
+    @component('components.button._back')
+    @slot('route', route('sucursal.integracion.bodega'))
+    @slot('color', 'secondary')
+    @slot('body', 'Bodega de' . $b->nombre)
+  @endcomponent
+  @include('sucursal.integracion.bodega.solicitud._tabs')
   <div class="row">
     <div class="col-md-12">
       <div class="card shadow mb-4">
@@ -28,17 +29,17 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($bodegas as $b)
+                @foreach ($b->solicitudes as $s)
                 <tr>
-                  <td>{{ $b->id }}</td>
-                  <td><a href="{{ route('sucursal.integracion.bodega.edit', $b->id) }}">{{ $b->nombre }}</a></td>
+                  <td>{{ $s->id }}</td>
+                  {{-- <td><a href="{{ route('sucursal.integracion.bodega.edit', $b->id) }}">{{ $b->nombre }}</a></td>
                   <td>{{ $b->url }}</td>
                   <td><code>{{ $b->code }}</code></td>
                   <td><code>{{ $b->token }}</code></td>
                   <td>
                     <a href="{{ route('sucursal.integracion.bodega.edit', $b->id) }}" class="btn btn-warning btn-sm">EDITAR</a>
                     <a href="{{ route('sucursal.integracion.bodega.solicitudes', $b->id) }}" class="btn btn-primary btn-sm">SOLICITUDES</a>
-                  </td>
+                  </td> --}}
                 </tr>
                 @endforeach
               </tbody>

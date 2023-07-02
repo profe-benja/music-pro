@@ -7,7 +7,6 @@ use App\Services\Integrations\ApiClient;
 use App\Services\Integrations\ApiConn;
 use Illuminate\Support\Facades\Http;
 
-
 class GenericoPay extends ApiConn
 {
   protected $baseUrl;

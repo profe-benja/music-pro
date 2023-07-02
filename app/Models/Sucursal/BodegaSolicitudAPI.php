@@ -10,11 +10,11 @@ use App\Presenters\Sucursal\ProductoPresenter;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 
-class BodegaAPI extends Model
+class BodegaSolicitudAPI extends Model
 {
   use HasFactory;
 
-  protected $table = 'sucursal_bodega_api';
+  protected $table = 'sucursal_bodega_solicitud';
 
   // CONST STATUS = [
   //   1 => 'SIN SOLICITUD',
@@ -26,32 +26,18 @@ class BodegaAPI extends Model
   // <option value="2" {{ $p->estado == 2 ? 'selected' : '' }}>No disponible</option>
   // <option value="3" {{ $p->estado == 3 ? 'selected' : '' }}>Disponible</option>
 
-  protected function integrations(): Attribute {
-    return Attribute::make(
-        get: fn ($value) => json_decode($value, true),
-        set: fn ($value) => json_encode($value),
-    );
-  }
-
-
-  public function solicitudes() {
-    return $this->hasMany(BodegaSolicitudAPI::class, 'id_bodega');
-  }
-
-
-  public function inteUrlProductos() {
-    return $this->integrations['url_productos'] ?? null;
-  }
-
-  public function inteUrlSolicitud() {
-    return $this->integrations['url_solicitud'] ?? null;
-  }
+  // protected function assets(): Attribute {
+  //   return Attribute::make(
+  //       get: fn ($value) => json_decode($value, true),
+  //       set: fn ($value) => json_encode($value),
+  //   );
+  // }
 
   // public function present(){
   //   return new ProductoPresenter($this);
   // }
 
-  // public function getPrecio() {
-  //   return Currency::getConvert($this->precio) ?? 0;
-  // }
+  public function getTotal() {
+    return Currency::getConvert($this->total) ?? 0;
+  }
 }

@@ -18,14 +18,15 @@
     <div class="col-md-6">
       <div class="card shadow mb-3">
         <div class="card-body">
-          <form class="form-sample form-submit" action="{{ route('sucursal.integracion.bodega.store') }}" method="POST" enctype="multipart/form-data">
+          <form class="form-sample form-submit" action="{{ route('sucursal.integracion.bodega.update', $b->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="row mb-3">
               <div class="col-md-12">
                 <div class="form-group row">
                   <label class="col-sm-12" for="nombre">Nombre <small class="text-danger">*</small></label>
                   <div class="col-sm-12">
-                    <input type="text" class="form-control" name="nombre" id="nombre" value="{{ old('nombre') }}" required/>
+                    <input type="text" class="form-control" name="nombre" id="nombre" value="{{ $b->nombre }}" required/>
                   </div>
                 </div>
               </div>
@@ -34,7 +35,7 @@
                 <div class="form-group row">
                   <label class="col-sm-12" for="code">Código <small class="text-danger">*</small></label>
                   <div class="col-sm-12">
-                    <input type="text" class="form-control" name="code" id="code" value="{{ old('code') }}" required/>
+                    <input type="text" class="form-control" name="code" id="code" value="{{ $b->code }}" required/>
                   </div>
                 </div>
               </div>
@@ -43,7 +44,7 @@
                 <div class="form-group row">
                   <label class="col-sm-12" for="URL">URL <small class="text-danger">*</small></label>
                   <div class="col-sm-12">
-                    <input type="url" class="form-control" name="url" id="url" value="{{ old('url') }}" required/>
+                    <input type="url" class="form-control" name="url" id="url" value="{{ $b->url }}" required/>
                   </div>
                 </div>
               </div>
@@ -52,7 +53,7 @@
                 <div class="form-group row">
                   <label class="col-sm-12" for="url_productos"><strong>GET</strong> Productos <small class="text-danger">*</small></label>
                   <div class="col-sm-12">
-                    <input type="text" class="form-control" name="url_productos" id="url_productos" value="{{ old('url_productos') }}" required/>
+                    <input type="text" class="form-control" name="url_productos" id="url_productos" value="{{ $b->inteUrlProductos() }}" required/>
                   </div>
                 </div>
               </div>
@@ -60,17 +61,11 @@
                 <div class="form-group row">
                   <label class="col-sm-12" for="url_solicitud"><strong>POST</strong> Solicitud <small class="text-danger">*</small></label>
                   <div class="col-sm-12">
-                    <input type="text" class="form-control" name="url_solicitud" id="url_solicitud" value="{{ old('url_solicitud') }}" required/>
+                    <input type="text" class="form-control" name="url_solicitud" id="url_solicitud" value="{{ $b->inteUrlSolicitud() }}" required/>
                   </div>
                 </div>
               </div>
-              {{-- <div class="col-md-12 mb-3">
-                <label for="disponible">Disponible</label>
-                <select class="form-control" id="disponible" name="disponible">
-                  <option value="2">NO</option>
-                  <option value="1">SI</option>
-                </select>
-              </div> --}}
+
 
               {{-- <div class="col-md-12">
                 <label class="col-form-label col-sm-4" for="hf-rut">Imagen</label>

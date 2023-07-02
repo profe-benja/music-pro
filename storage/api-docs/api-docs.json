@@ -555,7 +555,7 @@
                                         "type": "integer",
                                         "format": "int32"
                                     },
-                                    "banco": {
+                                    "codigo": {
                                         "type": "string"
                                     },
                                     "token": {
@@ -586,6 +586,129 @@
                                                 }
                                             },
                                             "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parámetros inválidos"
+                    }
+                }
+            }
+        },
+        "/api/v1/tarjeta/{nro_tarjeta}/transacciones": {
+            "get": {
+                "tags": [
+                    "Tarjeta BEATPAY"
+                ],
+                "summary": "Obtener información de la tarjeta y sus transacciones",
+                "description": "Obtiene detalles de la tarjeta y las transacciones realizadas",
+                "operationId": "tarjetaTransaccionesGet",
+                "parameters": [
+                    {
+                        "name": "nro_tarjeta",
+                        "in": "path",
+                        "description": "Número de tarjeta",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "1000012345678"
+                        }
+                    },
+                    {
+                        "name": "pass",
+                        "in": "query",
+                        "description": "password al iniciar sesión tarjeta cliente",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "123456"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "nro": {
+                                            "type": "integer",
+                                            "example": "1000012345678"
+                                        },
+                                        "salado": {
+                                            "type": "integer",
+                                            "example": 100000000
+                                        },
+                                        "transacciones": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "json",
+                                                    "example": "informacion de la transferencia"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parámetros inválidos"
+                    }
+                }
+            }
+        },
+        "/api/v1/tarjeta/{nro_tarjeta}": {
+            "get": {
+                "tags": [
+                    "Tarjeta BEATPAY"
+                ],
+                "summary": "Obtener saldo información de la tarjeta",
+                "description": "Obtiene detalles de la tarjeta",
+                "operationId": "tarjetaShow",
+                "parameters": [
+                    {
+                        "name": "nro_tarjeta",
+                        "in": "path",
+                        "description": "Número de tarjeta",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "1000012345678"
+                        }
+                    },
+                    {
+                        "name": "pass",
+                        "in": "query",
+                        "description": "password al iniciar sesión tarjeta cliente",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "123456"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "nro": {
+                                            "type": "integer",
+                                            "example": "1000012345678"
+                                        },
+                                        "salado": {
+                                            "type": "integer",
+                                            "example": 100000000
                                         }
                                     },
                                     "type": "object"

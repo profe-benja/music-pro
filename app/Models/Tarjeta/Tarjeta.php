@@ -49,4 +49,11 @@ class Tarjeta extends Model
 
     return $numero_con_espacios;
   }
+
+  public function get_rawinfo() {
+    return [
+      'nro' => $this->nro,
+      'saldo' => $this->saldo,
+    ];
+  }
 }

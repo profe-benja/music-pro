@@ -12,6 +12,8 @@ Route::prefix('/v1/tarjeta')->name('api.v1.tarjeta.')->group( function () {
 
 
   Route::post('transferir',[APITransaccionController::class,'transferir'])->name('transferir');
+  Route::any('/{nro}/transacciones',[APITransaccionController::class,'transacciones'])->name('transacciones');
+  Route::any('/{nro}',[APITransaccionController::class,'show'])->name('show');
 
 
 });

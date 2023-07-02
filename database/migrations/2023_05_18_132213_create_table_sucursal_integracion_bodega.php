@@ -16,38 +16,31 @@ return new class extends Migration
     {
       Schema::create('sucursal_bodega_api', function (Blueprint $table) {
         $table->id();
-        $table->string('nombre')->nullable();
-        $table->string('code')->nullable();
-        $table->string('usuario')->nullable();
-        $table->string('secret_key')->nullable();
-        $table->json('info')->nullable();
+        $table->string('nombre');
+        $table->string('code');
+        $table->string('token', 100);
+        $table->string('img')->nullable();
+        $table->string('url')->nullable();
+        $table->json('integrations')->nullable();
+        $table->boolean('disponible')->default(true);
+        $table->boolean('activo')->default(true);
         $table->timestamps();
       });
 
-
       $b = new BodegaAPI();
       $b->id = 1;
-      $b->nombre = 'MUSICPRO';
-      $b->code = 'MUSICPRO';
-      $b->usuario = 'MUSICPRO';
-      $b->secret_key = 'MUSICPRO123';
+      $b->nombre = 'Bodega music pro';
+      $b->code = 'MUSICPRO123';
+      $b->url = 'https://musicpro.bemtorres.win/api/v1/bodega';
+      $b->token = 'MUSICPRO123';
       $b->save();
-
-      $b = new BodegaAPI();
-      $b->id = 2;
-      $b->nombre = 'CODECONCLAVE';
-      $b->code = 'CODECONCLAVE';
-      $b->usuario = 'CODECONCLAVE';
-      $b->secret_key = 'CODECONCLAVE123';
-      $b->save();
-
 
       // $b = new BodegaAPI();
-      // $b->id = 1;
-      // $b->nombre = 'MUSICPRO';
-      // $b->code = 'MUSICPRO';
-      // $b->usuario = 'MUSICPRO';
-      // $b->secret_key = 'MUSICPRO123';
+      // $b->id = 2;
+      // $b->nombre = 'CODECONCLAVE';
+      // $b->code = 'CODECONCLAVE';
+      // $b->usuario = 'CODECONCLAVE';
+      // $b->secret_key = 'CODECONCLAVE123';
       // $b->save();
 
     }
