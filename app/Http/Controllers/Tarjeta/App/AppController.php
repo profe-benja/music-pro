@@ -102,10 +102,10 @@ class AppController extends Controller
 
       if($banco->code == 'DEMOMUSICPRO') {
         // envio de dinero a demomusicpro
-        $d = Banco::where('code','DEMOMUSICPRO')->first();
+        // $d = Banco::where('code','DEMOMUSICPRO')->first();
 
         try {
-          $response = (new GenericoPay($d->url, $t, $nro_destino, $monto, $descripcion))->tranferir();
+          $response = (new GenericoPay($banco->url, $t, $nro_destino, $monto, $descripcion))->tranferir();
 
           if ($response['status'] == "success") {
 
@@ -115,8 +115,8 @@ class AppController extends Controller
             $tr->code_banco_origen = $t->banco->code;
             $tr->id_tarjeta_destino = null;
             $tr->nro_tarjeta_destino = $nro_destino;
-            $tr->id_banco_destino = $d->id;
-            $tr->code_banco_destino = strtoupper(str_replace(' ', '', $d->nombre));
+            $tr->id_banco_destino = $banco->id;
+            $tr->code_banco_destino = strtoupper(str_replace(' ', '', $banco->nombre));
             $tr->descripcion = 'transferencia a ' . $nro_destino . ' - ' . $descripcion;
             $tr->monto = $monto;
             $tr->estado = Transaccion::STATUS_APROBADO;
