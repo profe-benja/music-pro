@@ -15,6 +15,11 @@ Route::post('/product/find',[APIProductoController::class,'find'])->name('api.v1
 Route::prefix('/v1')->name('api.v1.')->group( function () {
 
   Route::prefix('/test')->name('test.')->group( function () {
+
+    //Test params
+    Route::any('response',[APITestController::class,'providerResponse'])->name('providerResponse');
+    Route::any('response/{id}',[APITestController::class,'providerResponseGet'])->name('providerResponseGet');
+
     // TEST INICIALES
     Route::get('saludo',[APITestController::class,'saludo'])->name('saludo');
     Route::get('saldo',[APITestController::class,'saldo'])->name('saldo');

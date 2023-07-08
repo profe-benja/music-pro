@@ -104,8 +104,9 @@ class AppController extends Controller
         // envio de dinero a demomusicpro
         // $d = Banco::where('code','DEMOMUSICPRO')->first();
 
+
         try {
-          $response = (new GenericoPay($banco->url, $t, $nro_destino, $monto, $descripcion))->tranferir();
+          $response = (new GenericoPay($banco->url, $t->nro, $nro_destino, $monto, $descripcion))->tranferir();
 
           if ($response['status'] == "success") {
 

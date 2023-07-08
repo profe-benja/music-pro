@@ -9,6 +9,14 @@ use Illuminate\Http\Response;
 class APITestController extends Controller
 {
 
+  function providerResponse(Request $request) {
+    return [ 'status' => 'success' ,  $request];
+  }
+
+  function providerResponseGet(Request $request, $id) {
+    return [ $request, $id ];
+  }
+
   public function index()
   {
     // Aquí puedes realizar alguna lógica para obtener los datos que deseas enviar como respuesta
