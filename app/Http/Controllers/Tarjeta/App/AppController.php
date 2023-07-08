@@ -103,10 +103,9 @@ class AppController extends Controller
       if($banco->code == 'DEMOMUSICPRO') {
         // envio de dinero a demomusicpro
         // $d = Banco::where('code','DEMOMUSICPRO')->first();
-
-
         try {
           $response = (new GenericoPay($banco->url, $t->nro, $nro_destino, $monto, $descripcion))->tranferir();
+          return $response;
 
           if ($response['status'] == "success") {
 
@@ -128,8 +127,9 @@ class AppController extends Controller
 
             return back()->with('success', 'Se ha transferido correctamente');
           }
-          return back()->with('danger', 'No puedes transferir a tu misma tarjeta');
+          // return back()->with('danger', 'No puedes transferir a tu misma tarjeta');
         } catch (\Throwable $th) {
+          return $th;
           return back()->with('danger', 'No puedes transferir a tu misma tarjeta');
         }
 
