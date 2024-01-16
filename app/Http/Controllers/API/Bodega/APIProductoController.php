@@ -82,7 +82,15 @@ class APIProductoController extends Controller
    *               required={"nombre_empresa", "direccion_empresa", "productos"},
    *               @OA\Property(property="nombre_empresa", type="text", example="Gosh SHOP", description=""),
    *               @OA\Property(property="direccion_empresa", type="text", example="av 123", description="Correo destino del correo electronico"),
-   *               @OA\Property(property="productos", type="json",  example="{{  }}", description=""),
+   *               @OA\Property(
+    *               property="productos",
+    *               type="array",
+    *               @OA\Items(
+    *                   type="object",
+    *                   @OA\Property(property="id_producto", type="integer", example=1, description="ID del producto"),
+    *                   @OA\Property(property="cantidad", type="integer", example=10, description="Cantidad del producto"),
+    *               ),
+    *             ),
    *            ),
    *        ),
    *    ),
