@@ -35,7 +35,8 @@ Route::prefix('/v1')->name('api.v1.')->group( function () {
   });
 
   // BODEGA
-  Route::any('bodega/producto',[BodegaAPIProductoController::class,'index'])->name('bodega.producto.index');
+  Route::get('bodega/producto',[BodegaAPIProductoController::class,'index'])->name('bodega.producto.index');
+  Route::post('bodega/solicitud',[BodegaAPIProductoController::class,'solicitud'])->name('bodega.solicitud.index');
 
 
   Route::post('musicpro/send_email',[APIEmailController::class,'index'])->name('musicpro.index');

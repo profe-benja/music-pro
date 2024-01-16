@@ -393,6 +393,97 @@
                 }
             }
         },
+        "/api/v1/bodega/solicitud": {
+            "post": {
+                "tags": [
+                    "Bodega"
+                ],
+                "summary": "Recibe los productos seleccionados",
+                "description": "Recibe el listado de producto que quiere la bodega o sucursal",
+                "operationId": "bodega_solicitud",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "nombre_empresa",
+                                    "direccion_empresa",
+                                    "productos"
+                                ],
+                                "properties": {
+                                    "nombre_empresa": {
+                                        "description": "",
+                                        "type": "text",
+                                        "example": "Gosh SHOP"
+                                    },
+                                    "direccion_empresa": {
+                                        "description": "Correo destino del correo electronico",
+                                        "type": "text",
+                                        "example": "av 123"
+                                    },
+                                    "productos": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "id_producto": {
+                                                    "description": "ID del producto",
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "cantidad": {
+                                                    "description": "Cantidad del producto",
+                                                    "type": "integer",
+                                                    "example": 10
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error. Algo inesperado ha ocurrido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Se ha enviado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/musicpro/send_email": {
             "post": {
                 "tags": [

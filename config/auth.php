@@ -56,6 +56,10 @@ return [
         'driver' => 'session',
         'provider' => 'store_usuario',
       ],
+      'examen_usuario' => [
+        'driver' => 'session',
+        'provider' => 'examen_usuario',
+      ],
     ],
 
     /*
@@ -96,6 +100,10 @@ return [
             'driver' => 'database',
             'table' => App\Models\Sucursal\Usuario::class,
         ],
+        'examen_usuario' => [
+          'driver' => 'eloquent',
+          'table' => App\Models\Examen\Usuario::class,
+      ],
     ],
 
     /*

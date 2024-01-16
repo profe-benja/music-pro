@@ -56,6 +56,7 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
 
         'auth.user.bodega' => \App\Http\Middleware\AccessUsuarioBodega::class,
+        'auth.user.examen' => \App\Http\Middleware\AccessExamenUsuario::class,
         'auth.user.store.admin' => \App\Http\Middleware\AccessUsuarioSucursalAdmin::class,
         'auth.user.store' => \App\Http\Middleware\AccessUsuarioSucursalCliente::class,
         'auth.user.transporte' => \App\Http\Middleware\AccessUsuarioTransporte::class,

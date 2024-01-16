@@ -49,6 +49,7 @@ class RouteServiceProvider extends ServiceProvider
                 require base_path('routes/servicios/tarjeta.php');
                 require base_path('routes/servicios/transporte.php');
                 require base_path('routes/servicios/bodega.php');
+                require base_path('routes/examen.php');
               });
         });
     }
